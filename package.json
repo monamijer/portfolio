@@ -1,18 +1,24 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "jerome portfolio",
-  "main": "index.js",
+  "description": "",
+  "homepage": "https://github.com/Monami2021/portfolio#readme",
+  "bugs": {
+    "url": "https://github.com/Monami2021/portfolio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monami2021/portfolio.git"
+  },
+  "license": "MIT",
+  "author": "jerome",
+  "type": "esmodules",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "designer",
-    "web_developper",
-    "frontend developper",
-    "backend developper",
-    
-  ],
-  "author": "monami jerome",
-  "license": "ISC"
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1"
+  }
 }
