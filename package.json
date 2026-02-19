@@ -2,13 +2,13 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/Monami2021/portfolio#readme",
+  "homepage": "https://github.com/monamijer/portfolio#readme",
   "bugs": {
-    "url": "https://github.com/Monami2021/portfolio/issues"
+    "url": "https://github.com/monamijer/portfolio/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Monami2021/portfolio.git"
+    "url": "git+https://github.com/monamijer/portfolio.git"
   },
   "license": "MIT",
   "author": "jerome",
