@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "author": "jerome",
-  "type": "modules",
+  "type": "module",
   "main": "main.js",
   "scripts": {
     "dev": "vite",
