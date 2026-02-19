@@ -3,7 +3,7 @@
 /package-lock.json
 
 # Build output
-/dist/
+
 .build/
 .vite/
 
