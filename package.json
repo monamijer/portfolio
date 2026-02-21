@@ -12,14 +12,12 @@
   },
   "license": "MIT",
   "author": "jerome",
-  "type": "esmodules",
+  "type": "module",
   "main": "main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "clean": "rm -rf dist node_modules",
     "reinstall": "npm run clean && npm install"
   },
@@ -29,7 +27,8 @@
     "date-fns": "^4.1.0"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
+    "eslint": "^10.0.0",
+    "prettier": "^3.8.1",
     "vite": "^7.3.1"
   }
 }
