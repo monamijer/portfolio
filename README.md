@@ -30,7 +30,7 @@ npm install
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/monamijer/portfolio/issues). You can also take a look at the [contributing guide](https://github.com/monamijer/portfolio/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/monamijer/portfolio/issues). You can also take a look at the [contributing guide](https://github.com/monamijer/portfolio/blob/main/CONTRIBUTING.md).
 
 ## Show your support
 
@@ -38,8 +38,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2026 [jerome](https://github.com/monamijer).<br />
+Copyright © 2025 [jerome](https://github.com/monamijer).<br />
 This project is [MIT](https://github.com/monamijer/portfolio/blob/master/LICENSE) licensed.
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
