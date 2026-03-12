@@ -19,7 +19,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist node_modules",
-    "reinstall": "npm run clean && npm install"
+    "reinstall": "npm run clean && npm install",
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
