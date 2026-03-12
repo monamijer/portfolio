@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/monamijer/portfolio.git"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monamijer/portfolio.git"
+  },
   "license": "MIT",
   "author": "jerome",
   "type": "module",
