@@ -1,57 +1,149 @@
-#  ⛩️ Le Jardin de Jérôme
 
-    "Le code n'est pas une suite d'instructions, c'est l'architecture d'une pensée."
+# ⛩️ Jérôme Portfolio
+*“Le code n'est pas seulement une suite d'instructions. C'est une manière d'organiser une pensée.”*
 
-Ce dépôt est un sanctuaire numérique. Chaque pierre y est posée avec intention, chaque dépendance choisie pour sa justesse. Entrez, le chemin est ouvert.
+Portfolio personnel construit avec une approche **minimaliste, performante et maintenable**.
+Le projet met l'accent sur :
 
-🔗 Contempler l'œuvre en ligne
-⚔️ L'Arsenal & La Forme
+* une **architecture simple**
+* un **design responsive**
+* un **environnement de développement rapide**
 
-L'excellence naît de l'essentiel. Ni fioritures, ni poids inutile :
+---
 
-    Vite : L'étincelle qui forge le build dans l'instant.
+# 🌐 Démo
 
-    Bootstrap & Icons : La structure et le symbole. Un design qui respire sur chaque écran.
+🚀 **Voir le site en ligne**
 
-    Date-fns : La maîtrise des cycles du temps.
+```text
+https://monamijer.github.io/portfolio
+```
 
-    ESLint & Prettier : La discipline du sabre. Un code droit, sans impureté.
 
-🏗️ L'Équilibre Invisible (Architecture)
+# 🧰 Stack Technique
 
-L'organisation suit le flux de l'eau :
+### Build & tooling
 
-    Le Cœur (main.js) : Le centre de gravité où l'énergie se canalise.
+[![Vite](https://img.shields.io/badge/Vite-build%20tool-646CFF?logo=vite\&logoColor=white)](https://vitejs.dev/)
+[![NPM](https://img.shields.io/badge/npm-package%20manager-CB3837?logo=npm\&logoColor=white)](https://www.npmjs.com/)
 
-    Le Vide (Philosophie Design) : Le blanc n'est pas une absence, c'est une respiration. On atteint la perfection non pas quand il n'y a plus rien à ajouter, mais quand il n'y a plus rien à retirer.
+### Frontend
 
-📜 La Voie de l'Installation
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-UI%20framework-7952B3?logo=bootstrap\&logoColor=white)](https://getbootstrap.com/)
+[![Bootstrap Icons](https://img.shields.io/badge/Bootstrap%20Icons-icon%20library-7952B3?logo=bootstrap\&logoColor=white)](https://icons.getbootstrap.com/)
 
-Suivez le sentier pour éveiller le temple localement :
-Bash
+### Utilities
 
-# Invoquer le code
+[![date-fns](https://img.shields.io/badge/date--fns-date%20utilities-770C56)](https://date-fns.org/)
+
+### Code Quality
+
+[![ESLint](https://img.shields.io/badge/ESLint-code%20linting-4B32C3?logo=eslint\&logoColor=white)](https://eslint.org/)
+[![Prettier](https://img.shields.io/badge/Prettier-code%20formatter-F7B93E?logo=prettier\&logoColor=black)](https://prettier.io/)
+
+# 🏗️ Architecture
+
+Structure volontairement simple afin de privilégier **la lisibilité et la maintenabilité**.
+
+```
+project
+│
+├── src
+│   ├── main.js      # point d'entrée
+│   ├── styles
+│   └── components
+│
+├── public
+│
+└── package.json
+```
+
+Principes :
+
+* **un point d'entrée clair**
+* **des modules séparés**
+* **peu de dépendances**
+
+---
+
+# 🚀 Installation
+
+Cloner le projet :
+
+```bash
 git clone https://github.com/monamijer/portfolio.git
+```
 
-# Éveiller les outils
+Installer les dépendances :
+
+```bash
 npm install
+```
 
-# Méditer (Dev)
+Lancer le serveur de développement :
+
+```bash
 npm run dev
+```
 
-# Purifier (Si l'esprit s'embrume)
+---
+
+# 🧹 Maintenance
+
+Réinstallation propre des dépendances :
+
+```bash
 npm run reinstall
+```
 
-✨ Fragments de Sérendipité
+Lint du code :
 
-    Le Bug Originel : En 1947, le premier "bug" était une simple mite coincée dans un relais. Parfois, la solution est juste un nettoyage de l'esprit.
+```bash
+npm run lint
+```
 
-    L'Origine du 404 : On raconte qu'au CERN, le bureau 404 abritait les premiers serveurs. Chaque erreur est un rappel de nos racines.
+Formatage automatique :
 
-    L'Instant Zéro : Le temps informatique est né le 1er janvier 1970. Depuis cet instant, chaque milliseconde est une chance de bâtir.
+```bash
+npm run format
+```
 
-📚 Vers la Maîtrise
+---
 
-    Sources : Observez Sarah Drasner pour l'empathie technique et Douglas Crockford pour l'art de l'omission.
+# 📚 Ressources recommandées
 
-    Lectures : The Pragmatic Programmer (La survie par l'artisanat) et The Zen of Programming (Le code comme méditation).
+Quelques références utiles pour progresser :
+
+📘 Livres
+
+* *The Pragmatic Programmer* — Andrew Hunt & David Thomas
+* *Clean Code* — Robert C. Martin
+
+🎤 Développeurs inspirants
+
+* Sarah Drasner
+* Douglas Crockford
+
+🌐 Documentation
+
+* [https://developer.mozilla.org](https://developer.mozilla.org)
+* [https://vitejs.dev](https://vitejs.dev)
+* [https://getbootstrap.com](https://getbootstrap.com)
+
+---
+
+# ✨ Philosophie du projet
+
+Ce projet suit une idée simple :
+
+> **Un bon code est un code que l'on peut comprendre rapidement, modifier facilement et maintenir longtemps.**
+
+Moins de complexité, plus de clarté.
+
+---
+
+# 📄 Licence
+
+MIT
+
+---
