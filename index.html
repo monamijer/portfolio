@@ -164,8 +164,6 @@
   <p>JavaScript</p>
   <div class="progress mb-3"><div class="progress-bar" style="width: 70%"></div></div>
 </section>
-
-<!-- ================= CONTACT ================= -->
 <!-- =====================
      CONTACT
 ===================== -->
@@ -177,12 +175,14 @@
 
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+     
       <form
         id="contactForm"
-        action="mailto:monamijer2005@gmail.com"
-        method="post"
-        enctype="text/plain"
+        action="https://formsubmit.co/monamijer2005@gmail.com"
+        method="POST"
       >
+        <input type="hidden" name="_captcha" value="false">
+
         <div class="mb-3">
           <label for="name" class="form-label">Your Name</label>
           <input
@@ -223,6 +223,9 @@
           <button type="submit" class="btn btn-primary">
             Send Message
           </button>
+        </div>
+        <div class="mt-3 text-success d-none" id="successMessage">
+          Thank you! Your message has been sent.
         </div>
       </form>
     </div>
