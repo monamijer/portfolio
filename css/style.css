@@ -1,53 +1,58 @@
 /* =====================
-   Global
+   GLOBAL
 ===================== */
 :root {
   --accent: #18d26e;
   --dark: #040404;
   --glass: rgba(255, 255, 255, 0.08);
-  --bg: white;
-  --text: black;
+  --bg: #ffffff;
+  --text: #111;
+  --muted: #777;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-	 font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Dark mode */
 body.dark {
   --bg: #121212;
-  --text: white;
+  --text: #f1f1f1;
+  --glass: rgba(255, 255, 255, 0.05);
 }
 
-.box img {
-  width: 100%;
-  height: auto;
-}
+/* Links */
 a {
   color: var(--accent);
   text-decoration: none;
+  transition: 0.3s;
 }
 
 a:hover {
-  color: #fff;
+  color: var(--accent);
+  opacity: 0.8;
 }
-ul{
+
+/* Lists */
+ul {
   list-style: none;
+  padding: 0;
 }
 
 /* =====================
-   Hero / Header
+   HEADER / HERO
 ===================== */
 #header {
-/*  min-height: 100vh;
-*/  display: flex;
+  display: flex;
   align-items: center;
-  margin: 2em 0;
-/*  background:
-    linear-gradient(to bottom, rgba(0,0,0,.7), rgba(0,0,0,.9)),
-    url("../images/j.jpeg") center / cover no-repeat;
-*/}
+  justify-content: center;
+  text-align: center;
+  padding: 100px 0;
+}
 
 #header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
@@ -56,7 +61,7 @@ ul{
 
 #header h2 {
   font-size: 1.25rem;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 #header h2 span {
@@ -72,20 +77,21 @@ ul{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
-  transition: .3s;
+  margin: 5px;
+  transition: all 0.3s ease;
 }
 
 .social-link a:hover {
   background: var(--accent);
   color: #000;
+  transform: translateY(-3px);
 }
 
 /* =====================
-   Section
+   SECTIONS
 ===================== */
 section {
-	  padding: 80px 0;
+  padding: 80px 0;
 }
 
 .section-title h2 {
@@ -95,23 +101,25 @@ section {
 }
 
 .section-title p {
-  opacity: .7;
+  color: var(--muted);
 }
 
 /* =====================
-   About
+   ABOUT
 ===================== */
 .about img {
   border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* =====================
-   Resume
+   RESUME
 ===================== */
 .pic {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 30px;
+  align-items: center;
 }
 
 .pic img {
@@ -127,18 +135,20 @@ section {
 }
 
 /* =====================
-   Services
+   SERVICES
 ===================== */
 .box {
   background: var(--glass);
   border-radius: 18px;
   padding: 25px;
   height: 100%;
-  transition: .3s;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .box:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   background: rgba(24, 210, 110, 0.12);
 }
 
@@ -148,33 +158,62 @@ section {
 }
 
 /* =====================
-   Skills
+   PROJECTS
+===================== */
+#projects .col-md-4 {
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--glass);
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+#projects .col-md-4:hover {
+  transform: translateY(-6px);
+}
+
+/* =====================
+   SKILLS
 ===================== */
 .skills .progress {
-  background: rgba(255,255,255,.15);
+  background: rgba(255,255,255,0.1);
   height: 10px;
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .skills .progress-bar {
   background: var(--accent);
   border-radius: 20px;
+  transition: width 1s ease;
 }
 
 /* =====================
-   Testimonials
+   CONTACT
 ===================== */
-.card {
-  background: var(--glass);
-  border-radius: 18px;
+#contact input,
+#contact textarea {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#contact button {
+  background: var(--accent);
   border: none;
+  padding: 10px 20px;
+}
+
+#contact button:hover {
+  opacity: 0.9;
 }
 
 /* =====================
-   Footer
+   FOOTER
 ===================== */
 footer {
   background: #020202;
+  color: #ccc;
 }
 
 footer a {
@@ -185,3 +224,16 @@ footer a:hover {
   color: var(--accent);
 }
 
+/* =====================
+   UTILITIES
+===================== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
