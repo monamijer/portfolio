@@ -27,5 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (date) {
     date.textContent = new Date().getFullYear();
   }
+  
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const successMessage = document.getElementById("successMessage");
+
+  form.addEventListener("submit", (e) => {
+    setTimeout(() => {
+      successMessage.classList.remove("d-none");
+      form.reset();
+    }, 500);
+  });
+});
 
 });
