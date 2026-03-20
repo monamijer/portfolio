@@ -166,15 +166,67 @@
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="container py-5 text-center">
-  <h2>Contact Me</h2>
+<!-- =====================
+     CONTACT
+===================== -->
+<section id="contact" class="container py-5">
+  <div class="text-center mb-5">
+    <h2>Contact Me</h2>
+    <p>Have a project or just want to say hi? Send me a message!</p>
+  </div>
 
-  <form class="mt-4">
-    <input type="text" class="form-control mb-3" placeholder="Your Name" required>
-    <input type="email" class="form-control mb-3" placeholder="Your Email" required>
-    <textarea class="form-control mb-3" placeholder="Your Message" required></textarea>
-    <button class="btn btn-primary">Send Message</button>
-  </form>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form
+        id="contactForm"
+        action="mailto:monamijer2005@gmail.com"
+        method="post"
+        enctype="text/plain"
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Your Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Your Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Your Message</label>
+          <textarea
+            class="form-control"
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Write your message here"
+            required
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
 
 </main>
