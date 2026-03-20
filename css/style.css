@@ -5,14 +5,25 @@
   --accent: #18d26e;
   --dark: #040404;
   --glass: rgba(255, 255, 255, 0.08);
+  --bg: white;
+  --text: black;
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
-  background: var(--dark);
-  color: #fff;
+  background: var(--bg);
+  color: var(--text);
+	 font-family: "Inter", system-ui, sans-serif;
 }
 
+body.dark {
+  --bg: #121212;
+  --text: white;
+}
+
+.box img {
+  width: 100%;
+  height: auto;
+}
 a {
   color: var(--accent);
   text-decoration: none;
