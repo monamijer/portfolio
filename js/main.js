@@ -3,7 +3,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../css/style.css'
 
+// Dark mode
+const toggle = document.querySelector("#themeToggle");
 
-const span = document.querySelector(".date");
-const year = new Date();
-span.textContent = year.getFullYear();
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
+// Date auto
+document.querySelector(".date").textContent = new Date().getFullYear();
