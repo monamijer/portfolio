@@ -3,12 +3,22 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../css/style.css'
 
-// Dark mode
-const toggle = document.querySelector("#themeToggle");
 
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Dark mode
+  const toggle = document.querySelector("#themeToggle");
+
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  }
+
+  // Date auto
+  const date = document.querySelector(".date");
+  if (date) {
+    date.textContent = new Date().getFullYear();
+  }
+
 });
-
-// Date auto
-document.querySelector(".date").textContent = new Date().getFullYear();
