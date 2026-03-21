@@ -143,8 +143,11 @@ npm run dev
 <p align="center">
 
 <img src="https://github-readme-stats.vercel.app/api?username=monamijer&show_icons=true&theme=transparent">
+</p>
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=monamijer&theme=transparent">
+<p align="center">
+  
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=monamijer&theme=tokyonight)](https://git.io/streak-stats)
 
 </p>
 
