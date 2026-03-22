@@ -7,6 +7,11 @@
 ![last commit](https://img.shields.io/github/last-commit/monamijer/portfolio?style=for-the-badge)
 ![repo size](https://img.shields.io/github/repo-size/monamijer/portfolio?style=for-the-badge)
 ![license](https://img.shields.io/github/license/monamijer/portfolio?style=for-the-badge)
+![visitors](https://komarev.com/ghpvc/?username=monamijer&repo=portfolio&style=for-the-badge)
+![Top Language](https://img.shields.io/github/languages/top/monamijer/portfolio?style=for-the-badge)
+![Code Size](https://img.shields.io/github/languages/code-size/monamijer/portfolio?style=for-the-badge)
+
+</p>
 
 </p>
 
