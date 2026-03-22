@@ -1,4 +1,4 @@
-# ⛩️ Jérôme Portfolio
+# ⛩️ Jerome Portfolio
 
 <p align="center">
 
@@ -12,71 +12,67 @@
 
 <p align="center">
 
-> *“Le code n'est pas seulement une suite d'instructions. C'est une manière d'organiser une pensée.”*
+> *"Code is not just instructions — it's a way of structuring thought."*
 
 </p>
 
-Portfolio personnel construit avec une approche **minimaliste, performante et maintenable**.
+A personal portfolio built with a **minimal, performant, and maintainable approach**.
 
-Objectifs :
+**Core goals:**
 
-* architecture **simple**
-* design **responsive**
-* développement **rapide**
-* code **lisible et maintenable**
-
----
-
-# 🌐 Démo
-
-🚀 **Voir le site**
-
-👉 [https://monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)
+- simple architecture  
+- responsive design  
+- fast development  
+- clean and maintainable code  
 
 ---
 
+# 🌐 Demo
 
-# 📚 Table des matières
+🚀 **Live site**
 
-* Demo
-* Stack
-* Architecture
-* Installation
-* Scripts
-* Ressources
-* Philosophie
-* Licence
+👉 https://monamijer.github.io/portfolio
 
 ---
 
-# 🧰 Stack Technique
+# 📚 Table of Contents
 
-### Build & tooling
+- Demo  
+- Tech Stack  
+- Architecture  
+- Installation  
+- Scripts  
+- Resources  
+- Philosophy  
+- License  
 
-[![Vite](https://img.shields.io/badge/Vite-build%20tool-646CFF?logo=vite\&logoColor=white)](https://vitejs.dev/)
-[![NPM](https://img.shields.io/badge/npm-package%20manager-CB3837?logo=npm\&logoColor=white)](https://www.npmjs.com/)
+---
+
+# 🧰 Tech Stack
+
+### Build & Tooling
+
+- Vite  
+- npm  
 
 ### Frontend
 
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-UI%20framework-7952B3?logo=bootstrap\&logoColor=white)](https://getbootstrap.com/)
-[![Bootstrap Icons](https://img.shields.io/badge/Bootstrap%20Icons-icon%20library-7952B3?logo=bootstrap\&logoColor=white)](https://icons.getbootstrap.com/)
-
-### Utilities
-
-[![date-fns](https://img.shields.io/badge/date--fns-date%20utilities-770C56)](https://date-fns.org/)
+- Bootstrap  
+- Bootstrap Icons  
 
 ### Code Quality
 
-[![ESLint](https://img.shields.io/badge/ESLint-code%20linting-4B32C3?logo=eslint\&logoColor=white)](https://eslint.org/)
-[![Prettier](https://img.shields.io/badge/Prettier-code%20formatter-F7B93E?logo=prettier\&logoColor=black)](https://prettier.io/)
+- ESLint  
+- Prettier  
 
 ---
 
 # 🏗️ Architecture
 
-Structure simple pour faciliter la maintenance.
+A simple structure designed for clarity and maintainability.
 
 ```
+
 project
 │
 ├── src
@@ -87,37 +83,38 @@ project
 ├── public
 │
 └── package.json
-```
 
-Principes :
+````
 
-* point d'entrée unique
-* modules séparés
-* dépendances limitées
+**Principles:**
+
+- single entry point  
+- modular structure  
+- minimal dependencies  
 
 ---
 
 # 🚀 Installation
 
-Cloner le projet :
+Clone the repository:
 
 ```bash
 git clone https://github.com/monamijer/portfolio.git
-```
+````
 
-Entrer dans le dossier :
+Navigate into the project:
 
 ```bash
 cd portfolio
 ```
 
-Installer les dépendances :
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-Lancer le serveur :
+Start the development server:
 
 ```bash
 npm run dev
@@ -125,67 +122,60 @@ npm run dev
 
 ---
 
-# ⚙️ Scripts disponibles
+# ⚙️ Available Scripts
 
-| Script              | Description                    |
-| ------------------- | ------------------------------ |
-| `npm run dev`       | serveur de développement       |
-| `npm run build`     | build production               |
-| `npm run preview`   | preview du build               |
-| `npm run lint`      | analyse du code                |
-| `npm run format`    | formatage automatique          |
-| `npm run reinstall` | réinstallation des dépendances |
+| Script              | Description               |
+| ------------------- | ------------------------- |
+| `npm run dev`       | start development server  |
+| `npm run build`     | build for production      |
+| `npm run preview`   | preview production build  |
+| `npm run lint`      | run code linting          |
+| `npm run format`    | format code automatically |
+| `npm run reinstall` | reinstall dependencies    |
 
 ---
 
-# 📊 Statistiques du projet
+# 📊 Project Stats
 
 <p align="center">
 
 <img src="https://github-readme-stats.vercel.app/api?username=monamijer&show_icons=true&theme=tokyonight">
-<img src ="https://github-readme-streak-stats.herokuapp.com?user=monamijer&theme=tokyonight">
+<img src="https://github-readme-streak-stats.herokuapp.com?user=monamijer&theme=tokyonight">
 
 </p>
 
 ---
 
-# 📚 Ressources recommandées
+# 📚 Recommended Resources
 
-### Livres
+### Books
 
-📘 The Pragmatic Programmer
-Andrew Hunt & David Thomas
+* *The Pragmatic Programmer* — Andrew Hunt & David Thomas
+* *Clean Code* — Robert C. Martin
 
-📘 Clean Code
-Robert C. Martin
-
----
-
-### Développeurs inspirants
+### Developers
 
 * Sarah Drasner
 * Douglas Crockford
 
----
-
 ### Documentation
 
-* [MDN](https://developer.mozilla.org)
-* [Vite](https://vitejs.dev)
-* [Bootstrap](https://getbootstrap.com)
+* [https://developer.mozilla.org](https://developer.mozilla.org)
+* [https://vitejs.dev](https://vitejs.dev)
+* [https://getbootstrap.com](https://getbootstrap.com)
 
 ---
 
-# ✨ Philosophie du projet
+# ✨ Philosophy
 
-> **Un bon code est simple à comprendre, facile à modifier et durable dans le temps.**
+> **Good code is easy to understand, easy to change, and built to last.**
 
-Moins de complexité.
-Plus de clarté.
+Less complexity.
+More clarity.
 
 ---
 
-# 📄 Licence
+# 📄 License
 
 MIT
 
@@ -193,7 +183,7 @@ MIT
 
 # ⭐ Support
 
-Si ce projet t'aide ou t'inspire :
+If this project helped or inspired you:
 
-⭐ **Star le repo sur GitHub**
+⭐ Star the repository on GitHub
 
