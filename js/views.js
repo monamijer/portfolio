@@ -179,12 +179,12 @@ export const contactView = () => /* html */`
 
         <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+          <input type="text" id="name" name="name" placeholder="" required />
         </div>
 
         <div class="form-group">
           <label for="email">Your Email</label>
-          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          <input type="email" id="email" name="email" placeholder="" required />
         </div>
 
         <div class="form-group">
