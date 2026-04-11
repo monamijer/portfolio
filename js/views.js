@@ -1,7 +1,6 @@
 /**
  * views.js
  * Each exported function returns an HTML string for a route.
- * They are pure — no DOM side effects here.
  */
 
 import { PROFILE, SKILLS, SERVICES, PROJECTS } from './data.js';

@@ -1,7 +1,3 @@
-/**
- * data.js
- * Single source of truth — edit this file to update your portfolio content.
- */
 
 export const PROFILE = {
   name:       'Monami Jerome',
