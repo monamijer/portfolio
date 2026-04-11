@@ -45,6 +45,7 @@ export const PROJECTS = [
     tags:  ['HTML', 'CSS', 'Vanilla JS'],
     demo:  'https://monamijer.github.io/portfolio',
     repo:  'https://github.com/monamijer/portfolio',
+    image: 'images/portfolio.png',
     emoji: '⛩️',   // shown as placeholder if no image
     // image: 'images/projects/portfolio.jpg',
   },
@@ -54,14 +55,15 @@ export const PROJECTS = [
     tags:  ['PHP', 'MySQL', 'JavaScript', 'AJAX'],
     demo:  'https://mjerome.alwaysdata.net/psag_parish',
     repo:  null,
+   	image: 'images/psag.png',
     emoji: '⛪',
   },
   {
-    title: 'REST API Backend',
-    desc:  'Scalable REST API built with Express and PostgreSQL, documented with Swagger.',
-    tags:  ['Express', 'PostgreSQL', 'Swagger'],
+    title: 'Django Local Library',
+    desc:  'Scalable Library built in django.',
+    tags:  ['Python', 'Django framework', 'JavaScript'],
     demo:  null,
-    repo:  null,
-    emoji: '⚡',
+    repo:  'https://github.com/monamijer/django-local-library',
+    emoji: '🏛️📰💻📖',
   },
 ];
