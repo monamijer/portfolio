@@ -49,12 +49,12 @@ export const PROJECTS = [
     // image: 'images/projects/portfolio.jpg',
   },
   {
-    title: 'E-Commerce App',
-    desc:  'Full-stack storefront with cart, authentication, and Stripe payment integration.',
-    tags:  ['Angular', 'Node.js', 'MongoDB'],
-    demo:  null,
+    title: 'PSAG Parish Management',
+    desc:  'Web application for managing parish activities, users, cathechumens and administration with authentication and rol-based access control.',
+    tags:  ['PHP', 'MySQL', 'JavaScript', 'AJAX'],
+    demo:  'https://mjerome.alwaysdata.net/psag_parish',
     repo:  null,
-    emoji: '🛒',
+    emoji: '⛪',
   },
   {
     title: 'REST API Backend',
