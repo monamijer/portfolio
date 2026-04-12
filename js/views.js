@@ -7,7 +7,7 @@ import { PROFILE, SKILLS, SERVICES, PROJECTS } from './data.js';
 
 /* ── Shared marquee strip ────────────────────────────────────── */
 const marquee = () => {
-  const items = ['Web Development', '·', 'UI Design', '·', 'Angular', '·', 'Node.js', '·', 'Open to Work', '·'];
+  const items = ['Web Development', '·', 'UI Design', '·', 'Angular', '·', 'Node.js', '·', 'Open to Work', '·', 'PHP', '.'];
   // Duplicate for seamless loop
   const inner = [...items, ...items]
     .map((t, i) => `<span${t === '·' ? ' class="accent"' : ''}>${t}</span>`)
