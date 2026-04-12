@@ -56,9 +56,9 @@ export const PROJECTS = [
   },
   {
     title: 'Django Local Library',
-    desc:  'Scalable Library built in django.',
+    desc:  'Scalable learning Library built in django.',
     tags:  ['Python', 'Django framework', 'JavaScript'],
-    demo:  null,
+    demo:  'https://monamijer.pythonanywhere.com',
     repo:  'https://github.com/monamijer/django-local-library',
     emoji: '🏛️📰💻📖',
   },
