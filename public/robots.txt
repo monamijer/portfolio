@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://monamijer.github.io/portfolio/sitemap.xml
+Sitemap: https://monamijer.github.io/portfolio/public/sitemap.xml
