@@ -80,13 +80,22 @@ A simple structure designed for clarity and maintainability.
 
 project
 │
-├── src
-│   ├── main.js
-│   ├── styles
-│   └── components
+├── css
+│   └── style.css
+├── images
+│   ├── api.webp
+│   ├── jer.ico
+│   └── projects/
 │
 ├── public
-│
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   └── components
+├── js
+│   ├── data.js
+│   ├── main.js
+│   ├── router.js
+│   └── views.js
 └── package.json
 
 ````
