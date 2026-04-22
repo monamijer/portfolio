@@ -1,6 +1,6 @@
 import { PROFILE } from './data.js';
 
-const API = 'http://localhost:4000/api'; // → update to your VPS URL in production
+const API = 'http://localhost:4000/api'; // → update to  VPS URL in production
 
 /* ══════════════════════════════════════════════════════════════
    SESSION  (sessionStorage — wiped when tab closes)
