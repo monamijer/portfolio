@@ -1,11 +1,8 @@
-/**
- * main.js
- * Application entry point.
- * Wires together: router, theme toggle, navbar, and post-render hooks.
- */
+
 
 import { Router }       from './router.js';
 import { homeView, aboutView, projectsView, contactView } from './views.js';
+import { vaultView, initVault } from './nexus.js';
 
 /* ── Router setup ────────────────────────────────────────────── */
 const app = document.getElementById('app');
@@ -14,7 +11,8 @@ const router = new Router(app)
   .on('/',         homeView)
   .on('/about',    aboutView)
   .on('/projects', projectsView)
-  .on('/contact',  contactView);
+  .on('/contact',  contactView)
+  .on('/vault',    vaultView);
 
 router.start();
 
@@ -64,6 +62,8 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 window.addEventListener('route:changed', () => {
   animateSkillBars();
   wireContactForm();
+
+  if(detail.path === '/vault') initVault();
 });
 
 /** Animate skill progress bars when they enter the viewport. */
