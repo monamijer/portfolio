@@ -1,9 +1,3 @@
-/* =============================================================
-   NEXUS VAULT — Styles
-   Dark, precise, terminal-inspired aesthetic.
-   Completely isolated from the portfolio's design system.
-   ============================================================= */
-
 /* ── Shell / Layout ─────────────────────────────────────────── */
 .vault-shell {
   min-height: calc(100dvh - var(--nav-h));
