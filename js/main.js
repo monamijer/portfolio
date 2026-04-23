@@ -59,7 +59,7 @@ const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* ── Post-render hooks (run after each route render) ─────────── */
-window.addEventListener('route:changed', () => {
+window.addEventListener('route:changed', ({ detail }) => {
   animateSkillBars();
   wireContactForm();
 
