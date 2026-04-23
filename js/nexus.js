@@ -377,6 +377,8 @@ const personFields = [
   { key:'real_name',   type:'text',   label:'Real Name' },
   { key:'occupation',  type:'text',   label:'Occupation' },
   { key:'nationality', type:'text',   label:'Nationality' },
+  { key: 'phone',      type:'text',   label:'Phone'},
+  { key: 'role',      type:'text',   label:'role'},
   { key:'gender',      type:'select', label:'Gender', options:['unknown','M','F','other'] },
   { key:'birth_date',  type:'date',   label:'Birth Date' },
   { key:'status',      type:'select', label:'Status', options:['alive','deceased','lost_contact','unknown'] },
