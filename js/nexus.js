@@ -1,6 +1,14 @@
+/**
+ * nexus.js  — Phase 2
+ * Full NEXUS vault frontend.
+ * Sections: Overview · Journal · People · Self · Vocation ·
+ *           Tech · Knowledge · Strategy · Figures · Culture ·
+ *           Parcours · Health · Quiz
+ */
+
 import { PROFILE } from './data.js';
 
-const API = 'http://localhost:4000/api'; // → update to  VPS URL in production
+const API = 'http://localhost:4000/api'; // → update to your VPS URL in production
 
 /* ══════════════════════════════════════════════════════════════
    SESSION  (sessionStorage — wiped when tab closes)
@@ -167,6 +175,15 @@ function bootDash() {
     session.clear();
     location.hash = '#/';
   });
+
+  // Delegate clicks on data-goto buttons (overview quick actions)
+  document.getElementById('vContent').addEventListener('click', e => {
+    const target = e.target.closest('[data-goto]');
+    if (!target) return;
+    const section = target.dataset.goto;
+    const navBtn  = document.querySelector('[data-s="' + section + '"]');
+    if (navBtn) navBtn.click();
+  });
 }
 
 const content = html => { const el = document.getElementById('vContent'); if (el) el.innerHTML = html; };
@@ -211,7 +228,7 @@ async function overviewSection() {
           </div>
           <button class="vault-btn-primary"
             style="margin-left:auto;width:auto;padding:.5rem 1.2rem"
-            onclick="document.querySelector('[data-s=journal]').click()">
+            data-goto="journal">
             Write today →
           </button>
         </div>
@@ -250,10 +267,10 @@ async function overviewSection() {
         </div>` : ''}
 
         <div class="vault-quick-actions">
-          <button class="vault-btn-ghost" onclick="document.querySelector('[data-s=quiz]').click()">⚡ Start Quiz</button>
-          <button class="vault-btn-ghost" onclick="document.querySelector('[data-s=journal]').click()">📓 Journal</button>
-          <button class="vault-btn-ghost" onclick="document.querySelector('[data-s=people]').click()">👥 People</button>
-          <button class="vault-btn-ghost" onclick="document.querySelector('[data-s=strategy]').click()">♟ Strategy</button>
+          <button class="vault-btn-ghost" data-goto="quiz">⚡ Start Quiz</button>
+          <button class="vault-btn-ghost" data-goto="journal">📓 Journal</button>
+          <button class="vault-btn-ghost" data-goto="people">👥 People</button>
+          <button class="vault-btn-ghost" data-goto="strategy">♟ Strategy</button>
         </div>
       </div>`);
   } catch (err) { vError(err.message); }
