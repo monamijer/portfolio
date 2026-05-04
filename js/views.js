@@ -164,6 +164,9 @@ export const contactView = () => /* html */`
           <a class="contact-link-item" href="${PROFILE.socials.linkedin}" target="_blank" rel="noopener">
             <i class="bi bi-linkedin"></i> LinkedIn
           </a>
+          <a class="contact-link-item" href="${PROFILE.socials.instagram}" target="_blank" rel="noopener">
+            <i class="bi bi-instagram"></i> Instagram
+          </a>
         </div>
       </div>
 
