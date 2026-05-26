@@ -6,7 +6,7 @@ export const PROFILE = {
   bio:        "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
   location:   'Bujumbura, Burundi',
   email:      'monamijer2005@gmail.com',
-  photo:      'images/jerome-profile.jpg',
+  photo:      'images/monami.png',
   education:  'MSc Software Engineering',
   expertise:  'Angular · Express · Node.js',
   activity:   'Student & Freelancer',
