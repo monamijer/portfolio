@@ -96,6 +96,11 @@ project
 │   ├── main.js
 │   ├── router.js
 │   └── views.js
+├── index.html
+├── .gitignore
+├── vite.config.js
+├── README.md
+├── LICENCE
 └── package.json
 
 ````
