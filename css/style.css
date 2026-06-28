@@ -637,11 +637,11 @@ h1, h2, h3, h4, h5 {
     margin-right: auto; /* Push burger and theme toggle to the right */
   }
 
-  /* Mobile menu - slide from left */
+  /* Mobile menu - slide from left with solid background */
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 0 0;
-    background: var(--bg);
+    background: var(--bg); /* Solid background */
     flex-direction: column;
     align-items: flex-start; /* Align links to the left */
     justify-content: flex-start;
@@ -651,22 +651,9 @@ h1, h2, h3, h4, h5 {
     transform: translateX(-100%); /* Slide from left instead of right */
     transition: transform var(--dur) var(--ease);
     z-index: 99;
+    opacity: 1; /* Ensure full opacity */
   }
   .nav-links.open { transform: translateX(0); }
-  
-  /* Add solid overlay background when menu is open */
-  .nav-links::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: var(--bg); /* Solid background, not transparent */
-    z-index: -1;
-    opacity: 0;
-    transition: opacity var(--dur) var(--ease);
-  }
-  .nav-links.open::before {
-    opacity: 1;
-  }
   
   /* Style links better for mobile */
   .nav-links a {
