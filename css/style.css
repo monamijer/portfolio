@@ -627,22 +627,64 @@ h1, h2, h3, h4, h5 {
    RESPONSIVE
    ============================================================= */
 @media (max-width: 768px) {
-  /* Navbar mobile */
+  /* Navbar mobile - align left */
+  #navbar {
+    justify-content: flex-start;
+    gap: var(--space-sm);
+  }
+  
+  .nav-logo {
+    margin-right: auto; /* Push burger and theme toggle to the right */
+  }
+
+  /* Mobile menu - slide from left */
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 0 0;
     background: var(--bg);
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
+    align-items: flex-start; /* Align links to the left */
+    justify-content: flex-start;
+    padding: var(--space-lg) var(--space-md);
+    gap: var(--space-md);
     font-size: 1.2rem;
-    transform: translateX(100%);
+    transform: translateX(-100%); /* Slide from left instead of right */
     transition: transform var(--dur) var(--ease);
     z-index: 99;
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-burger { display: flex; }
+  
+  /* Add overlay background when menu is open */
+  .nav-links::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease);
+  }
+  .nav-links.open::before {
+    opacity: 1;
+  }
+  
+  /* Style links better for mobile */
+  .nav-links a {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    display: block;
+    width: 100%;
+  }
+  
+  .nav-burger { 
+    display: flex;
+    order: 1; /* Keep burger after logo */
+  }
+  .theme-toggle {
+    order: 2; /* Theme toggle stays at the right */
+  }
 
   /* Pages */
   .home-hero       { grid-template-columns: 1fr; gap: var(--space-md); min-height: unset; padding-top: var(--space-lg); }
