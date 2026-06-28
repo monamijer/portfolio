@@ -654,13 +654,12 @@ h1, h2, h3, h4, h5 {
   }
   .nav-links.open { transform: translateX(0); }
   
-  /* Add overlay background when menu is open */
+  /* Add solid overlay background when menu is open */
   .nav-links::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(2px);
+    background: var(--bg); /* Solid background, not transparent */
     z-index: -1;
     opacity: 0;
     transition: opacity var(--dur) var(--ease);
