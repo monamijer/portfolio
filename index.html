@@ -13,6 +13,10 @@
     <meta property="og:description" content="Discover Monami Jerome's projects and skills" />
     <meta property="og:image" content="images/jer.jpg" />
     <meta property="og:url" content="https://monamijer.github.io/portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="sw_TZ" />
+    <meta property="og:locale:alternate" content="es_ES" />
 
     <title>Monami Jerome · Web Developer</title>
 
@@ -24,7 +28,7 @@
        rel="stylesheet"
       />
 
-    <!-- Bootstrap Icons (lightweight icon set) -->
+    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
@@ -41,7 +45,6 @@
 
     <!-- SPA router + app bootstrap -->
     <script src="js/main.js" type="module"></script>
-
   </head>
 
   <body>
@@ -52,15 +55,18 @@
     <nav id="navbar">
       <a href="#/" class="nav-logo" aria-label="Home">MJ</a>
 
+      <!-- Language Switcher -->
+      <div class="lang-switcher" id="langSwitcher"></div>
+
       <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
 
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="#/">Home</a></li>
-        <li><a href="#/about">About</a></li>
-        <li><a href="#/projects">Projects</a></li>
-        <li><a href="#/contact">Contact</a></li>
+        <li><a href="#/" data-i18n="nav.home">Home</a></li>
+        <li><a href="#/about" data-i18n="nav.about">About</a></li>
+        <li><a href="#/projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#/contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
