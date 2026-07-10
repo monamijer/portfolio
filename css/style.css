@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* =============================================================
-   NAVBAR
+   NAVBAR - Amazon-style, always visible
    ============================================================= */
 #navbar {
   position: fixed;
@@ -120,13 +120,10 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: clamp(1.5rem, 5vw, 3rem);
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding-inline: clamp(1rem, 3vw, 2rem);
+  background: var(--bg); /* Solid background */
   border-bottom: 1px solid var(--border);
-  z-index: 100;
-  transition: background var(--dur) var(--ease);
+  z-index: 1000;
 }
 
 .nav-logo {
@@ -135,12 +132,15 @@ h1, h2, h3, h4, h5 {
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.04em;
+  flex-shrink: 0;
 }
 .nav-logo:hover { color: var(--accent); }
 
 .nav-links {
   display: flex;
   gap: var(--space-md);
+  margin-left: auto;
+  margin-right: var(--space-md);
 }
 .nav-links a {
   font-size: 0.875rem;
@@ -148,6 +148,7 @@ h1, h2, h3, h4, h5 {
   color: var(--muted);
   transition: color var(--dur) var(--ease);
   position: relative;
+  white-space: nowrap;
 }
 .nav-links a::after {
   content: '';
@@ -177,6 +178,7 @@ h1, h2, h3, h4, h5 {
   justify-content: center;
   font-size: 0.9rem;
   transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  flex-shrink: 0;
 }
 .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
 
@@ -189,6 +191,7 @@ h1, h2, h3, h4, h5 {
   border: none;
   cursor: pointer;
   padding: 4px;
+  margin-left: var(--space-sm);
 }
 .nav-burger span {
   display: block;
@@ -627,49 +630,39 @@ h1, h2, h3, h4, h5 {
    RESPONSIVE
    ============================================================= */
 @media (max-width: 768px) {
-  /* Navbar mobile - align left */
-  #navbar {
-    justify-content: flex-start;
-    gap: var(--space-sm);
-  }
-  
-  .nav-logo {
-    margin-right: auto; /* Push burger and theme toggle to the right */
-  }
-
-  /* Mobile menu - slide from left with solid background */
+  /* Mobile menu - simple dropdown like Amazon */
   .nav-links {
-    position: fixed;
-    inset: var(--nav-h) 0 0 0;
+    display: none; /* Hide by default */
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
     background: var(--bg); /* Solid background */
     flex-direction: column;
-    align-items: flex-start; /* Align links to the left */
-    justify-content: flex-start;
-    padding: var(--space-lg) var(--space-md);
-    gap: var(--space-md);
-    font-size: 1.2rem;
-    transform: translateX(-100%); /* Slide from left instead of right */
-    transition: transform var(--dur) var(--ease);
-    z-index: 99;
-    opacity: 1; /* Ensure full opacity */
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  .nav-links.open { transform: translateX(0); }
   
-  /* Style links better for mobile */
+  .nav-links.open {
+    display: flex; /* Show when open */
+  }
+  
   .nav-links a {
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
     display: block;
     width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .nav-links a:last-child {
+    border-bottom: none;
   }
   
   .nav-burger { 
     display: flex;
-    order: 1; /* Keep burger after logo */
-  }
-  .theme-toggle {
-    order: 2; /* Theme toggle stays at the right */
   }
 
   /* Pages */
