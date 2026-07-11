@@ -3,15 +3,28 @@
  * Each exported function returns an HTML string for a route.
  */
 
-import { PROFILE, SKILLS, SERVICES, PROJECTS } from './data.js';
+import { PROFILE, SKILLS, SERVICES, PROJECTS } from "./data.js";
 
 /* ── Shared marquee strip ────────────────────────────────────── */
 const marquee = () => {
-  const items = ['Web Development', '·', 'UI Design', '·', 'Angular', '·', 'Node.js', '·', 'Open to Work', '·', 'PHP', '.'];
+  const items = [
+    "Web Development",
+    "·",
+    "UI Design",
+    "·",
+    "Angular",
+    "·",
+    "Node.js",
+    "·",
+    "Open to Work",
+    "·",
+    "PHP",
+    ".",
+  ];
   // Duplicate for seamless loop
   const inner = [...items, ...items]
-    .map((t, i) => `<span${t === '·' ? ' class="accent"' : ''}>${t}</span>`)
-    .join('');
+    .map((t, i) => `<span${t === "·" ? ' class="accent"' : ""}>${t}</span>`)
+    .join("");
   return `
     <div class="marquee-track" aria-hidden="true">
       <div class="marquee-inner">${inner}</div>
@@ -19,19 +32,19 @@ const marquee = () => {
 };
 
 /* ── HOME ───────────────────────────────────────────────────── */
-export const homeView = () => /* html */`
+export const homeView = () => /* html */ `
   <div class="container page">
     <section class="home-hero">
 
       <div class="hero-text">
-        <span class="section-label">Available for freelance</span>
-        <h1>${PROFILE.tagline.replace(/\n/g, '<br>')}</h1>
-        <p>${PROFILE.bio.split('.')[0]}.</p>
+        <span class="section-label" data-i18n="common.available">Available for freelance</span>
+        <h1>${PROFILE.tagline.replace(/\n/g, "<br>")}</h1>
+        <p>${PROFILE.bio.split(".")[0]}.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#/projects">
-            <i class="bi bi-grid-3x3-gap"></i> View Work
+            <i class="bi bi-grid-3x3-gap"></i> <span data-i18n="common.viewWork">View Work</span>
           </a>
-          <a class="btn btn-outline" href="#/contact">Let's Talk</a>
+          <a class="btn btn-outline" href="#/contact"><span data-i18n="common.letsTalk">Let's Talk</span></a>
         </div>
       </div>
 
@@ -42,7 +55,7 @@ export const homeView = () => /* html */`
           loading="eager"
           onerror="this.style.display='none'"
         />
-        <p class="hero-scroll-hint">Scroll to explore</p>
+        <p class="hero-scroll-hint" data-i18n="common.scrollToExplore">Scroll to explore</p>
       </div>
 
     </section>
@@ -53,17 +66,17 @@ export const homeView = () => /* html */`
   <!-- Teaser: latest projects -->
   <div class="container" style="padding-bottom: var(--space-xl)">
     <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-md)">
-      <h2 style="font-size:clamp(1.6rem,3vw,2.5rem)">Selected Work</h2>
-      <a href="#/projects" class="btn btn-outline" style="font-size:0.7rem">All Projects →</a>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.5rem)" data-i18n="common.selectedWork">Selected Work</h2>
+      <a href="#/projects" class="btn btn-outline" style="font-size:0.7rem" data-i18n="common.allProjects">All Projects →</a>
     </div>
     <div class="projects-grid">
-      ${PROJECTS.slice(0, 2).map(projectCard).join('')}
+      ${PROJECTS.slice(0, 2).map(projectCard).join("")}
     </div>
   </div>
 `;
 
 /* ── ABOUT ──────────────────────────────────────────────────── */
-export const aboutView = () => /* html */`
+export const aboutView = () => /* html */ `
   <div class="container page">
     <div class="about-grid">
 
@@ -77,30 +90,31 @@ export const aboutView = () => /* html */`
       </div>
 
       <div class="about-content">
-        <span class="section-label">About me</span>
+        <span class="section-label" data-i18n="common.aboutMe">About me</span>
         <h1>${PROFILE.name}</h1>
         <p>${PROFILE.bio}</p>
 
         <div class="info-grid">
-          <div class="info-item"><strong>Location</strong>${PROFILE.location}</div>
-          <div class="info-item"><strong>Education</strong>${PROFILE.education}</div>
-          <div class="info-item"><strong>Expertise</strong>${PROFILE.expertise}</div>
-          <div class="info-item"><strong>Status</strong>${PROFILE.activity}</div>
+          <div class="info-item"><strong data-i18n="common.location">Location</strong>${PROFILE.location}</div>
+          <div class="info-item"><strong data-i18n="common.education">Education</strong>${PROFILE.education}</div>
+          <div class="info-item"><strong data-i18n="common.expertise">Expertise</strong>${PROFILE.expertise}</div>
+          <div class="info-item"><strong data-i18n="common.status">Status</strong>${PROFILE.activity}</div>
           <div class="info-item">
-            <strong>Email</strong>
+            <strong data-i18n="common.email">Email</strong>
             <a href="mailto:${PROFILE.email}" style="color:var(--accent)">${PROFILE.email}</a>
           </div>
         </div>
 
         <a class="btn btn-primary" href="#/contact">
-          <i class="bi bi-send"></i> Get in touch
+          <i class="bi bi-send"></i> <span data-i18n="common.getInTouch">Get in touch</span>
         </a>
 
         <!-- Skills -->
         <div class="skills-section">
-          <h2>Skills</h2>
+          <h2 data-i18n="common.skills">Skills</h2>
           <div class="skill-list" id="skillList">
-            ${SKILLS.map(({ name, level }) => `
+            ${SKILLS.map(
+              ({ name, level }) => `
               <div class="skill-row">
                 <header>
                   <span>${name}</span>
@@ -109,20 +123,23 @@ export const aboutView = () => /* html */`
                 <div class="skill-bar">
                   <div class="skill-fill" style="--target:${level / 100}"></div>
                 </div>
-              </div>`).join('')}
+              </div>`,
+            ).join("")}
           </div>
         </div>
 
         <!-- Services -->
         <div class="services-section">
-          <h2>Services</h2>
+          <h2 data-i18n="common.services">Services</h2>
           <div class="services-grid">
-            ${SERVICES.map(({ icon, title, desc }) => `
+            ${SERVICES.map(
+              ({ icon, title, desc }) => `
               <div class="service-card">
                 <i class="bi ${icon}"></i>
                 <h5>${title}</h5>
                 <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem">${desc}</p>
-              </div>`).join('')}
+              </div>`,
+            ).join("")}
           </div>
         </div>
 
@@ -132,27 +149,27 @@ export const aboutView = () => /* html */`
 `;
 
 /* ── PROJECTS ───────────────────────────────────────────────── */
-export const projectsView = () => /* html */`
+export const projectsView = () => /* html */ `
   <div class="container page">
     <div class="projects-header">
-      <span class="section-label">Portfolio</span>
-      <h1>Selected Work</h1>
+      <span class="section-label" data-i18n="common.portfolio">Portfolio</span>
+      <h1 data-i18n="common.selectedWork">Selected Work</h1>
     </div>
     <div class="projects-grid">
-      ${PROJECTS.map(projectCard).join('')}
+      ${PROJECTS.map(projectCard).join("")}
     </div>
   </div>
 `;
 
 /* ── CONTACT ────────────────────────────────────────────────── */
-export const contactView = () => /* html */`
+export const contactView = () => /* html */ `
   <div class="container page">
     <div class="contact-grid">
 
       <div class="contact-info">
-        <span class="section-label">Contact</span>
-        <h1>Let's work<br>together.</h1>
-        <p>Have a project in mind or just want to say hi? My inbox is open.</p>
+        <span class="section-label" data-i18n="common.contact">Contact</span>
+        <h1 data-i18n="common.letsWorkTogether">Let's work<br>together.</h1>
+        <p data-i18n="common.contactText">Have a project in mind or just want to say hi? My inbox is open.</p>
 
         <div class="contact-links">
           <a class="contact-link-item" href="mailto:${PROFILE.email}">
@@ -180,22 +197,22 @@ export const contactView = () => /* html */`
         <input type="hidden" name="_subject" value="New message from portfolio" />
 
         <div class="form-group">
-          <label for="name">Your Name</label>
+          <label for="name" data-i18n="common.yourName">Your Name</label>
           <input type="text" id="name" name="name" placeholder="" required />
         </div>
 
         <div class="form-group">
-          <label for="email">Your Email</label>
+          <label for="email" data-i18n="common.yourEmail">Your Email</label>
           <input type="email" id="email" name="email" placeholder="" required />
         </div>
 
         <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell me about your project…" required></textarea>
+          <label for="message" data-i18n="common.message">Message</label>
+          <textarea id="message" name="message" data-i18n="common.messagePlaceholder" placeholder="Tell me about your project…" required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
-          <i class="bi bi-send"></i> Send Message
+          <i class="bi bi-send"></i> <span data-i18n="common.sendMessage">Send Message</span>
         </button>
 
         <div class="form-feedback" id="formFeedback"></div>
@@ -209,21 +226,27 @@ export const contactView = () => /* html */`
 function projectCard({ title, desc, tags, demo, repo, emoji, image }) {
   const thumb = image
     ? `<img src="${image}" alt="${title}" loading="lazy" />`
-    : `<div class="project-thumb-placeholder">${emoji ?? '◆'}</div>`;
+    : `<div class="project-thumb-placeholder">${emoji ?? "◆"}</div>`;
 
   const links = [
-    demo ? `<a href="${demo}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live</a>` : '',
-    repo ? `<a href="${repo}" target="_blank" rel="noopener"><i class="bi bi-github"></i> Code</a>` : '',
-  ].filter(Boolean).join('');
+    demo
+      ? `<a href="${demo}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> <span data-i18n="common.live">Live</span></a>`
+      : "",
+    repo
+      ? `<a href="${repo}" target="_blank" rel="noopener"><i class="bi bi-github"></i> <span data-i18n="common.code">Code</span></a>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
 
-  return /* html */`
+  return /* html */ `
     <article class="project-card">
       <div class="project-thumb">${thumb}</div>
       <div class="project-body">
         <h3>${title}</h3>
         <p>${desc}</p>
-        <div class="tag-list">${tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>
-        ${links ? `<div class="project-links">${links}</div>` : ''}
+        <div class="tag-list">${tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        ${links ? `<div class="project-links">${links}</div>` : ""}
       </div>
     </article>`;
 }
