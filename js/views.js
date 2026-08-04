@@ -38,8 +38,8 @@ export const homeView = () => /* html */ `
 
       <div class="hero-text">
         <span class="section-label" data-i18n="common.available">Available for freelance</span>
-        <h1>${PROFILE.tagline.replace(/\n/g, "<br>")}</h1>
-        <p>${PROFILE.bio.split(".")[0]}.</p>
+        <h1 data-i18n="profile.tagline">${PROFILE.tagline.replace(/\n/g, "<br>")}</h1>
+        <p data-i18n="profile.bio">${PROFILE.bio}</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#/projects">
             <i class="bi bi-grid-3x3-gap"></i> <span data-i18n="common.viewWork">View Work</span>
@@ -70,7 +70,9 @@ export const homeView = () => /* html */ `
       <a href="#/projects" class="btn btn-outline" style="font-size:0.7rem" data-i18n="common.allProjects">All Projects →</a>
     </div>
     <div class="projects-grid">
-      ${PROJECTS.slice(0, 2).map(projectCard).join("")}
+      ${PROJECTS.slice(0, 2)
+        .map((project, index) => projectCard(project, index))
+        .join("")}
     </div>
   </div>
 `;
@@ -92,13 +94,13 @@ export const aboutView = () => /* html */ `
       <div class="about-content">
         <span class="section-label" data-i18n="common.aboutMe">About me</span>
         <h1>${PROFILE.name}</h1>
-        <p>${PROFILE.bio}</p>
+        <p data-i18n="profile.bio">${PROFILE.bio}</p>
 
         <div class="info-grid">
-          <div class="info-item"><strong data-i18n="common.location">Location</strong>${PROFILE.location}</div>
-          <div class="info-item"><strong data-i18n="common.education">Education</strong>${PROFILE.education}</div>
-          <div class="info-item"><strong data-i18n="common.expertise">Expertise</strong>${PROFILE.expertise}</div>
-          <div class="info-item"><strong data-i18n="common.status">Status</strong>${PROFILE.activity}</div>
+          <div class="info-item"><strong data-i18n="common.location">Location</strong><span data-i18n="profile.location">${PROFILE.location}</span></div>
+          <div class="info-item"><strong data-i18n="common.education">Education</strong><span data-i18n="profile.education">${PROFILE.education}</span></div>
+          <div class="info-item"><strong data-i18n="common.expertise">Expertise</strong><span data-i18n="profile.expertise">${PROFILE.expertise}</span></div>
+          <div class="info-item"><strong data-i18n="common.status">Status</strong><span data-i18n="profile.activity">${PROFILE.activity}</span></div>
           <div class="info-item">
             <strong data-i18n="common.email">Email</strong>
             <a href="mailto:${PROFILE.email}" style="color:var(--accent)">${PROFILE.email}</a>
@@ -114,10 +116,10 @@ export const aboutView = () => /* html */ `
           <h2 data-i18n="common.skills">Skills</h2>
           <div class="skill-list" id="skillList">
             ${SKILLS.map(
-              ({ name, level }) => `
+              ({ name, level }, index) => `
               <div class="skill-row">
                 <header>
-                  <span>${name}</span>
+                  <span data-i18n="skills.${getSkillKey(index)}">${name}</span>
                   <span>${level}%</span>
                 </header>
                 <div class="skill-bar">
@@ -132,14 +134,15 @@ export const aboutView = () => /* html */ `
         <div class="services-section">
           <h2 data-i18n="common.services">Services</h2>
           <div class="services-grid">
-            ${SERVICES.map(
-              ({ icon, title, desc }) => `
+            ${SERVICES.map(({ icon, title, desc }, index) => {
+              const serviceKey = getServiceKey(index);
+              return `
               <div class="service-card">
                 <i class="bi ${icon}"></i>
-                <h5>${title}</h5>
-                <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem">${desc}</p>
-              </div>`,
-            ).join("")}
+                <h5 data-i18n="services.${serviceKey}.title">${title}</h5>
+                <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem" data-i18n="services.${serviceKey}.desc">${desc}</p>
+              </div>`;
+            }).join("")}
           </div>
         </div>
 
@@ -156,7 +159,7 @@ export const projectsView = () => /* html */ `
       <h1 data-i18n="common.selectedWork">Selected Work</h1>
     </div>
     <div class="projects-grid">
-      ${PROJECTS.map(projectCard).join("")}
+      ${PROJECTS.map((project, index) => projectCard(project, index)).join("")}
     </div>
   </div>
 `;
@@ -222,8 +225,25 @@ export const contactView = () => /* html */ `
   </div>
 `;
 
+/* ── Helper functions ───────────────────────────────────────── */
+function getSkillKey(index) {
+  const keys = ["htmlCss", "javascript", "angular", "nodeExpress", "gitCicd"];
+  return keys[index] || `skill${index}`;
+}
+
+function getServiceKey(index) {
+  const keys = ["webDev", "ecommerce", "maintenance", "apiIntegration"];
+  return keys[index] || `service${index}`;
+}
+
+function getProjectKey(index) {
+  const keys = ["portfolio", "psag", "django"];
+  return keys[index] || `project${index}`;
+}
+
 /* ── Shared project card component ──────────────────────────── */
-function projectCard({ title, desc, tags, demo, repo, emoji, image }) {
+function projectCard({ title, desc, tags, demo, repo, emoji, image }, index) {
+  const projectKey = getProjectKey(index);
   const thumb = image
     ? `<img src="${image}" alt="${title}" loading="lazy" />`
     : `<div class="project-thumb-placeholder">${emoji ?? "◆"}</div>`;
@@ -243,8 +263,8 @@ function projectCard({ title, desc, tags, demo, repo, emoji, image }) {
     <article class="project-card">
       <div class="project-thumb">${thumb}</div>
       <div class="project-body">
-        <h3>${title}</h3>
-        <p>${desc}</p>
+        <h3 data-i18n="projects.${projectKey}.title">${title}</h3>
+        <p data-i18n="projects.${projectKey}.desc">${desc}</p>
         <div class="tag-list">${tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
         ${links ? `<div class="project-links">${links}</div>` : ""}
       </div>
