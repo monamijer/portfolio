@@ -43,6 +43,53 @@ const translations = {
       success: "✓ Message sent! I'll get back to you soon.",
       error: "✗ Something went wrong. Please try again or email me directly.",
     },
+    profile: {
+      tagline: "I craft clean, fast<br>and purposeful<br>digital experiences.",
+      bio: "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
+      location: "Bujumbura, Burundi",
+      education: "MSc Software Engineering",
+      expertise: "Angular · Express · Node.js",
+      activity: "Student & Freelancer",
+    },
+    skills: {
+      htmlCss: "HTML & CSS",
+      javascript: "JavaScript",
+      angular: "Angular",
+      nodeExpress: "Node / Express",
+      gitCicd: "Git & CI/CD",
+    },
+    services: {
+      webDev: {
+        title: "Web Development",
+        desc: "Responsive, performant sites from scratch.",
+      },
+      ecommerce: {
+        title: "E-Commerce",
+        desc: "Storefronts with payment integration.",
+      },
+      maintenance: {
+        title: "Maintenance",
+        desc: "Ongoing support and improvements.",
+      },
+      apiIntegration: {
+        title: "API Integration",
+        desc: "REST APIs with Node.js & Express.",
+      },
+    },
+    projects: {
+      portfolio: {
+        title: "Portfolio Website",
+        desc: "This very site — a zero-dependency SPA built with vanilla JS, custom router, and CSS custom properties.",
+      },
+      psag: {
+        title: "PSAG Parish Management",
+        desc: "Web application for managing parish activities, users, cathechumens and administration with authentication and rol-based access control.",
+      },
+      django: {
+        title: "Django Local Library",
+        desc: "Scalable learning Library built in django.",
+      },
+    },
   },
   fr: {
     nav: {
@@ -83,6 +130,54 @@ const translations = {
       success: "✓ Message envoyé ! Je vous répondrai bientôt.",
       error:
         "✗ Une erreur est survenue. Réessayez ou envoyez-moi un email directement.",
+    },
+    profile: {
+      tagline:
+        "Je crée des expériences<br>numériques propres,<br>rapides et utiles.",
+      bio: "Je suis un développeur web orienté full-stack. Je me soucie d'un code bien structuré, d'une UI réfléchie et de produits qui servent réellement les gens. Actuellement en Master en Génie Logiciel.",
+      location: "Bujumbura, Burundi",
+      education: "MSc Génie Logiciel",
+      expertise: "Angular · Express · Node.js",
+      activity: "Étudiant & Freelance",
+    },
+    skills: {
+      htmlCss: "HTML & CSS",
+      javascript: "JavaScript",
+      angular: "Angular",
+      nodeExpress: "Node / Express",
+      gitCicd: "Git & CI/CD",
+    },
+    services: {
+      webDev: {
+        title: "Développement Web",
+        desc: "Sites responsives et performants à partir de zéro.",
+      },
+      ecommerce: {
+        title: "E-Commerce",
+        desc: "Boutiques avec intégration de paiement.",
+      },
+      maintenance: {
+        title: "Maintenance",
+        desc: "Support continu et améliorations.",
+      },
+      apiIntegration: {
+        title: "Intégration API",
+        desc: "APIs REST avec Node.js & Express.",
+      },
+    },
+    projects: {
+      portfolio: {
+        title: "Site Portfolio",
+        desc: "Ce site même — une SPA sans dépendance construite avec vanilla JS, routeur personnalisé et propriétés CSS personnalisées.",
+      },
+      psag: {
+        title: "Gestion Paroissiale PSAG",
+        desc: "Application web pour gérer les activités paroissiales, utilisateurs, catéchumènes et administration avec authentification et contrôle d'accès basé sur les rôles.",
+      },
+      django: {
+        title: "Bibliothèque Locale Django",
+        desc: "Bibliothèque d'apprentissage évolutive construite avec Django.",
+      },
     },
   },
   sw: {
@@ -125,6 +220,54 @@ const translations = {
       error:
         "✗ Kuna tatizo. Tafadhali jaribu tena au nitumie barua pepe moja kwa moja.",
     },
+    profile: {
+      tagline:
+        "Ninaunda safi, haraka<br>na zenye kusudi<br>uzoefu wa kidijitali.",
+      bio: "Mimi ni msanidi wa web mwenye mwelekeo wa full-stack. Ninajali code iliyopangwa vizuri, UI yenye kufikiriwa, na bidhaa zinazohudumia watu kweli. Kwa sasa ninafanya MSc katika Uhandisi wa Programu.",
+      location: "Bujumbura, Burundi",
+      education: "MSc Uhandisi wa Programu",
+      expertise: "Angular · Express · Node.js",
+      activity: "Mwanafunzi & Mfanyakazi huru",
+    },
+    skills: {
+      htmlCss: "HTML & CSS",
+      javascript: "JavaScript",
+      angular: "Angular",
+      nodeExpress: "Node / Express",
+      gitCicd: "Git & CI/CD",
+    },
+    services: {
+      webDev: {
+        title: "Uendelezaji wa Web",
+        desc: "Tovuti responsive na zenye utendaji mzuri kutoka mwanzo.",
+      },
+      ecommerce: {
+        title: "Biashara ya Mtandaoni",
+        desc: "Maduka yenye uunganisho wa malipo.",
+      },
+      maintenance: {
+        title: "Matengenezo",
+        desc: "Msaada unaoendelea na maboresho.",
+      },
+      apiIntegration: {
+        title: "Uunganisho wa API",
+        desc: "APIs za REST na Node.js & Express.",
+      },
+    },
+    projects: {
+      portfolio: {
+        title: "Tovuti ya Portfolio",
+        desc: "Tovuti hii haswa — SPA isiyo na utegemezi iliyojengwa kwa vanilla JS, router maalum, na sifa za CSS.",
+      },
+      psag: {
+        title: "Usimamizi wa Parokia ya PSAG",
+        desc: "Programu ya web kwa kusimamia shughuli za parokia, watumiaji, katekumeni na usimamizi kwa uthibitisho na udhibiti wa ufikiaji kulingana na majukumu.",
+      },
+      django: {
+        title: "Maktaba ya Ndani ya Django",
+        desc: "Maktaba ya kujifunza inayoweza kupanuka iliyojengwa kwa Django.",
+      },
+    },
   },
   es: {
     nav: {
@@ -165,6 +308,54 @@ const translations = {
       success: "✓ ¡Mensaje enviado! Te responderé pronto.",
       error:
         "✗ Algo salió mal. Por favor intenta de nuevo o envíame un correo directamente.",
+    },
+    profile: {
+      tagline:
+        "Creo experiencias<br>digitales limpias,<br>rápidas y con propósito.",
+      bio: "Soy un desarrollador web orientado a full-stack. Me preocupo por el código bien estructurado, UI reflexiva y productos que realmente sirven a las personas. Actualmente cursando un MSc en Ingeniería de Software.",
+      location: "Bujumbura, Burundi",
+      education: "MSc Ingeniería de Software",
+      expertise: "Angular · Express · Node.js",
+      activity: "Estudiante & Freelancer",
+    },
+    skills: {
+      htmlCss: "HTML & CSS",
+      javascript: "JavaScript",
+      angular: "Angular",
+      nodeExpress: "Node / Express",
+      gitCicd: "Git & CI/CD",
+    },
+    services: {
+      webDev: {
+        title: "Desarrollo Web",
+        desc: "Sitios responsivos y de alto rendimiento desde cero.",
+      },
+      ecommerce: {
+        title: "Comercio Electrónico",
+        desc: "Tiendas con integración de pagos.",
+      },
+      maintenance: {
+        title: "Mantenimiento",
+        desc: "Soporte continuo y mejoras.",
+      },
+      apiIntegration: {
+        title: "Integración de API",
+        desc: "APIs REST con Node.js & Express.",
+      },
+    },
+    projects: {
+      portfolio: {
+        title: "Sitio Portfolio",
+        desc: "Este mismo sitio — una SPA sin dependencias construida con vanilla JS, router personalizado y propiedades CSS personalizadas.",
+      },
+      psag: {
+        title: "Gestión Parroquial PSAG",
+        desc: "Aplicación web para gestionar actividades parroquiales, usuarios, catecúmenos y administración con autenticación y control de acceso basado en roles.",
+      },
+      django: {
+        title: "Biblioteca Local Django",
+        desc: "Biblioteca de aprendizaje escalable construida con Django.",
+      },
     },
   },
 };
@@ -213,9 +404,15 @@ class I18n {
       const translation = this.t(key);
       if (translation) {
         if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-          el.placeholder = translation;
-        } else {
+          if (key.includes("placeholder")) {
+            el.placeholder = translation;
+          } else {
+            el.value = translation;
+          }
+        } else if (translation.includes("<br>")) {
           el.innerHTML = translation;
+        } else {
+          el.textContent = translation;
         }
       }
     });
