@@ -1028,3 +1028,148 @@ h1, h2, h3, h4, h5 {
     transition: none;
   }
 }
+/* =============================================================
+   READER MODE TOGGLE
+   ============================================================= */
+.reader-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all var(--dur) var(--ease);
+  margin-right: var(--space-sm);
+}
+
+.reader-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.reader-toggle.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* =============================================================
+   READER MODE STYLES
+   ============================================================= */
+body.reader-mode {
+  /* Hide decorative elements */
+  .marquee-track,
+  .hero-scroll-hint,
+  .hero-image-wrap::before,
+  .back-to-top,
+  .scroll-progress {
+    display: none !important;
+  }
+  
+  /* Simplify images */
+  .hero-image-wrap,
+  .about-photo {
+    position: relative;
+    filter: grayscale(20%);
+    opacity: 0.9;
+  }
+  
+  /* Focus on content */
+  #app {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  
+  /* Improve readability */
+  .hero-text h1,
+  .about-content h1,
+  .projects-header h1,
+  .contact-info h1 {
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Remove animations */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Simplify cards */
+  .project-card,
+  .service-card {
+    box-shadow: none !important;
+    border: 1px solid var(--border) !important;
+    transform: none !important;
+  }
+  
+  .project-card:hover,
+  .service-card:hover {
+    transform: none !important;
+    border-color: var(--border) !important;
+  }
+  
+  /* Hide social links */
+  .footer-social,
+  .contact-links {
+    opacity: 0.7;
+  }
+  
+  /* Increase spacing for readability */
+  .page {
+    padding-block: var(--space-lg);
+  }
+  
+  /* Simplify buttons */
+  .btn {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .btn:hover {
+    transform: none !important;
+  }
+  
+  /* Remove decorative frames */
+  .hero-image-wrap::before {
+    display: none !important;
+  }
+}
+
+/* Reader mode animation */
+.reader-toggle i {
+  transition: transform var(--dur) var(--ease);
+}
+
+.reader-toggle.active i {
+  transform: rotate(360deg);
+}
+
+/* Notification toast for reader mode */
+.reader-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.reader-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
