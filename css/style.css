@@ -828,3 +828,36 @@ h1, h2, h3, h4, h5 {
 [data-theme="dark"] .not-found-code {
   text-shadow: 0 0 30px rgba(200, 96, 42, 0.3);
 }
+/* =============================================================
+   SCROLL PROGRESS BAR
+   ============================================================= */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  z-index: 1001;
+  transition: width 0.1s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Optional: Add a glow effect */
+.scroll-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: inherit;
+  filter: blur(4px);
+  opacity: 0.5;
+}
+
+/* Dark mode enhancement */
+[data-theme="dark"] .scroll-progress {
+  background: linear-gradient(90deg, var(--accent), #f0ede8);
+  box-shadow: 0 0 10px rgba(200, 96, 42, 0.5);
+}
