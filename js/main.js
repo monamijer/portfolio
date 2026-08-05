@@ -66,6 +66,62 @@ backToTop.addEventListener("click", () => {
   });
 });
 
+/* ── Reader Mode ─────────────────────────────────────────────── */
+const readerToggle = document.getElementById("readerToggle");
+let readerModeEnabled = localStorage.getItem("readerMode") === "true";
+
+function createToast() {
+  const toast = document.createElement("div");
+  toast.className = "reader-toast";
+  toast.id = "readerToast";
+  document.body.appendChild(toast);
+  return toast;
+}
+
+const readerToast = createToast();
+
+function showToast(message) {
+  readerToast.textContent = message;
+  readerToast.classList.add("show");
+
+  setTimeout(() => {
+    readerToast.classList.remove("show");
+  }, 2000);
+}
+
+function toggleReaderMode() {
+  readerModeEnabled = !readerModeEnabled;
+  document.body.classList.toggle("reader-mode", readerModeEnabled);
+  readerToggle.classList.toggle("active", readerModeEnabled);
+  localStorage.setItem("readerMode", readerModeEnabled);
+
+  const message = readerModeEnabled
+    ? "Reader Mode Enabled"
+    : "Reader Mode Disabled";
+  showToast(message);
+
+  // Update icon
+  const icon = readerToggle.querySelector("i");
+  if (readerModeEnabled) {
+    icon.className = "bi bi-book-half";
+    readerToggle.setAttribute("aria-label", "Disable reader mode");
+  } else {
+    icon.className = "bi bi-book";
+    readerToggle.setAttribute("aria-label", "Enable reader mode");
+  }
+}
+
+// Restore reader mode preference
+if (readerModeEnabled) {
+  document.body.classList.add("reader-mode");
+  readerToggle.classList.add("active");
+  const icon = readerToggle.querySelector("i");
+  icon.className = "bi bi-book-half";
+  readerToggle.setAttribute("aria-label", "Disable reader mode");
+}
+
+readerToggle.addEventListener("click", toggleReaderMode);
+
 /* ── Scroll Reveal Animations ────────────────────────────────── */
 function setupScrollReveal() {
   const revealElements = document.querySelectorAll(
@@ -79,14 +135,13 @@ function setupScrollReveal() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          // Optionally unobserve after animation to save resources
           observer.unobserve(entry.target);
         }
       });
     },
     {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px", // Trigger slightly before element enters viewport
+      rootMargin: "0px 0px -50px 0px",
     },
   );
 
@@ -157,7 +212,7 @@ window.addEventListener("route:changed", ({ detail }) => {
   i18n.applyTranslations();
   updateScrollProgress();
   updateBackToTop();
-  setupScrollReveal(); // Setup reveal animations after route change
+  setupScrollReveal();
 
   if (detail.path === "/vault") initVault();
 });
