@@ -36,7 +36,7 @@ export const homeView = () => /* html */ `
   <div class="container page">
     <section class="home-hero">
 
-      <div class="hero-text">
+      <div class="hero-text reveal reveal-left">
         <span class="section-label" data-i18n="common.available">Available for freelance</span>
         <h1 data-i18n="profile.tagline">${PROFILE.tagline.replace(/\n/g, "<br>")}</h1>
         <p data-i18n="profile.bioShort">${PROFILE.bio.split(".")[0]}.</p>
@@ -48,7 +48,7 @@ export const homeView = () => /* html */ `
         </div>
       </div>
 
-      <div class="hero-image-wrap">
+      <div class="hero-image-wrap reveal reveal-right reveal-delay-2">
         <img
           src="${PROFILE.photo}"
           alt="Portrait of ${PROFILE.name}"
@@ -65,13 +65,13 @@ export const homeView = () => /* html */ `
 
   <!-- Teaser: latest projects -->
   <div class="container" style="padding-bottom: var(--space-xl)">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-md)">
+    <div class="reveal" style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-md)">
       <h2 style="font-size:clamp(1.6rem,3vw,2.5rem)" data-i18n="common.selectedWork">Selected Work</h2>
       <a href="#/projects" class="btn btn-outline" style="font-size:0.7rem" data-i18n="common.allProjects">All Projects →</a>
     </div>
     <div class="projects-grid">
       ${PROJECTS.slice(0, 2)
-        .map((project, index) => projectCard(project, index))
+        .map((project, index) => projectCard(project, index, true))
         .join("")}
     </div>
   </div>
@@ -82,7 +82,7 @@ export const aboutView = () => /* html */ `
   <div class="container page">
     <div class="about-grid">
 
-      <div class="about-photo">
+      <div class="about-photo reveal reveal-left">
         <img
           src="${PROFILE.photo}"
           alt="Portrait of ${PROFILE.name}"
@@ -92,11 +92,13 @@ export const aboutView = () => /* html */ `
       </div>
 
       <div class="about-content">
-        <span class="section-label" data-i18n="common.aboutMe">About me</span>
-        <h1>${PROFILE.name}</h1>
-        <p data-i18n="profile.bio">${PROFILE.bio}</p>
+        <div class="reveal">
+          <span class="section-label" data-i18n="common.aboutMe">About me</span>
+          <h1>${PROFILE.name}</h1>
+          <p data-i18n="profile.bio">${PROFILE.bio}</p>
+        </div>
 
-        <div class="info-grid">
+        <div class="info-grid reveal reveal-delay-1">
           <div class="info-item"><strong data-i18n="common.location">Location</strong><span data-i18n="profile.location">${PROFILE.location}</span></div>
           <div class="info-item"><strong data-i18n="common.education">Education</strong><span data-i18n="profile.education">${PROFILE.education}</span></div>
           <div class="info-item"><strong data-i18n="common.expertise">Expertise</strong><span data-i18n="profile.expertise">${PROFILE.expertise}</span></div>
@@ -107,12 +109,14 @@ export const aboutView = () => /* html */ `
           </div>
         </div>
 
-        <a class="btn btn-primary" href="#/contact">
-          <i class="bi bi-send"></i> <span data-i18n="common.getInTouch">Get in touch</span>
-        </a>
+        <div class="reveal reveal-delay-2">
+          <a class="btn btn-primary" href="#/contact">
+            <i class="bi bi-send"></i> <span data-i18n="common.getInTouch">Get in touch</span>
+          </a>
+        </div>
 
         <!-- Skills -->
-        <div class="skills-section">
+        <div class="skills-section reveal">
           <h2 data-i18n="common.skills">Skills</h2>
           <div class="skill-list" id="skillList">
             ${SKILLS.map(
@@ -131,13 +135,13 @@ export const aboutView = () => /* html */ `
         </div>
 
         <!-- Services -->
-        <div class="services-section">
+        <div class="services-section reveal reveal-delay-1">
           <h2 data-i18n="common.services">Services</h2>
           <div class="services-grid">
             ${SERVICES.map(({ icon, title, desc }, index) => {
               const serviceKey = getServiceKey(index);
               return `
-              <div class="service-card">
+              <div class="service-card reveal reveal-delay-${index + 1}">
                 <i class="bi ${icon}"></i>
                 <h5 data-i18n="services.${serviceKey}.title">${title}</h5>
                 <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem" data-i18n="services.${serviceKey}.desc">${desc}</p>
@@ -154,12 +158,12 @@ export const aboutView = () => /* html */ `
 /* ── PROJECTS ───────────────────────────────────────────────── */
 export const projectsView = () => /* html */ `
   <div class="container page">
-    <div class="projects-header">
+    <div class="projects-header reveal">
       <span class="section-label" data-i18n="common.portfolio">Portfolio</span>
       <h1 data-i18n="common.selectedWork">Selected Work</h1>
     </div>
     <div class="projects-grid">
-      ${PROJECTS.map((project, index) => projectCard(project, index)).join("")}
+      ${PROJECTS.map((project, index) => projectCard(project, index, true)).join("")}
     </div>
   </div>
 `;
@@ -169,7 +173,7 @@ export const contactView = () => /* html */ `
   <div class="container page">
     <div class="contact-grid">
 
-      <div class="contact-info">
+      <div class="contact-info reveal reveal-left">
         <span class="section-label" data-i18n="common.contact">Contact</span>
         <h1 data-i18n="common.letsWorkTogether">Let's work<br>together.</h1>
         <p data-i18n="common.contactText">Have a project in mind or just want to say hi? My inbox is open.</p>
@@ -191,7 +195,7 @@ export const contactView = () => /* html */ `
       </div>
 
       <form
-        class="contact-form"
+        class="contact-form reveal reveal-right reveal-delay-1"
         id="contactForm"
         action="https://formsubmit.co/monamijer2005@gmail.com"
         method="POST"
@@ -228,7 +232,7 @@ export const contactView = () => /* html */ `
 /* ── 404 NOT FOUND ──────────────────────────────────────────── */
 export const notFoundView = () => /* html */ `
   <div class="container page not-found-page">
-    <div class="not-found-content">
+    <div class="not-found-content reveal reveal-scale">
       <div class="not-found-code">404</div>
       <h1 class="not-found-title" data-i18n="notFound.title">Page Not Found</h1>
       <p class="not-found-message" data-i18n="notFound.message">
@@ -265,7 +269,11 @@ function getProjectKey(index) {
 }
 
 /* ── Shared project card component ──────────────────────────── */
-function projectCard({ title, desc, tags, demo, repo, emoji, image }, index) {
+function projectCard(
+  { title, desc, tags, demo, repo, emoji, image },
+  index,
+  withReveal = false,
+) {
   const projectKey = getProjectKey(index);
   const thumb = image
     ? `<img src="${image}" alt="${title}" loading="lazy" />`
@@ -282,8 +290,12 @@ function projectCard({ title, desc, tags, demo, repo, emoji, image }, index) {
     .filter(Boolean)
     .join("");
 
+  const revealClass = withReveal
+    ? ` reveal reveal-delay-${Math.min(index + 1, 5)}`
+    : "";
+
   return /* html */ `
-    <article class="project-card">
+    <article class="project-card${revealClass}">
       <div class="project-thumb">${thumb}</div>
       <div class="project-body">
         <h3 data-i18n="projects.${projectKey}.title">${title}</h3>
