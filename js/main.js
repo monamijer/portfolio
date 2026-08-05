@@ -41,16 +41,15 @@ let hasAnimated = false;
 
 function updateBackToTop() {
   const scrollTop = window.scrollY;
-  const showAfter = 300; // Show after scrolling 300px
+  const showAfter = 300;
 
   if (scrollTop > showAfter) {
     backToTop.classList.add("visible");
 
-    // Add animation class only once
     if (!hasAnimated) {
       setTimeout(() => {
         backToTop.classList.add("has-animated");
-      }, 600); // Match the animation duration
+      }, 600);
       hasAnimated = true;
     }
   } else {
@@ -60,21 +59,41 @@ function updateBackToTop() {
   }
 }
 
-// Smooth scroll to top
 backToTop.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
-
-  // Add a temporary pressed effect
-  backToTop.style.transform = "scale(0.9)";
-  setTimeout(() => {
-    backToTop.style.transform = "";
-  }, 200);
 });
 
-// Use requestAnimationFrame for better performance
+/* ── Scroll Reveal Animations ────────────────────────────────── */
+function setupScrollReveal() {
+  const revealElements = document.querySelectorAll(
+    ".reveal, .reveal-left, .reveal-right, .reveal-scale",
+  );
+
+  if (!revealElements.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          // Optionally unobserve after animation to save resources
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px", // Trigger slightly before element enters viewport
+    },
+  );
+
+  revealElements.forEach((el) => observer.observe(el));
+}
+
+/* ── Combined scroll handler ─────────────────────────────────── */
 let ticking = false;
 window.addEventListener("scroll", () => {
   if (!ticking) {
@@ -101,7 +120,6 @@ const applyTheme = (dark) => {
   localStorage.setItem("theme", dark ? "dark" : "light");
 };
 
-// Restore saved preference (or OS default)
 const savedTheme = localStorage.getItem("theme");
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 applyTheme(savedTheme ? savedTheme === "dark" : prefersDark);
@@ -120,7 +138,6 @@ burger.addEventListener("click", () => {
   burger.setAttribute("aria-expanded", open);
 });
 
-// Close menu when a link is tapped
 navLinks.addEventListener("click", (e) => {
   if (e.target.tagName === "A") {
     burger.classList.remove("open");
@@ -133,13 +150,14 @@ navLinks.addEventListener("click", (e) => {
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ── Post-render hooks (run after each route render) ─────────── */
+/* ── Post-render hooks ───────────────────────────────────────── */
 window.addEventListener("route:changed", ({ detail }) => {
   animateSkillBars();
   wireContactForm();
   i18n.applyTranslations();
   updateScrollProgress();
   updateBackToTop();
+  setupScrollReveal(); // Setup reveal animations after route change
 
   if (detail.path === "/vault") initVault();
 });
@@ -202,3 +220,6 @@ function wireContactForm() {
     }
   });
 }
+
+// Initial setup
+setupScrollReveal();
