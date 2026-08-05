@@ -9,6 +9,75 @@ import {
 import { vaultView, initVault } from "./nexus.js";
 import { i18n } from "./i18n.js";
 
+/* ── Preloader ───────────────────────────────────────────────── */
+const preloader = document.getElementById("preloader");
+const preloaderProgress = document.querySelector(".preloader-progress");
+const preloaderText = document.querySelector(".preloader-text");
+
+let progress = 0;
+const loadingMessages = [
+  "Loading...",
+  "Preparing...",
+  "Almost there...",
+  "Welcome!",
+];
+
+function updatePreloader(value) {
+  if (preloaderProgress) {
+    preloaderProgress.style.width = value + "%";
+  }
+
+  // Update text based on progress
+  if (preloaderText) {
+    const messageIndex = Math.floor(
+      (value / 100) * (loadingMessages.length - 1),
+    );
+    preloaderText.textContent = loadingMessages[messageIndex];
+  }
+}
+
+function hidePreloader() {
+  if (preloader) {
+    preloader.classList.add("hidden");
+
+    // Remove from DOM after transition
+    setTimeout(() => {
+      preloader.remove();
+    }, 500);
+  }
+}
+
+// Simulate loading progress
+function simulateLoading() {
+  const interval = setInterval(() => {
+    progress += Math.random() * 15;
+
+    if (progress >= 100) {
+      progress = 100;
+      updatePreloader(100);
+      clearInterval(interval);
+
+      // Hide preloader after a brief pause
+      setTimeout(hidePreloader, 300);
+    } else {
+      updatePreloader(progress);
+    }
+  }, 200);
+}
+
+// Start preloader
+updatePreloader(0);
+simulateLoading();
+
+// Fallback: hide preloader after 3 seconds max
+setTimeout(() => {
+  if (preloader && !preloader.classList.contains("hidden")) {
+    progress = 100;
+    updatePreloader(100);
+    setTimeout(hidePreloader, 300);
+  }
+}, 3000);
+
 /* ── Router setup ────────────────────────────────────────────── */
 const app = document.getElementById("app");
 
@@ -100,7 +169,6 @@ function toggleReaderMode() {
     : "Reader Mode Disabled";
   showToast(message);
 
-  // Update icon
   const icon = readerToggle.querySelector("i");
   if (readerModeEnabled) {
     icon.className = "bi bi-book-half";
@@ -111,7 +179,6 @@ function toggleReaderMode() {
   }
 }
 
-// Restore reader mode preference
 if (readerModeEnabled) {
   document.body.classList.add("reader-mode");
   readerToggle.classList.add("active");
