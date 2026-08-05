@@ -22,6 +22,41 @@ const router = new Router(app)
 
 router.start();
 
+/* ── Scroll Progress Bar ─────────────────────────────────────── */
+const scrollProgress = document.getElementById("scrollProgress");
+
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+
+  if (scrollProgress) {
+    scrollProgress.style.width = scrollPercent + "%";
+
+    // Add visible class when scrolling
+    if (scrollPercent > 0) {
+      scrollProgress.classList.add("visible");
+    } else {
+      scrollProgress.classList.remove("visible");
+    }
+  }
+}
+
+// Use requestAnimationFrame for better performance
+let ticking = false;
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      updateScrollProgress();
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Initial call
+updateScrollProgress();
+
 /* ── Theme toggle ────────────────────────────────────────────── */
 const themeBtn = document.getElementById("themeToggle");
 const icon = themeBtn.querySelector("i");
@@ -68,13 +103,13 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 window.addEventListener("route:changed", ({ detail }) => {
   animateSkillBars();
   wireContactForm();
-  i18n.applyTranslations(); // Re-apply translations after route change
+  i18n.applyTranslations();
+  updateScrollProgress(); // Update progress bar on route change
 
   if (detail.path === "/vault") initVault();
 });
 
 window.addEventListener("languageChanged", () => {
-  // Re-render current route to apply new language
   const currentPath = window.location.hash.replace("#", "") || "/";
   window.dispatchEvent(
     new CustomEvent("route:changed", { detail: { path: currentPath } }),
