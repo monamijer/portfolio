@@ -46,6 +46,7 @@ const translations = {
     profile: {
       tagline: "I craft clean, fast<br>and purposeful<br>digital experiences.",
       bio: "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
+      bioShort: "I'm a full-stack oriented web developer.",
       location: "Bujumbura, Burundi",
       education: "MSc Software Engineering",
       expertise: "Angular · Express · Node.js",
@@ -135,6 +136,7 @@ const translations = {
       tagline:
         "Je crée des expériences<br>numériques propres,<br>rapides et utiles.",
       bio: "Je suis un développeur web orienté full-stack. Je me soucie d'un code bien structuré, d'une UI réfléchie et de produits qui servent réellement les gens. Actuellement en Master en Génie Logiciel.",
+      bioShort: "Je suis un développeur web orienté full-stack.",
       location: "Bujumbura, Burundi",
       education: "MSc Génie Logiciel",
       expertise: "Angular · Express · Node.js",
@@ -224,6 +226,7 @@ const translations = {
       tagline:
         "Ninaunda safi, haraka<br>na zenye kusudi<br>uzoefu wa kidijitali.",
       bio: "Mimi ni msanidi wa web mwenye mwelekeo wa full-stack. Ninajali code iliyopangwa vizuri, UI yenye kufikiriwa, na bidhaa zinazohudumia watu kweli. Kwa sasa ninafanya MSc katika Uhandisi wa Programu.",
+      bioShort: "Mimi ni msanidi wa web mwenye mwelekeo wa full-stack.",
       location: "Bujumbura, Burundi",
       education: "MSc Uhandisi wa Programu",
       expertise: "Angular · Express · Node.js",
@@ -313,6 +316,7 @@ const translations = {
       tagline:
         "Creo experiencias<br>digitales limpias,<br>rápidas y con propósito.",
       bio: "Soy un desarrollador web orientado a full-stack. Me preocupo por el código bien estructurado, UI reflexiva y productos que realmente sirven a las personas. Actualmente cursando un MSc en Ingeniería de Software.",
+      bioShort: "Soy un desarrollador web orientado a full-stack.",
       location: "Bujumbura, Burundi",
       education: "MSc Ingeniería de Software",
       expertise: "Angular · Express · Node.js",
