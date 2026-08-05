@@ -39,7 +39,7 @@ export const homeView = () => /* html */ `
       <div class="hero-text">
         <span class="section-label" data-i18n="common.available">Available for freelance</span>
         <h1 data-i18n="profile.tagline">${PROFILE.tagline.replace(/\n/g, "<br>")}</h1>
-        <p data-i18n="profile.bio">${PROFILE.bio}</p>
+        <p data-i18n="profile.bioShort">${PROFILE.bio.split(".")[0]}.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#/projects">
             <i class="bi bi-grid-3x3-gap"></i> <span data-i18n="common.viewWork">View Work</span>
