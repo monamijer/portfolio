@@ -91,6 +91,13 @@ const translations = {
         desc: "Scalable learning Library built in django.",
       },
     },
+    notFound: {
+      title: "Page Not Found",
+      message:
+        "Oops! The page you're looking for doesn't exist or has been moved.",
+      backHome: "Back to Home",
+      viewProjects: "View Projects",
+    },
   },
   fr: {
     nav: {
@@ -180,6 +187,13 @@ const translations = {
         title: "Bibliothèque Locale Django",
         desc: "Bibliothèque d'apprentissage évolutive construite avec Django.",
       },
+    },
+    notFound: {
+      title: "Page Introuvable",
+      message:
+        "Oups ! La page que vous recherchez n'existe pas ou a été déplacée.",
+      backHome: "Retour à l'Accueil",
+      viewProjects: "Voir les Projets",
     },
   },
   sw: {
@@ -271,6 +285,12 @@ const translations = {
         desc: "Maktaba ya kujifunza inayoweza kupanuka iliyojengwa kwa Django.",
       },
     },
+    notFound: {
+      title: "Ukurasa Haupatikani",
+      message: "Lo! Ukurasa unaoutafuta haupo au umehamishwa.",
+      backHome: "Rudi Nyumbani",
+      viewProjects: "Tazama Miradi",
+    },
   },
   es: {
     nav: {
@@ -360,6 +380,12 @@ const translations = {
         title: "Biblioteca Local Django",
         desc: "Biblioteca de aprendizaje escalable construida con Django.",
       },
+    },
+    notFound: {
+      title: "Página No Encontrada",
+      message: "¡Ups! La página que buscas no existe o ha sido movida.",
+      backHome: "Volver al Inicio",
+      viewProjects: "Ver Proyectos",
     },
   },
 };
