@@ -1,5 +1,11 @@
 import { Router } from "./router.js";
-import { homeView, aboutView, projectsView, contactView } from "./views.js";
+import {
+  homeView,
+  aboutView,
+  projectsView,
+  contactView,
+  notFoundView,
+} from "./views.js";
 import { vaultView, initVault } from "./nexus.js";
 import { i18n } from "./i18n.js";
 
@@ -11,7 +17,8 @@ const router = new Router(app)
   .on("/about", aboutView)
   .on("/projects", projectsView)
   .on("/contact", contactView)
-  .on("/vault", vaultView);
+  .on("/vault", vaultView)
+  .on("/404", notFoundView);
 
 router.start();
 
