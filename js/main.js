@@ -32,15 +32,47 @@ function updateScrollProgress() {
 
   if (scrollProgress) {
     scrollProgress.style.width = scrollPercent + "%";
-
-    // Add visible class when scrolling
-    if (scrollPercent > 0) {
-      scrollProgress.classList.add("visible");
-    } else {
-      scrollProgress.classList.remove("visible");
-    }
   }
 }
+
+/* ── Back to Top Button ──────────────────────────────────────── */
+const backToTop = document.getElementById("backToTop");
+let hasAnimated = false;
+
+function updateBackToTop() {
+  const scrollTop = window.scrollY;
+  const showAfter = 300; // Show after scrolling 300px
+
+  if (scrollTop > showAfter) {
+    backToTop.classList.add("visible");
+
+    // Add animation class only once
+    if (!hasAnimated) {
+      setTimeout(() => {
+        backToTop.classList.add("has-animated");
+      }, 600); // Match the animation duration
+      hasAnimated = true;
+    }
+  } else {
+    backToTop.classList.remove("visible");
+    backToTop.classList.remove("has-animated");
+    hasAnimated = false;
+  }
+}
+
+// Smooth scroll to top
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  // Add a temporary pressed effect
+  backToTop.style.transform = "scale(0.9)";
+  setTimeout(() => {
+    backToTop.style.transform = "";
+  }, 200);
+});
 
 // Use requestAnimationFrame for better performance
 let ticking = false;
@@ -48,14 +80,16 @@ window.addEventListener("scroll", () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
       updateScrollProgress();
+      updateBackToTop();
       ticking = false;
     });
     ticking = true;
   }
 });
 
-// Initial call
+// Initial calls
 updateScrollProgress();
+updateBackToTop();
 
 /* ── Theme toggle ────────────────────────────────────────────── */
 const themeBtn = document.getElementById("themeToggle");
@@ -104,7 +138,8 @@ window.addEventListener("route:changed", ({ detail }) => {
   animateSkillBars();
   wireContactForm();
   i18n.applyTranslations();
-  updateScrollProgress(); // Update progress bar on route change
+  updateScrollProgress();
+  updateBackToTop();
 
   if (detail.path === "/vault") initVault();
 });
