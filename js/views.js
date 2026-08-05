@@ -225,6 +225,29 @@ export const contactView = () => /* html */ `
   </div>
 `;
 
+/* ── 404 NOT FOUND ──────────────────────────────────────────── */
+export const notFoundView = () => /* html */ `
+  <div class="container page not-found-page">
+    <div class="not-found-content">
+      <div class="not-found-code">404</div>
+      <h1 class="not-found-title" data-i18n="notFound.title">Page Not Found</h1>
+      <p class="not-found-message" data-i18n="notFound.message">
+        Oops! The page you're looking for doesn't exist or has been moved.
+      </p>
+      <div class="not-found-actions">
+        <a href="#/" class="btn btn-primary">
+          <i class="bi bi-house"></i>
+          <span data-i18n="notFound.backHome">Back to Home</span>
+        </a>
+        <a href="#/projects" class="btn btn-outline">
+          <i class="bi bi-grid-3x3-gap"></i>
+          <span data-i18n="notFound.viewProjects">View Projects</span>
+        </a>
+      </div>
+    </div>
+  </div>
+`;
+
 /* ── Helper functions ───────────────────────────────────────── */
 function getSkillKey(index) {
   const keys = ["htmlCss", "javascript", "angular", "nodeExpress", "gitCicd"];
