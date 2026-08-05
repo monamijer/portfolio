@@ -11,7 +11,7 @@ export class Router {
   /** @param {HTMLElement} outlet – DOM node where views are injected */
   constructor(outlet) {
     this.outlet = outlet;
-    window.addEventListener('hashchange', () => this.#resolve());
+    window.addEventListener("hashchange", () => this.#resolve());
   }
 
   /**
@@ -30,25 +30,36 @@ export class Router {
   }
 
   #resolve() {
-    const hash   = window.location.hash.replace('#', '') || '/';
-    const render = this.#routes[hash] ?? this.#routes['/404'] ?? (() => '<p>Page not found.</p>');
+    const hash = window.location.hash.replace("#", "") || "/";
+    const render = this.#routes[hash] ?? this.#routes["/404"];
+
+    if (!render) {
+      // If no 404 route is defined, show a default message
+      this.outlet.innerHTML = "<p>Page not found.</p>";
+      window.dispatchEvent(
+        new CustomEvent("route:changed", { detail: { path: "/404" } }),
+      );
+      return;
+    }
 
     // Swap content with a subtle fade
-    this.outlet.style.animation = 'none';
+    this.outlet.style.animation = "none";
     this.outlet.innerHTML = render();
-    void this.outlet.offsetWidth;              // force reflow
-    this.outlet.style.animation = '';
+    void this.outlet.offsetWidth; // force reflow
+    this.outlet.style.animation = "";
 
     // Highlight active nav link
-    document.querySelectorAll('.nav-links a').forEach((a) => {
-      const href = a.getAttribute('href').replace('#', '') || '/';
-      a.classList.toggle('active', href === hash);
+    document.querySelectorAll(".nav-links a").forEach((a) => {
+      const href = a.getAttribute("href").replace("#", "") || "/";
+      a.classList.toggle("active", href === hash);
     });
 
     // Scroll top on navigation
     window.scrollTo({ top: 0 });
 
     // Dispatch a custom event so views can run post-render logic
-    window.dispatchEvent(new CustomEvent('route:changed', { detail: { path: hash } }));
+    window.dispatchEvent(
+      new CustomEvent("route:changed", { detail: { path: hash } }),
+    );
   }
 }
