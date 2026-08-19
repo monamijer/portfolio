@@ -195,7 +195,6 @@ function setupProjectFilters() {
     btn.addEventListener("click", () => {
       const filter = btn.dataset.filter;
 
-      // Update active button
       filterButtons.forEach((b) => {
         b.classList.remove("active");
         b.setAttribute("aria-selected", "false");
@@ -203,7 +202,6 @@ function setupProjectFilters() {
       btn.classList.add("active");
       btn.setAttribute("aria-selected", "true");
 
-      // Filter projects
       let visibleCount = 0;
 
       projectCards.forEach((card) => {
@@ -216,14 +214,12 @@ function setupProjectFilters() {
         } else {
           card.classList.add("filtering");
 
-          // Hide after animation
           setTimeout(() => {
             card.classList.add("hidden");
           }, 300);
         }
       });
 
-      // Show/hide no results message
       if (noResults) {
         if (visibleCount === 0) {
           noResults.style.display = "block";
@@ -232,7 +228,6 @@ function setupProjectFilters() {
         }
       }
 
-      // Re-trigger reveal animations for visible cards
       setTimeout(() => {
         projectCards.forEach((card) => {
           if (!card.classList.contains("hidden")) {
@@ -241,6 +236,205 @@ function setupProjectFilters() {
         });
       }, 350);
     });
+  });
+}
+
+/* ── Form Validation ─────────────────────────────────────────── */
+function setupFormValidation() {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  const fields = {
+    name: {
+      element: document.getElementById("name"),
+      validators: [
+        {
+          validate: (value) => value.length >= 2,
+          message: "Name must be at least 2 characters",
+        },
+        {
+          validate: (value) => value.length <= 50,
+          message: "Name must be less than 50 characters",
+        },
+        {
+          validate: (value) => /^[a-zA-Z\s'-]+$/.test(value),
+          message: "Name contains invalid characters",
+        },
+      ],
+    },
+    email: {
+      element: document.getElementById("email"),
+      validators: [
+        {
+          validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+          message: "Please enter a valid email address",
+        },
+      ],
+    },
+    message: {
+      element: document.getElementById("message"),
+      validators: [
+        {
+          validate: (value) => value.length >= 10,
+          message: "Message must be at least 10 characters",
+        },
+        {
+          validate: (value) => value.length <= 1000,
+          message: "Message must be less than 1000 characters",
+        },
+      ],
+    },
+  };
+
+  function validateField(fieldName) {
+    const field = fields[fieldName];
+    if (!field) return true;
+
+    const value = field.element.value.trim();
+    let isValid = true;
+    let errorMessage = "";
+
+    for (const validator of field.validators) {
+      if (!validator.validate(value)) {
+        isValid = false;
+        errorMessage = validator.message;
+        break;
+      }
+    }
+
+    // Update UI
+    const errorElement = document.querySelector(
+      `[data-error-for="${fieldName}"]`,
+    );
+
+    if (isValid) {
+      field.element.classList.add("valid");
+      field.element.classList.remove("invalid");
+      if (errorElement) {
+        errorElement.textContent = "";
+        errorElement.classList.remove("show");
+      }
+    } else {
+      field.element.classList.remove("valid");
+      field.element.classList.add("invalid");
+      if (errorElement) {
+        errorElement.textContent = errorMessage;
+        errorElement.classList.add("show");
+      }
+    }
+
+    return isValid;
+  }
+
+  function updateCharCounter() {
+    const messageField = fields.message.element;
+    const charCounter = document.querySelector('[data-char-for="message"]');
+    if (!charCounter || !messageField) return;
+
+    const length = messageField.value.length;
+    const maxLength = 1000;
+    const remaining = maxLength - length;
+
+    charCounter.textContent = `${length} / ${maxLength}`;
+
+    if (remaining < 100) {
+      charCounter.classList.add("warning");
+    } else {
+      charCounter.classList.remove("warning");
+    }
+
+    if (remaining < 20) {
+      charCounter.classList.add("danger");
+    } else {
+      charCounter.classList.remove("danger");
+    }
+  }
+
+  // Real-time validation
+  Object.keys(fields).forEach((fieldName) => {
+    const field = fields[fieldName];
+
+    field.element.addEventListener("blur", () => {
+      validateField(fieldName);
+    });
+
+    field.element.addEventListener("input", () => {
+      // Only validate if field was previously invalid
+      if (field.element.classList.contains("invalid")) {
+        validateField(fieldName);
+      }
+
+      if (fieldName === "message") {
+        updateCharCounter();
+      }
+    });
+  });
+
+  // Initialize char counter
+  updateCharCounter();
+
+  // Form submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Validate all fields
+    let allValid = true;
+    Object.keys(fields).forEach((fieldName) => {
+      if (!validateField(fieldName)) {
+        allValid = false;
+      }
+    });
+
+    if (!allValid) {
+      // Focus first invalid field
+      const firstInvalid = form.querySelector(".invalid");
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
+      return;
+    }
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    const feedback = document.getElementById("formFeedback");
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> ${i18n.t("common.sending")}`;
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        feedback.className = "form-feedback success";
+        feedback.textContent = i18n.t("common.success");
+        form.reset();
+
+        // Reset validation states
+        Object.keys(fields).forEach((fieldName) => {
+          fields[fieldName].element.classList.remove("valid", "invalid");
+          const errorElement = document.querySelector(
+            `[data-error-for="${fieldName}"]`,
+          );
+          if (errorElement) {
+            errorElement.textContent = "";
+            errorElement.classList.remove("show");
+          }
+        });
+
+        updateCharCounter();
+      } else {
+        throw new Error("Server error");
+      }
+    } catch {
+      feedback.className = "form-feedback error";
+      feedback.textContent = i18n.t("common.error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<i class="bi bi-send"></i> ${i18n.t("common.sendMessage")}`;
+    }
   });
 }
 
@@ -335,7 +529,8 @@ window.addEventListener("route:changed", ({ detail }) => {
   updateScrollProgress();
   updateBackToTop();
   setupScrollReveal();
-  setupProjectFilters(); // Setup project filters after route change
+  setupProjectFilters();
+  setupFormValidation();
 
   if (detail.path === "/vault") initVault();
 });
@@ -364,41 +559,12 @@ function animateSkillBars() {
 
 /** Intercept the contact form to show inline feedback (no page reload). */
 function wireContactForm() {
-  const form = document.getElementById("contactForm");
-  const feedback = document.getElementById("formFeedback");
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const submitBtn = form.querySelector('[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = i18n.t("common.sending");
-
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
-
-      if (res.ok) {
-        feedback.className = "form-feedback success";
-        feedback.textContent = i18n.t("common.success");
-        form.reset();
-      } else {
-        throw new Error("Server error");
-      }
-    } catch {
-      feedback.className = "form-feedback error";
-      feedback.textContent = i18n.t("common.error");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<i class="bi bi-send"></i> ${i18n.t("common.sendMessage")}`;
-    }
-  });
+  // This function is now handled by setupFormValidation
+  // Kept for backward compatibility
+  return;
 }
 
 // Initial setup
 setupScrollReveal();
 setupProjectFilters();
+setupFormValidation();
