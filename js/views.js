@@ -225,23 +225,52 @@ export const contactView = () => /* html */ `
         id="contactForm"
         action="https://formsubmit.co/monamijer2005@gmail.com"
         method="POST"
+        novalidate
       >
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_subject" value="New message from portfolio" />
 
         <div class="form-group">
           <label for="name" data-i18n="common.yourName">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="" required />
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="" 
+            required 
+            minlength="2"
+            maxlength="50"
+            autocomplete="name"
+          />
+          <small class="error-message" data-error-for="name"></small>
         </div>
 
         <div class="form-group">
           <label for="email" data-i18n="common.yourEmail">Your Email</label>
-          <input type="email" id="email" name="email" placeholder="" required />
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="" 
+            required 
+            autocomplete="email"
+          />
+          <small class="error-message" data-error-for="email"></small>
         </div>
 
         <div class="form-group">
           <label for="message" data-i18n="common.message">Message</label>
-          <textarea id="message" name="message" data-i18n="common.messagePlaceholder" placeholder="Tell me about your project…" required></textarea>
+          <textarea 
+            id="message" 
+            name="message" 
+            data-i18n="common.messagePlaceholder" 
+            placeholder="Tell me about your project…" 
+            required 
+            minlength="10"
+            maxlength="1000"
+          ></textarea>
+          <small class="error-message" data-error-for="message"></small>
+          <small class="char-counter" data-char-for="message"></small>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
@@ -295,10 +324,6 @@ function getProjectKey(index) {
 }
 
 function getProjectCategory(index) {
-  // Categories based on project index
-  // 0: Portfolio - web
-  // 1: PSAG - fullstack, web
-  // 2: Django - backend, fullstack
   const categories = {
     0: ["web"],
     1: ["fullstack", "web"],
