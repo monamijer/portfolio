@@ -162,8 +162,34 @@ export const projectsView = () => /* html */ `
       <span class="section-label" data-i18n="common.portfolio">Portfolio</span>
       <h1 data-i18n="common.selectedWork">Selected Work</h1>
     </div>
-    <div class="projects-grid">
+    
+    <!-- Project Filters -->
+    <div class="project-filters reveal reveal-delay-1" role="tablist" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+        <span data-i18n="filters.all">All</span>
+      </button>
+      <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">
+        <i class="bi bi-globe"></i>
+        <span data-i18n="filters.web">Web Apps</span>
+      </button>
+      <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">
+        <i class="bi bi-layers"></i>
+        <span data-i18n="filters.fullstack">Full Stack</span>
+      </button>
+      <button class="filter-btn" data-filter="backend" role="tab" aria-selected="false">
+        <i class="bi bi-server"></i>
+        <span data-i18n="filters.backend">Backend</span>
+      </button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
       ${PROJECTS.map((project, index) => projectCard(project, index, true)).join("")}
+    </div>
+    
+    <!-- No results message -->
+    <div class="no-results" id="noResults" style="display:none">
+      <i class="bi bi-search"></i>
+      <p data-i18n="filters.noResults">No projects found in this category.</p>
     </div>
   </div>
 `;
@@ -268,6 +294,19 @@ function getProjectKey(index) {
   return keys[index] || `project${index}`;
 }
 
+function getProjectCategory(index) {
+  // Categories based on project index
+  // 0: Portfolio - web
+  // 1: PSAG - fullstack, web
+  // 2: Django - backend, fullstack
+  const categories = {
+    0: ["web"],
+    1: ["fullstack", "web"],
+    2: ["backend", "fullstack"],
+  };
+  return categories[index] || ["web"];
+}
+
 /* ── Shared project card component ──────────────────────────── */
 function projectCard(
   { title, desc, tags, demo, repo, emoji, image },
@@ -275,6 +314,7 @@ function projectCard(
   withReveal = false,
 ) {
   const projectKey = getProjectKey(index);
+  const categories = getProjectCategory(index);
   const thumb = image
     ? `<img src="${image}" alt="${title}" loading="lazy" />`
     : `<div class="project-thumb-placeholder">${emoji ?? "◆"}</div>`;
@@ -295,7 +335,7 @@ function projectCard(
     : "";
 
   return /* html */ `
-    <article class="project-card${revealClass}">
+    <article class="project-card${revealClass}" data-categories="${categories.join(",")}">
       <div class="project-thumb">${thumb}</div>
       <div class="project-body">
         <h3 data-i18n="projects.${projectKey}.title">${title}</h3>
