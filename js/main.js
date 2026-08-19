@@ -569,6 +569,26 @@ updateBackToTop();
 const themeBtn = document.getElementById("themeToggle");
 const icon = themeBtn.querySelector("i");
 
+// Ajouter dans la section Theme toggle
+const themeColor = document.getElementById('themeColor');
+
+const applyTheme = (dark, animate = true) => {
+  if (animate) {
+    document.body.classList.add('theme-transitioning');
+    setTimeout(() => {
+      document.body.classList.remove('theme-transitioning');
+    }, 500);
+  }
+  
+  document.documentElement.dataset.theme = dark ? 'dark' : '';
+  icon.className = dark ? 'bi bi-sun' : 'bi bi-moon-stars';
+  
+  // Update theme color meta tag
+  if (themeColor) {
+    themeColor.setAttribute('content', dark ? '#141210' : '#f5f3ee');
+  }
+};
+
 const applyTheme = (dark, animate = true) => {
   if (animate) {
     document.body.classList.add("theme-transitioning");
