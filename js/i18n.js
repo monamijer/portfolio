@@ -98,6 +98,13 @@ const translations = {
       backHome: "Back to Home",
       viewProjects: "View Projects",
     },
+    filters: {
+      all: "All",
+      web: "Web Apps",
+      fullstack: "Full Stack",
+      backend: "Backend",
+      noResults: "No projects found in this category.",
+    },
   },
   fr: {
     nav: {
@@ -195,6 +202,13 @@ const translations = {
       backHome: "Retour à l'Accueil",
       viewProjects: "Voir les Projets",
     },
+    filters: {
+      all: "Tous",
+      web: "Apps Web",
+      fullstack: "Full Stack",
+      backend: "Backend",
+      noResults: "Aucun projet trouvé dans cette catégorie.",
+    },
   },
   sw: {
     nav: {
@@ -291,6 +305,13 @@ const translations = {
       backHome: "Rudi Nyumbani",
       viewProjects: "Tazama Miradi",
     },
+    filters: {
+      all: "Zote",
+      web: "Programu za Web",
+      fullstack: "Full Stack",
+      backend: "Backend",
+      noResults: "Hakuna miradi iliyopatikana katika kitengo hiki.",
+    },
   },
   es: {
     nav: {
@@ -386,6 +407,13 @@ const translations = {
       message: "¡Ups! La página que buscas no existe o ha sido movida.",
       backHome: "Volver al Inicio",
       viewProjects: "Ver Proyectos",
+    },
+    filters: {
+      all: "Todos",
+      web: "Apps Web",
+      fullstack: "Full Stack",
+      backend: "Backend",
+      noResults: "No se encontraron proyectos en esta categoría.",
     },
   },
 };
