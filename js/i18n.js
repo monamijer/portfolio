@@ -42,6 +42,8 @@ const translations = {
       sending: "Sending…",
       success: "✓ Message sent! I'll get back to you soon.",
       error: "✗ Something went wrong. Please try again or email me directly.",
+      darkModeEnabled: "Dark Mode Enabled",
+      lightModeEnabled: "Light Mode Enabled",
     },
     profile: {
       tagline: "I craft clean, fast<br>and purposeful<br>digital experiences.",
@@ -145,6 +147,9 @@ const translations = {
       success: "✓ Message envoyé ! Je vous répondrai bientôt.",
       error:
         "✗ Une erreur est survenue. Réessayez ou envoyez-moi un email directement.",
+
+      darkModeEnabled: "Mode sombre activé",
+      lightModeEnabled: "Mode clair activé",
     },
     profile: {
       tagline:
@@ -249,6 +254,9 @@ const translations = {
       success: "✓ Ujumbe umetumwa! Nitarudi kwako hivi karibuni.",
       error:
         "✗ Kuna tatizo. Tafadhali jaribu tena au nitumie barua pepe moja kwa moja.",
+
+      darkModeEnabled: "Hali ya giza imewashwa",
+      lightModeEnabled: "Hali ya mwanga imewashwa",
     },
     profile: {
       tagline:
@@ -352,6 +360,8 @@ const translations = {
       success: "✓ ¡Mensaje enviado! Te responderé pronto.",
       error:
         "✗ Algo salió mal. Por favor intenta de nuevo o envíame un correo directamente.",
+      darkModeEnabled: "Modo oscuro activado",
+      lightModeEnabled: "Modo claro activado",
     },
     profile: {
       tagline:
