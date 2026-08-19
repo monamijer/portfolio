@@ -1376,3 +1376,133 @@ body.reader-mode {
     font-size: 0.7rem;
   }
 }
+/* =============================================================
+   FORM VALIDATION
+   ============================================================= */
+.form-group {
+  position: relative;
+}
+
+/* Valid/Invalid states */
+.form-group input.valid,
+.form-group textarea.valid {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #f44336;
+  background: rgba(244, 67, 54, 0.05);
+  animation: shake 0.3s ease;
+}
+
+/* Error messages */
+.error-message {
+  display: none;
+  font-size: 0.75rem;
+  color: #f44336;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.error-message.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Character counter */
+.char-counter {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+  text-align: right;
+}
+
+.char-counter.warning {
+  color: #ff9800;
+}
+
+.char-counter.danger {
+  color: #f44336;
+  font-weight: 600;
+}
+
+/* Icons in inputs */
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  transition: border-color var(--dur) var(--ease),
+              background var(--dur) var(--ease);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form-group input.valid:focus,
+.form-group textarea.valid:focus {
+  border-color: #4caf50;
+}
+
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+  border-color: #f44336;
+}
+
+/* Success/error icons */
+.form-group .validation-icon {
+  position: absolute;
+  right: 12px;
+  top: 40px;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.form-group .validation-icon.show {
+  opacity: 1;
+}
+
+.form-group .validation-icon.success {
+  color: #4caf50;
+}
+
+.form-group .validation-icon.error {
+  color: #f44336;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .form-group input.valid,
+[data-theme="dark"] .form-group textarea.valid {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+[data-theme="dark"] .form-group input.invalid,
+[data-theme="dark"] .form-group textarea.invalid {
+  background: rgba(244, 67, 54, 0.1);
+}
