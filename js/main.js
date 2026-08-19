@@ -27,7 +27,6 @@ function updatePreloader(value) {
     preloaderProgress.style.width = value + "%";
   }
 
-  // Update text based on progress
   if (preloaderText) {
     const messageIndex = Math.floor(
       (value / 100) * (loadingMessages.length - 1),
@@ -40,14 +39,12 @@ function hidePreloader() {
   if (preloader) {
     preloader.classList.add("hidden");
 
-    // Remove from DOM after transition
     setTimeout(() => {
       preloader.remove();
     }, 500);
   }
 }
 
-// Simulate loading progress
 function simulateLoading() {
   const interval = setInterval(() => {
     progress += Math.random() * 15;
@@ -57,7 +54,6 @@ function simulateLoading() {
       updatePreloader(100);
       clearInterval(interval);
 
-      // Hide preloader after a brief pause
       setTimeout(hidePreloader, 300);
     } else {
       updatePreloader(progress);
@@ -65,11 +61,9 @@ function simulateLoading() {
   }, 200);
 }
 
-// Start preloader
 updatePreloader(0);
 simulateLoading();
 
-// Fallback: hide preloader after 3 seconds max
 setTimeout(() => {
   if (preloader && !preloader.classList.contains("hidden")) {
     progress = 100;
@@ -189,6 +183,67 @@ if (readerModeEnabled) {
 
 readerToggle.addEventListener("click", toggleReaderMode);
 
+/* ── Project Filters ─────────────────────────────────────────── */
+function setupProjectFilters() {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+  const noResults = document.getElementById("noResults");
+
+  if (!filterButtons.length || !projectCards.length) return;
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      // Update active button
+      filterButtons.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+
+      // Filter projects
+      let visibleCount = 0;
+
+      projectCards.forEach((card) => {
+        const categories = card.dataset.categories.split(",");
+
+        if (filter === "all" || categories.includes(filter)) {
+          card.classList.remove("hidden");
+          card.classList.remove("filtering");
+          visibleCount++;
+        } else {
+          card.classList.add("filtering");
+
+          // Hide after animation
+          setTimeout(() => {
+            card.classList.add("hidden");
+          }, 300);
+        }
+      });
+
+      // Show/hide no results message
+      if (noResults) {
+        if (visibleCount === 0) {
+          noResults.style.display = "block";
+        } else {
+          noResults.style.display = "none";
+        }
+      }
+
+      // Re-trigger reveal animations for visible cards
+      setTimeout(() => {
+        projectCards.forEach((card) => {
+          if (!card.classList.contains("hidden")) {
+            card.classList.add("visible");
+          }
+        });
+      }, 350);
+    });
+  });
+}
+
 /* ── Scroll Reveal Animations ────────────────────────────────── */
 function setupScrollReveal() {
   const revealElements = document.querySelectorAll(
@@ -280,6 +335,7 @@ window.addEventListener("route:changed", ({ detail }) => {
   updateScrollProgress();
   updateBackToTop();
   setupScrollReveal();
+  setupProjectFilters(); // Setup project filters after route change
 
   if (detail.path === "/vault") initVault();
 });
@@ -345,3 +401,4 @@ function wireContactForm() {
 
 // Initial setup
 setupScrollReveal();
+setupProjectFilters();
