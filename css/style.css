@@ -1269,3 +1269,110 @@ body.reader-mode {
     animation: none;
   }
 }
+/* =============================================================
+   PROJECT FILTERS
+   ============================================================= */
+.project-filters {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: all var(--dur) var(--ease);
+  white-space: nowrap;
+}
+
+.filter-btn i {
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.filter-btn.active:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Dark mode */
+[data-theme="dark"] .filter-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+[data-theme="dark"] .filter-btn.active:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--muted);
+}
+
+.no-results i {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+  color: var(--border);
+}
+
+.no-results p {
+  font-size: 1.1rem;
+}
+
+/* Animation for filtering */
+.project-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-card.hidden {
+  display: none;
+}
+
+.project-card.filtering {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .project-filters {
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+  }
+}
