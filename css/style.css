@@ -1527,12 +1527,18 @@ body.reader-mode {
   color: var(--accent);
 }
 
+/* Cursor styles */
 .typing-cursor {
   display: inline-block;
   font-weight: 800;
   color: var(--accent);
   animation: blink 0.7s infinite;
   margin-left: 2px;
+}
+
+/* Hide cursor when typing is complete */
+.typing-cursor.hidden {
+  display: none;
 }
 
 @keyframes blink {
