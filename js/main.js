@@ -122,7 +122,6 @@ function setupTypingEffect() {
 
     if (charIndex >= plainText.length) {
       hasTyped = true;
-      // Hide cursor when typing is complete
       if (typingCursor) {
         typingCursor.classList.add("hidden");
       }
@@ -133,17 +132,14 @@ function setupTypingEffect() {
     setTimeout(typeOnce, 60);
   }
 
-  // Start typing after preloader
   setTimeout(() => {
     typeOnce();
   }, 1000);
 
-  // Update when language changes
   window.addEventListener("languageChanged", () => {
     if (!hasTyped) {
       charIndex = 0;
       typingElement.innerHTML = "";
-      // Show cursor again if typing restarts
       if (typingCursor) {
         typingCursor.classList.remove("hidden");
       }
@@ -252,7 +248,6 @@ function toggleReaderMode() {
   }
 }
 
-// Restore reader mode preference
 if (readerModeEnabled) {
   document.body.classList.add("reader-mode");
   readerToggle.classList.add("active");
@@ -275,7 +270,6 @@ function setupProjectFilters() {
     btn.addEventListener("click", () => {
       const filter = btn.dataset.filter;
 
-      // Update active button
       filterButtons.forEach((b) => {
         b.classList.remove("active");
         b.setAttribute("aria-selected", "false");
@@ -283,7 +277,6 @@ function setupProjectFilters() {
       btn.classList.add("active");
       btn.setAttribute("aria-selected", "true");
 
-      // Filter projects
       let visibleCount = 0;
 
       projectCards.forEach((card) => {
@@ -302,7 +295,6 @@ function setupProjectFilters() {
         }
       });
 
-      // Show/hide no results message
       if (noResults) {
         if (visibleCount === 0) {
           noResults.style.display = "block";
@@ -311,7 +303,6 @@ function setupProjectFilters() {
         }
       }
 
-      // Re-trigger reveal animations for visible cards
       setTimeout(() => {
         projectCards.forEach((card) => {
           if (!card.classList.contains("hidden")) {
@@ -386,7 +377,6 @@ function setupFormValidation() {
       }
     }
 
-    // Update UI
     const errorElement = document.querySelector(
       `[data-error-for="${fieldName}"]`,
     );
@@ -434,7 +424,6 @@ function setupFormValidation() {
     }
   }
 
-  // Real-time validation
   Object.keys(fields).forEach((fieldName) => {
     const field = fields[fieldName];
 
@@ -443,7 +432,6 @@ function setupFormValidation() {
     });
 
     field.element.addEventListener("input", () => {
-      // Only validate if field was previously invalid
       if (field.element.classList.contains("invalid")) {
         validateField(fieldName);
       }
@@ -454,14 +442,11 @@ function setupFormValidation() {
     });
   });
 
-  // Initialize char counter
   updateCharCounter();
 
-  // Form submission
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Validate all fields
     let allValid = true;
     Object.keys(fields).forEach((fieldName) => {
       if (!validateField(fieldName)) {
@@ -470,7 +455,6 @@ function setupFormValidation() {
     });
 
     if (!allValid) {
-      // Focus first invalid field
       const firstInvalid = form.querySelector(".invalid");
       if (firstInvalid) {
         firstInvalid.focus();
@@ -496,7 +480,6 @@ function setupFormValidation() {
         feedback.textContent = i18n.t("common.success");
         form.reset();
 
-        // Reset validation states
         Object.keys(fields).forEach((fieldName) => {
           fields[fieldName].element.classList.remove("valid", "invalid");
           const errorElement = document.querySelector(
@@ -568,26 +551,7 @@ updateBackToTop();
 /* ── Theme toggle with auto dark mode ────────────────────────── */
 const themeBtn = document.getElementById("themeToggle");
 const icon = themeBtn.querySelector("i");
-
-// Ajouter dans la section Theme toggle
-const themeColor = document.getElementById('themeColor');
-
-const applyTheme = (dark, animate = true) => {
-  if (animate) {
-    document.body.classList.add('theme-transitioning');
-    setTimeout(() => {
-      document.body.classList.remove('theme-transitioning');
-    }, 500);
-  }
-  
-  document.documentElement.dataset.theme = dark ? 'dark' : '';
-  icon.className = dark ? 'bi bi-sun' : 'bi bi-moon-stars';
-  
-  // Update theme color meta tag
-  if (themeColor) {
-    themeColor.setAttribute('content', dark ? '#141210' : '#f5f3ee');
-  }
-};
+const themeColor = document.getElementById("themeColor");
 
 const applyTheme = (dark, animate = true) => {
   if (animate) {
@@ -599,6 +563,11 @@ const applyTheme = (dark, animate = true) => {
 
   document.documentElement.dataset.theme = dark ? "dark" : "";
   icon.className = dark ? "bi bi-sun" : "bi bi-moon-stars";
+
+  // Update theme color meta tag
+  if (themeColor) {
+    themeColor.setAttribute("content", dark ? "#141210" : "#f5f3ee");
+  }
 };
 
 // Check if user has a saved preference
@@ -715,7 +684,6 @@ function animateSkillBars() {
 
 /** Intercept the contact form to show inline feedback (no page reload). */
 function wireContactForm() {
-  // This function is now handled by setupFormValidation
   return;
 }
 
