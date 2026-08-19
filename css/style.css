@@ -1506,3 +1506,56 @@ body.reader-mode {
 [data-theme="dark"] .form-group textarea.invalid {
   background: rgba(244, 67, 54, 0.1);
 }
+/* =============================================================
+   TYPING EFFECT
+   ============================================================= */
+.typing-container {
+  display: inline-block;
+  position: relative;
+  min-height: 1.2em;
+}
+
+#typing-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+#typing-text .accent {
+  color: var(--accent);
+}
+
+.typing-cursor {
+  display: inline-block;
+  font-weight: 800;
+  color: var(--accent);
+  animation: blink 0.7s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Dark mode */
+[data-theme="dark"] #typing-text {
+  color: var(--text);
+}
+
+[data-theme="dark"] .typing-cursor {
+  color: var(--accent);
+}
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  .typing-cursor {
+    animation: none;
+  }
+}
