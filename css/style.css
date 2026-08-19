@@ -52,6 +52,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
+  transition: background 0.5s ease, color 0.5s ease;
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
   min-height: 100dvh;
   display: flex;
@@ -1564,4 +1565,25 @@ body.reader-mode {
   .typing-cursor {
     animation: none;
   }
+}
+/* =============================================================
+   SMOOTH THEME TRANSITIONS
+   ============================================================= */
+
+
+/* Smooth transitions for theme-dependent elements */
+#navbar,
+#footer,
+.project-card,
+.service-card,
+.info-grid,
+.btn,
+.form-group input,
+.form-group textarea {
+  transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Theme change animation */
+.theme-transitioning * {
+  transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
 }
