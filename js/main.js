@@ -72,6 +72,132 @@ setTimeout(() => {
   }
 }, 3000);
 
+/* ── Typing Effect ───────────────────────────────────────────── */
+function setupTypingEffect() {
+  const typingElement = document.getElementById("typing-text");
+  if (!typingElement) return;
+
+  // Get the tagline from translations
+  const getTagline = () => {
+    return i18n.t("profile.tagline");
+  };
+
+  const phrases = [
+    getTagline(),
+    // Add more phrases if desired
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let isWaiting = false;
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+      // Deleting text
+      charIndex--;
+      typingElement.textContent = currentPhrase.substring(0, charIndex);
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(type, 500); // Pause before typing next phrase
+        return;
+      }
+
+      setTimeout(type, 30); // Delete speed
+    } else {
+      // Typing text
+      charIndex++;
+      typingElement.textContent = currentPhrase.substring(0, charIndex);
+
+      if (charIndex === currentPhrase.length) {
+        isDeleting = true;
+        isWaiting = true;
+
+        // Pause at the end before deleting
+        setTimeout(() => {
+          isWaiting = false;
+          type();
+        }, 3000); // Wait 3 seconds
+
+        return;
+      }
+
+      setTimeout(type, 60); // Type speed
+    }
+  }
+
+  // Handle HTML in tagline (like <br>)
+  function typeWithHTML() {
+    const currentPhrase = phrases[phraseIndex];
+    const plainText = currentPhrase.replace(/<br>/g, "\n");
+    const segments = plainText.split("\n");
+
+    if (isDeleting) {
+      // Simple deletion for now
+      typingElement.textContent = plainText.substring(0, charIndex);
+      charIndex--;
+
+      if (charIndex < 0) {
+        isDeleting = false;
+        charIndex = 0;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeWithHTML, 500);
+        return;
+      }
+
+      setTimeout(typeWithHTML, 30);
+    } else {
+      // Typing with line breaks
+      let totalChars = 0;
+      let html = "";
+
+      for (let i = 0; i < segments.length; i++) {
+        if (i > 0 && totalChars < charIndex) {
+          html += "<br>";
+        }
+
+        const remaining = charIndex - totalChars;
+        if (remaining > 0) {
+          html += segments[i].substring(
+            0,
+            Math.min(remaining, segments[i].length),
+          );
+          totalChars += segments[i].length;
+        } else {
+          break;
+        }
+      }
+
+      typingElement.innerHTML = html;
+
+      if (charIndex >= plainText.length) {
+        isDeleting = true;
+        setTimeout(typeWithHTML, 3000);
+        return;
+      }
+
+      charIndex++;
+      setTimeout(typeWithHTML, 60);
+    }
+  }
+
+  // Start typing after preloader
+  setTimeout(() => {
+    typeWithHTML();
+  }, 1000);
+
+  // Update phrases when language changes
+  window.addEventListener("languageChanged", () => {
+    phrases[0] = getTagline();
+    charIndex = 0;
+    isDeleting = false;
+  });
+}
+
 /* ── Router setup ────────────────────────────────────────────── */
 const app = document.getElementById("app");
 
@@ -302,7 +428,6 @@ function setupFormValidation() {
       }
     }
 
-    // Update UI
     const errorElement = document.querySelector(
       `[data-error-for="${fieldName}"]`,
     );
@@ -350,7 +475,6 @@ function setupFormValidation() {
     }
   }
 
-  // Real-time validation
   Object.keys(fields).forEach((fieldName) => {
     const field = fields[fieldName];
 
@@ -359,7 +483,6 @@ function setupFormValidation() {
     });
 
     field.element.addEventListener("input", () => {
-      // Only validate if field was previously invalid
       if (field.element.classList.contains("invalid")) {
         validateField(fieldName);
       }
@@ -370,14 +493,11 @@ function setupFormValidation() {
     });
   });
 
-  // Initialize char counter
   updateCharCounter();
 
-  // Form submission
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Validate all fields
     let allValid = true;
     Object.keys(fields).forEach((fieldName) => {
       if (!validateField(fieldName)) {
@@ -386,7 +506,6 @@ function setupFormValidation() {
     });
 
     if (!allValid) {
-      // Focus first invalid field
       const firstInvalid = form.querySelector(".invalid");
       if (firstInvalid) {
         firstInvalid.focus();
@@ -412,7 +531,6 @@ function setupFormValidation() {
         feedback.textContent = i18n.t("common.success");
         form.reset();
 
-        // Reset validation states
         Object.keys(fields).forEach((fieldName) => {
           fields[fieldName].element.classList.remove("valid", "invalid");
           const errorElement = document.querySelector(
@@ -531,6 +649,7 @@ window.addEventListener("route:changed", ({ detail }) => {
   setupScrollReveal();
   setupProjectFilters();
   setupFormValidation();
+  setupTypingEffect(); // Setup typing effect after route change
 
   if (detail.path === "/vault") initVault();
 });
@@ -559,8 +678,6 @@ function animateSkillBars() {
 
 /** Intercept the contact form to show inline feedback (no page reload). */
 function wireContactForm() {
-  // This function is now handled by setupFormValidation
-  // Kept for backward compatibility
   return;
 }
 
@@ -568,3 +685,4 @@ function wireContactForm() {
 setupScrollReveal();
 setupProjectFilters();
 setupFormValidation();
+setupTypingEffect();
