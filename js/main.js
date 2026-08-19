@@ -565,23 +565,72 @@ window.addEventListener("scroll", () => {
 updateScrollProgress();
 updateBackToTop();
 
-/* ── Theme toggle ────────────────────────────────────────────── */
+/* ── Theme toggle with auto dark mode ────────────────────────── */
 const themeBtn = document.getElementById("themeToggle");
 const icon = themeBtn.querySelector("i");
 
-const applyTheme = (dark) => {
+const applyTheme = (dark, animate = true) => {
+  if (animate) {
+    document.body.classList.add("theme-transitioning");
+    setTimeout(() => {
+      document.body.classList.remove("theme-transitioning");
+    }, 500);
+  }
+
   document.documentElement.dataset.theme = dark ? "dark" : "";
   icon.className = dark ? "bi bi-sun" : "bi bi-moon-stars";
-  localStorage.setItem("theme", dark ? "dark" : "light");
 };
 
-// Restore saved preference (or OS default)
+// Check if user has a saved preference
 const savedTheme = localStorage.getItem("theme");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-applyTheme(savedTheme ? savedTheme === "dark" : prefersDark);
 
+// Function to detect if it's night time (6 PM - 6 AM)
+const isNightTime = () => {
+  const hour = new Date().getHours();
+  return hour < 6 || hour >= 18;
+};
+
+// Function to detect system preference
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+// Apply theme based on priority: saved > system > time
+if (savedTheme) {
+  applyTheme(savedTheme === "dark", false);
+} else if (prefersDark) {
+  applyTheme(true, false);
+} else if (isNightTime()) {
+  applyTheme(true, false);
+} else {
+  applyTheme(false, false);
+}
+
+// Listen for system theme changes
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (e) => {
+    if (!localStorage.getItem("theme")) {
+      applyTheme(e.matches || isNightTime());
+    }
+  });
+
+// Check every hour for time-based changes
+setInterval(() => {
+  if (!localStorage.getItem("theme")) {
+    applyTheme(isNightTime());
+  }
+}, 3600000);
+
+// Manual toggle
 themeBtn.addEventListener("click", () => {
-  applyTheme(document.documentElement.dataset.theme !== "dark");
+  const newTheme = document.documentElement.dataset.theme !== "dark";
+  applyTheme(newTheme);
+  localStorage.setItem("theme", newTheme ? "dark" : "light");
+
+  showToast(
+    newTheme
+      ? i18n.t("common.darkModeEnabled")
+      : i18n.t("common.lightModeEnabled"),
+  );
 });
 
 /* ── Mobile nav hamburger ────────────────────────────────────── */
@@ -647,7 +696,6 @@ function animateSkillBars() {
 /** Intercept the contact form to show inline feedback (no page reload). */
 function wireContactForm() {
   // This function is now handled by setupFormValidation
-  // Kept for backward compatibility
   return;
 }
 
