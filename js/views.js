@@ -38,7 +38,12 @@ export const homeView = () => /* html */ `
 
       <div class="hero-text reveal reveal-left">
         <span class="section-label" data-i18n="common.available">Available for freelance</span>
-        <h1 data-i18n="profile.tagline">${PROFILE.tagline.replace(/\n/g, "<br>")}</h1>
+        <h1>
+          <span class="typing-container">
+            <span id="typing-text"></span>
+            <span class="typing-cursor">|</span>
+          </span>
+        </h1>
         <p data-i18n="profile.bioShort">${PROFILE.bio.split(".")[0]}.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#/projects">
