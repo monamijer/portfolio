@@ -532,6 +532,109 @@ const translations = {
       viewProjects: "Projekte ansehen",
     },
   },
+  ln: {
+    nav: {
+      home: "Ebandeli",
+      about: "Ngai",
+      projects: "Misala",
+      contact: "Bosolo",
+    },
+    common: {
+      available: "Nazali kosala mosala",
+      scrollToExplore: "Gumba mpo na kotala",
+      selectedWork: "Misala miye miponami",
+      allProjects: "Misala nyonso →",
+      viewWork: "Tala misala",
+      letsTalk: "Tosolo",
+      aboutMe: "Mpo na ngai",
+      location: "Esika",
+      education: "Kelasi",
+      expertise: "Nkita",
+      status: "Ezali",
+      email: "Email",
+      getInTouch: "Solo na ngai",
+      skills: "Mayele",
+      services: "Misala",
+      portfolio: "Portfolio",
+      contact: "Bosolo",
+      letsWorkTogether: "Tosala<br>esika moko.",
+      contactText:
+        "Ozali na likanisi ya mosala to olingi kosolo? Email na ngai ezali ofungoli.",
+      yourName: "Kombo na yo",
+      yourEmail: "Email na yo",
+      message: "Nsango",
+      messagePlaceholder: "Loba ngai mpo na mosala na yo…",
+      sendMessage: "Tinda nsango",
+      live: "Live",
+      code: "Code",
+      sending: "Ezali kotinda…",
+      success: "✓ Nsango etindi! Nakozongela yo na noki.",
+      error: "✗ Mabe esalemi. Mekola lisusu to tinda ngai email.",
+      darkModeEnabled: "Mode ya molili efungoli",
+      lightModeEnabled: "Mode ya mwinda efungoli",
+    },
+    profile: {
+      tagline: "Nasalaka biloko<br>ya pete, ya noki<br>mpe ya ntina.",
+      bio: "Nazali mosali ya web full-stack. Natalelaka code oyo ebongisami malamu, UI oyo ekanisi malamu, mpe biloko oyo esalisaka bato. Sikawa nazali kosala MSc na Software Engineering.",
+      bioShort: "Nazali mosali ya web full-stack.",
+      location: "Bujumbura, Burundi",
+      education: "MSc Software Engineering",
+      expertise: "Angular · Express · Node.js",
+      activity: "Moyekoli & Mosali ya ndenge na ye",
+    },
+    skills: {
+      htmlCss: "HTML & CSS",
+      javascript: "JavaScript",
+      angular: "Angular",
+      nodeExpress: "Node / Express",
+      gitCicd: "Git & CI/CD",
+    },
+    services: {
+      webDev: {
+        title: "Kosala Web",
+        desc: "Ba sites oyo ezali kosala malamu na ba appareils nyonso.",
+      },
+      ecommerce: {
+        title: "E-Commerce",
+        desc: "Ba magasins na internet na paiement.",
+      },
+      maintenance: {
+        title: "Kobongisa",
+        desc: "Kosunga na kobongisa mbala na mbala.",
+      },
+      apiIntegration: {
+        title: "Kokanga API",
+        desc: "Ba API REST na Node.js & Express.",
+      },
+    },
+    projects: {
+      portfolio: {
+        title: "Site ya Portfolio",
+        desc: "Site oyo — SPA oyo esalemi na vanilla JS, router na biso moko, mpe ba propriétés CSS.",
+      },
+      psag: {
+        title: "Koyangela Paroisse PSAG",
+        desc: "Application web mpo na koyangela misala ya paroisse, bato, ba catéchumènes mpe administration na authentification mpe contrôle ya accès.",
+      },
+      django: {
+        title: "Bibliothèque Django",
+        desc: "Bibliothèque ya koyekola oyo ekoki kokola, esalemi na Django.",
+      },
+    },
+    filters: {
+      all: "Nyonso",
+      web: "Ba Apps Web",
+      fullstack: "Full Stack",
+      backend: "Backend",
+      noResults: "Misala moko te ezwami na catégorie oyo.",
+    },
+    notFound: {
+      title: "Lokasa ezwami te",
+      message: "Ee! Lokasa oyo ozali koluka ezali te to esili kotambola.",
+      backHome: "Zonga na Ebandeli",
+      viewProjects: "Tala Misala",
+    },
+  },
 };
 
 const languages = {
@@ -540,6 +643,7 @@ const languages = {
   sw: { flag: "🇹🇿", name: "Kiswahili" },
   es: { flag: "🇪🇸", name: "Español" },
   de: { flag: "🇩🇪", name: "Deutsch" },
+  ln: { flag: "🇨🇩", name: "Lingala" },
 };
 
 class I18n {
