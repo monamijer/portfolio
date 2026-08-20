@@ -18,10 +18,6 @@ const PRECACHE_ASSETS = [
   "/portfolio/js/data.js",
   "/portfolio/js/i18n.js",
   "/portfolio/js/nexus.js",
-  "/portfolio/images/jer_logo.png",
-  "/portfolio/images/monami.png",
-  "/portfolio/images/portfolio.png",
-  "/portfolio/images/psag.png",
   "/portfolio/manifest.json",
 ];
 
@@ -66,61 +62,75 @@ self.addEventListener("fetch", (event) => {
   // Skip non-GET requests
   if (event.request.method !== "GET") return;
 
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) return;
-
-  // Skip API calls
-  if (event.request.url.includes("/api/")) return;
+  // Skip cross-origin requests (fonts, icons, form submissions)
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
 
   // Skip form submissions
-  if (event.request.url.includes("formsubmit.co")) return;
+  if (url.pathname.includes("formsubmit.co")) return;
 
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+  // For images - use cache-first strategy
+  if (event.request.destination === "image") {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-      return fetch(event.request)
-        .then((response) => {
-          // Cache successful responses
-          if (response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(RUNTIME_CACHE).then((cache) => {
-              cache.put(event.request, responseClone);
+        return fetch(event.request)
+          .then((response) => {
+            // Cache successful image responses
+            if (response.status === 200) {
+              const responseClone = response.clone();
+              caches.open(RUNTIME_CACHE).then((cache) => {
+                cache.put(event.request, responseClone);
+              });
+            }
+            return response;
+          })
+          .catch(() => {
+            // Fallback image if offline
+            return new Response("", {
+              status: 200,
+              headers: { "Content-Type": "image/svg+xml" },
             });
+          });
+      }),
+    );
+    return;
+  }
+
+  // For navigation and other requests - network-first with cache fallback
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        // Cache successful responses
+        if (response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(RUNTIME_CACHE).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        }
+        return response;
+      })
+      .catch(() => {
+        // Fallback to cache
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
           }
-          return response;
-        })
-        .catch(() => {
+
           // Fallback for navigation requests
           if (event.request.mode === "navigate") {
             return caches.match("/portfolio/index.html");
           }
+
           return new Response("Offline - Content not available", {
             status: 503,
             statusText: "Service Unavailable",
             headers: { "Content-Type": "text/plain" },
           });
         });
-    }),
+      }),
   );
-});
-
-// Handle push notifications (future)
-self.addEventListener("push", (event) => {
-  const options = {
-    body: event.data ? event.data.text() : "New notification",
-    icon: "/portfolio/images/jer_logo.png",
-    badge: "/portfolio/images/jer_logo.png",
-  };
-
-  event.waitUntil(self.registration.showNotification("MJ Portfolio", options));
-});
-
-// Handle notification clicks
-self.addEventListener("notificationclick", (event) => {
-  event.notification.close();
-
-  event.waitUntil(clients.openWindow("/portfolio/"));
 });
