@@ -4,12 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f5f3ee" id="themeColor" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MJ Portfolio" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="images/jer_logo.png" />
+
     <!-- SEO -->
     <meta name="description" content="Monami Jerome — Web Developer & Designer based in Bujumbura, Burundi. Full-stack developer specializing in Angular, Node.js, and PHP." />
     <meta name="keywords" content="Monami Jerome, Web Developer, Burundi, Angular, Node.js, PHP, Full Stack, Bujumbura" />
     <meta name="author" content="Monami Jerome" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#f5f3ee" id="themeColor" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Monami Jerome · Web Developer" />
@@ -76,22 +86,6 @@
     }
     </script>
 
-    <!-- Additional Structured Data for Website -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Monami Jerome Portfolio",
-      "url": "https://monamijer.github.io/portfolio",
-      "author": {
-        "@type": "Person",
-        "name": "Monami Jerome"
-      },
-      "inLanguage": ["en", "fr", "sw", "es"],
-      "description": "Portfolio website of Monami Jerome, Web Developer & Designer"
-    }
-    </script>
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -111,13 +105,12 @@
       rel="stylesheet"
     />
 
-    <!-- Cache busting with version parameter -->
-    <link rel="stylesheet" href="css/style.css?v=1.0.1" />
-    <link rel="stylesheet" href="css/nexus.css?v=1.0.1" />
-    <link rel="shortcut icon" href="images/jer_logo.png?v=1.0.1" type="image/png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/nexus.css" />
+    <link rel="shortcut icon" href="images/jer_logo.png" type="image/png" />
 
     <!-- SPA router + app bootstrap -->
-    <script src="js/main.js?v=1.0.1" type="module"></script>
+    <script src="js/main.js" type="module"></script>
   </head>
 
   <body>
