@@ -89,11 +89,12 @@ function setupTypingEffect() {
     return i18n.t("profile.tagline");
   };
 
-  const currentPhrase = getTagline();
-  const plainText = currentPhrase.replace(/<br>/g, "\n");
-  const segments = plainText.split("\n");
+  let currentPhrase = getTagline();
+  let plainText = currentPhrase.replace(/<br>/g, "\n");
+  let segments = plainText.split("\n");
   let charIndex = 0;
   let hasTyped = false;
+  let typingTimeout = null;
 
   function typeOnce() {
     if (hasTyped) return;
@@ -122,6 +123,8 @@ function setupTypingEffect() {
 
     if (charIndex >= plainText.length) {
       hasTyped = true;
+      // Show final complete text
+      typingElement.innerHTML = currentPhrase;
       if (typingCursor) {
         typingCursor.classList.add("hidden");
       }
@@ -129,21 +132,40 @@ function setupTypingEffect() {
     }
 
     charIndex++;
-    setTimeout(typeOnce, 60);
+    typingTimeout = setTimeout(typeOnce, 60);
   }
 
-  setTimeout(() => {
+  // Start typing after preloader
+  typingTimeout = setTimeout(() => {
     typeOnce();
   }, 1000);
 
+  // Update when language changes - reset and retype
   window.addEventListener("languageChanged", () => {
-    if (!hasTyped) {
-      charIndex = 0;
-      typingElement.innerHTML = "";
-      if (typingCursor) {
-        typingCursor.classList.remove("hidden");
-      }
+    // Clear any pending timeout
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
     }
+
+    // Reset all variables
+    currentPhrase = getTagline();
+    plainText = currentPhrase.replace(/<br>/g, "\n");
+    segments = plainText.split("\n");
+    charIndex = 0;
+    hasTyped = false;
+
+    // Clear the element
+    typingElement.innerHTML = "";
+
+    // Show cursor again
+    if (typingCursor) {
+      typingCursor.classList.remove("hidden");
+    }
+
+    // Restart typing
+    typingTimeout = setTimeout(() => {
+      typeOnce();
+    }, 500);
   });
 }
 
@@ -248,6 +270,7 @@ function toggleReaderMode() {
   }
 }
 
+// Restore reader mode preference
 if (readerModeEnabled) {
   document.body.classList.add("reader-mode");
   readerToggle.classList.add("active");
@@ -655,13 +678,19 @@ window.addEventListener("route:changed", ({ detail }) => {
   setupScrollReveal();
   setupProjectFilters();
   setupFormValidation();
-  setupTypingEffect();
 
   if (detail.path === "/vault") initVault();
 });
 
+// Initial setup - only once
+setupScrollReveal();
+setupProjectFilters();
+setupFormValidation();
+setupTypingEffect(); // Only once at startup
+
 window.addEventListener("languageChanged", () => {
   const currentPath = window.location.hash.replace("#", "") || "/";
+
   window.dispatchEvent(
     new CustomEvent("route:changed", { detail: { path: currentPath } }),
   );
@@ -687,38 +716,32 @@ function wireContactForm() {
   return;
 }
 
-
-
-// Initial setup
-setupScrollReveal();
-setupProjectFilters();
-setupFormValidation();
-setupTypingEffect();
-
-
 /* ── Service Worker Registration ─────────────────────────────── */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register('/portfolio/sw.js')
+      .register("/portfolio/sw.js")
       .then((registration) => {
-        console.log('Service Worker registered:', registration.scope);
-        
+        console.log("Service Worker registered:", registration.scope);
+
         // Check for updates
-        registration.addEventListener('updatefound', () => {
+        registration.addEventListener("updatefound", () => {
           const newWorker = registration.installing;
-          
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+
+          newWorker.addEventListener("statechange", () => {
+            if (
+              newWorker.state === "installed" &&
+              navigator.serviceWorker.controller
+            ) {
               // New SW available - force reload
-              newWorker.postMessage('skipWaiting');
+              newWorker.postMessage("skipWaiting");
               window.location.reload();
             }
           });
         });
       })
       .catch((error) => {
-        console.error('Service Worker registration failed:', error);
+        console.error("Service Worker registration failed:", error);
       });
   });
 }
