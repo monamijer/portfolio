@@ -426,6 +426,112 @@ const translations = {
       noResults: "No se encontraron proyectos en esta categoría.",
     },
   },
+  de: {
+    nav: {
+      home: "Startseite",
+      about: "Über mich",
+      projects: "Projekte",
+      contact: "Kontakt",
+    },
+    common: {
+      available: "Verfügbar für Freelance",
+      scrollToExplore: "Scrollen zum Entdecken",
+      selectedWork: "Ausgewählte Arbeiten",
+      allProjects: "Alle Projekte →",
+      viewWork: "Arbeit ansehen",
+      letsTalk: "Lass uns reden",
+      aboutMe: "Über mich",
+      location: "Standort",
+      education: "Ausbildung",
+      expertise: "Expertise",
+      status: "Status",
+      email: "E-Mail",
+      getInTouch: "Kontakt aufnehmen",
+      skills: "Fähigkeiten",
+      services: "Dienstleistungen",
+      portfolio: "Portfolio",
+      contact: "Kontakt",
+      letsWorkTogether: "Lass uns<br>zusammenarbeiten.",
+      contactText:
+        "Haben Sie ein Projekt im Kopf oder möchten Sie einfach Hallo sagen? Mein Posteingang ist offen.",
+      yourName: "Ihr Name",
+      yourEmail: "Ihre E-Mail",
+      message: "Nachricht",
+      messagePlaceholder: "Erzählen Sie mir von Ihrem Projekt…",
+      sendMessage: "Nachricht senden",
+      live: "Live",
+      code: "Code",
+      sending: "Senden…",
+      success: "✓ Nachricht gesendet! Ich werde mich bald melden.",
+      error:
+        "✗ Etwas ist schief gelaufen. Bitte versuchen Sie es erneut oder senden Sie mir eine E-Mail.",
+      darkModeEnabled: "Dunkelmodus aktiviert",
+      lightModeEnabled: "Hellmodus aktiviert",
+    },
+    profile: {
+      tagline:
+        "Ich gestalte saubere,<br>schnelle und zielgerichtete<br>digitale Erfahrungen.",
+      bio: "Ich bin ein Full-Stack-orientierter Webentwickler. Ich lege Wert auf gut strukturierten Code, durchdachte UI und Produkte, die den Menschen wirklich dienen. Derzeit absolviere ich einen MSc in Software Engineering.",
+      bioShort: "Ich bin ein Full-Stack-orientierter Webentwickler.",
+      location: "Bujumbura, Burundi",
+      education: "MSc Software Engineering",
+      expertise: "Angular · Express · Node.js",
+      activity: "Student & Freelancer",
+    },
+    skills: {
+      htmlCss: "HTML & CSS",
+      javascript: "JavaScript",
+      angular: "Angular",
+      nodeExpress: "Node / Express",
+      gitCicd: "Git & CI/CD",
+    },
+    services: {
+      webDev: {
+        title: "Webentwicklung",
+        desc: "Responsive, leistungsstarke Websites von Grund auf.",
+      },
+      ecommerce: {
+        title: "E-Commerce",
+        desc: "Online-Shops mit Zahlungsintegration.",
+      },
+      maintenance: {
+        title: "Wartung",
+        desc: "Laufende Unterstützung und Verbesserungen.",
+      },
+      apiIntegration: {
+        title: "API-Integration",
+        desc: "REST-APIs mit Node.js & Express.",
+      },
+    },
+    projects: {
+      portfolio: {
+        title: "Portfolio-Website",
+        desc: "Diese Website — eine SPA ohne Abhängigkeiten, gebaut mit Vanilla JS, eigenem Router und CSS Custom Properties.",
+      },
+      psag: {
+        title: "PSAG Gemeindeverwaltung",
+        desc: "Webanwendung zur Verwaltung von Gemeindeaktivitäten, Benutzern, Katechumenen und Administration mit Authentifizierung und rollenbasierter Zugriffskontrolle.",
+      },
+      django: {
+        title: "Django Lokale Bibliothek",
+        desc: "Skalierbare Lernbibliothek, gebaut mit Django.",
+      },
+    },
+    filters: {
+      all: "Alle",
+      web: "Web-Apps",
+      fullstack: "Full Stack",
+      backend: "Backend",
+      noResults: "Keine Projekte in dieser Kategorie gefunden.",
+    },
+    notFound: {
+      title: "Seite nicht gefunden",
+      message:
+        "Hoppla! Die gesuchte Seite existiert nicht oder wurde verschoben.",
+      backHome: "Zurück zur Startseite",
+      viewProjects: "Projekte ansehen",
+    },
+  },
 };
 
 const languages = {
@@ -433,6 +539,7 @@ const languages = {
   fr: { flag: "🇫🇷", name: "Français" },
   sw: { flag: "🇹🇿", name: "Kiswahili" },
   es: { flag: "🇪🇸", name: "Español" },
+  de: { flag: "🇩🇪", name: "Deutsch" },
 };
 
 class I18n {
