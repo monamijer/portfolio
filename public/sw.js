@@ -5,8 +5,9 @@
 
 const CACHE_NAME = "mj-portfolio-v2.0.0";
 const RUNTIME_CACHE = "mj-portfolio-runtime";
+const IMAGE_CACHE = "mj-portfolio-images";
 
-// Assets to cache on install
+// Assets to cache on install (ne pas mettre les images ici)
 const PRECACHE_ASSETS = [
   "/portfolio/",
   "/portfolio/index.html",
@@ -36,7 +37,7 @@ self.addEventListener("install", (event) => {
 
 // Activate event - clean old caches
 self.addEventListener("activate", (event) => {
-  const currentCaches = [CACHE_NAME, RUNTIME_CACHE];
+  const currentCaches = [CACHE_NAME, RUNTIME_CACHE, IMAGE_CACHE];
 
   event.waitUntil(
     caches
@@ -62,8 +63,9 @@ self.addEventListener("fetch", (event) => {
   // Skip non-GET requests
   if (event.request.method !== "GET") return;
 
-  // Skip cross-origin requests (fonts, icons, form submissions)
   const url = new URL(event.request.url);
+
+  // Skip cross-origin requests (Google Fonts, Bootstrap Icons, form submissions)
   if (url.origin !== self.location.origin) return;
 
   // Skip form submissions
@@ -82,55 +84,67 @@ self.addEventListener("fetch", (event) => {
             // Cache successful image responses
             if (response.status === 200) {
               const responseClone = response.clone();
-              caches.open(RUNTIME_CACHE).then((cache) => {
+              caches.open(IMAGE_CACHE).then((cache) => {
                 cache.put(event.request, responseClone);
               });
             }
             return response;
           })
           .catch(() => {
-            // Fallback image if offline
-            return new Response("", {
-              status: 200,
-              headers: { "Content-Type": "image/svg+xml" },
-            });
+            // Return empty SVG if image not available
+            return new Response(
+              '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="#eceae4"/></svg>',
+              {
+                status: 200,
+                headers: { "Content-Type": "image/svg+xml" },
+              },
+            );
           });
       }),
     );
     return;
   }
 
-  // For navigation and other requests - network-first with cache fallback
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Cache successful responses
-        if (response.status === 200) {
+  // For navigation requests - network first, fallback to cache
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Cache the page
           const responseClone = response.clone();
           caches.open(RUNTIME_CACHE).then((cache) => {
             cache.put(event.request, responseClone);
           });
-        }
-        return response;
-      })
-      .catch(() => {
-        // Fallback to cache
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-
-          // Fallback for navigation requests
-          if (event.request.mode === "navigate") {
-            return caches.match("/portfolio/index.html");
-          }
-
-          return new Response("Offline - Content not available", {
-            status: 503,
-            statusText: "Service Unavailable",
-            headers: { "Content-Type": "text/plain" },
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cached page or index.html
+          return caches.match(event.request).then((cachedResponse) => {
+            return cachedResponse || caches.match("/portfolio/index.html");
           });
+        }),
+    );
+    return;
+  }
+
+  // For other requests - stale-while-revalidate
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      const fetchPromise = fetch(event.request)
+        .then((response) => {
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return cachedResponse;
         });
-      }),
+
+      return cachedResponse || fetchPromise;
+    }),
   );
 });
