@@ -1,6 +1,7 @@
 # Node dependencies
 /node_modules/
 /package-lock.json
+/dist
 
 # Build output
 
@@ -14,4 +15,3 @@ yarn-error.log*
 
 # System files
 .DS_Store
-
