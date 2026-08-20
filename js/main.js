@@ -15,11 +15,13 @@ import { vaultView, initVault } from "./nexus.js";
 import { i18n } from "./i18n.js";
 
 /* ── Preloader ───────────────────────────────────────────────── */
+
 const preloader = document.getElementById("preloader");
 const preloaderProgress = document.querySelector(".preloader-progress");
 const preloaderText = document.querySelector(".preloader-text");
 
 let progress = 0;
+
 const loadingMessages = [
   "Loading...",
   "Preparing...",
@@ -36,6 +38,7 @@ function updatePreloader(value) {
     const messageIndex = Math.floor(
       (value / 100) * (loadingMessages.length - 1),
     );
+
     preloaderText.textContent = loadingMessages[messageIndex];
   }
 }
@@ -70,7 +73,7 @@ function simulateLoading() {
 updatePreloader(0);
 simulateLoading();
 
-// Fallback: hide preloader after 3 seconds max
+// Fallback: hide preloader after 3 seconds maximum
 setTimeout(() => {
   if (preloader && !preloader.classList.contains("hidden")) {
     progress = 100;
@@ -80,96 +83,274 @@ setTimeout(() => {
 }, 3000);
 
 /* ── Typing Effect ───────────────────────────────────────────── */
+
+/*
+ * Stores the cleanup function of the current typing animation.
+ *
+ * This allows us to completely cancel an existing animation
+ * before starting a new one.
+ *
+ * This is especially important when:
+ * - changing language
+ * - leaving the home page
+ * - returning to the home page
+ * - rendering a new view
+ */
+let typingCleanup = null;
+
 function setupTypingEffect() {
+  /*
+   * Cancel any previous typing animation.
+   *
+   * This prevents old setTimeout callbacks from continuing
+   * to modify the DOM after the page has changed.
+   */
+  if (typingCleanup) {
+    typingCleanup();
+    typingCleanup = null;
+  }
+
+  /*
+   * Find the typing elements in the current DOM.
+   *
+   * The home view can be destroyed and recreated by the router,
+   * so these elements must always be queried again.
+   */
   const typingElement = document.getElementById("typing-text");
   const typingCursor = document.querySelector(".typing-cursor");
-  if (!typingElement) return;
 
+  /*
+   * If the typing element does not exist, we are not on
+   * the home page.
+   */
+  if (!typingElement) {
+    return;
+  }
+
+  /*
+   * Get the currently translated tagline.
+   *
+   * i18n.t() uses the currently selected language.
+   */
   const getTagline = () => {
     return i18n.t("profile.tagline");
   };
 
+  /*
+   * Get the current translated phrase.
+   */
   let currentPhrase = getTagline();
-  let plainText = currentPhrase.replace(/<br>/g, "\n");
-  let segments = plainText.split("\n");
+
+  /*
+   * Convert <br> tags into newline characters.
+   *
+   * Example:
+   *
+   * "I craft clean<br>digital experiences"
+   *
+   * becomes:
+   *
+   * "I craft clean\ndigital experiences"
+   *
+   * This makes character counting easier.
+   */
+  let plainText = currentPhrase.replace(/<br\s*\/?>/gi, "\n");
+
+  /*
+   * Current character position.
+   */
   let charIndex = 0;
-  let hasTyped = false;
+
+  /*
+   * Reference to the current timeout.
+   */
   let typingTimeout = null;
 
-  function typeOnce() {
-    if (hasTyped) return;
+  /*
+   * Indicates whether this typing animation has been cancelled.
+   *
+   * Once true, old callbacks will stop immediately.
+   */
+  let cancelled = false;
 
-    let totalChars = 0;
-    let html = "";
+  /*
+   * Escape HTML before inserting partially typed text.
+   *
+   * This prevents translated text from accidentally being
+   * interpreted as HTML while the animation is running.
+   *
+   * Newlines are converted back into <br>.
+   */
+  function escapeHtml(text) {
+    const div = document.createElement("div");
 
-    for (let i = 0; i < segments.length; i++) {
-      if (i > 0 && totalChars < charIndex) {
-        html += "<br>";
-      }
+    div.textContent = text;
 
-      const remaining = charIndex - totalChars;
-      if (remaining > 0) {
-        html += segments[i].substring(
-          0,
-          Math.min(remaining, segments[i].length),
-        );
-        totalChars += segments[i].length;
-      } else {
-        break;
-      }
-    }
+    return div.innerHTML.replace(/\n/g, "<br>");
+  }
 
-    typingElement.innerHTML = html;
+  /*
+   * Render the characters that have already been typed.
+   */
+  function renderText() {
+    const visibleText = plainText.slice(0, charIndex);
 
-    if (charIndex >= plainText.length) {
-      hasTyped = true;
-      // Show final complete text
-      typingElement.innerHTML = currentPhrase;
-      if (typingCursor) {
-        typingCursor.classList.add("hidden");
-      }
+    typingElement.innerHTML = escapeHtml(visibleText);
+  }
+
+  /*
+   * Finish the typing animation.
+   *
+   * At the end, we insert the complete translated phrase.
+   * This guarantees that the final text exactly matches
+   * the translation stored in i18n.
+   */
+  function finishTyping() {
+    if (cancelled) {
       return;
     }
 
-    charIndex++;
-    typingTimeout = setTimeout(typeOnce, 60);
-  }
+    /*
+     * Make sure the character index represents the
+     * complete phrase.
+     */
+    charIndex = plainText.length;
 
-  // Start typing after preloader
-  typingTimeout = setTimeout(() => {
-    typeOnce();
-  }, 1000);
+    /*
+     * Display the complete translated phrase.
+     */
+    typingElement.innerHTML = currentPhrase;
 
-  // Update when language changes - reset and retype
-  window.addEventListener("languageChanged", () => {
-    // Clear any pending timeout
-    if (typingTimeout) {
-      clearTimeout(typingTimeout);
+    /*
+     * Hide the cursor after typing has finished.
+     */
+    if (typingCursor) {
+      typingCursor.classList.add("hidden");
     }
 
-    // Reset all variables
-    currentPhrase = getTagline();
-    plainText = currentPhrase.replace(/<br>/g, "\n");
-    segments = plainText.split("\n");
-    charIndex = 0;
-    hasTyped = false;
+    /*
+     * No active timer remains.
+     */
+    typingTimeout = null;
+  }
 
-    // Clear the element
+  /*
+   * Type one character and schedule the next one.
+   */
+  function typeNextCharacter() {
+    /*
+     * Stop immediately if this animation was cancelled.
+     */
+    if (cancelled) {
+      return;
+    }
+
+    /*
+     * If all characters have already been typed,
+     * finish the animation.
+     */
+    if (charIndex >= plainText.length) {
+      finishTyping();
+      return;
+    }
+
+    /*
+     * Add one character.
+     */
+    charIndex++;
+
+    /*
+     * Render the updated text.
+     */
+    renderText();
+
+    /*
+     * If this was the final character, finish immediately.
+     */
+    if (charIndex >= plainText.length) {
+      finishTyping();
+      return;
+    }
+
+    /*
+     * Schedule the next character.
+     *
+     * 60ms controls the typing speed.
+     */
+    typingTimeout = setTimeout(typeNextCharacter, 60);
+  }
+
+  /*
+   * Start a new typing animation.
+   *
+   * The default 1000ms delay gives the preloader/page transition
+   * time to finish before typing begins.
+   */
+  function startTyping(delay = 1000) {
+    if (cancelled) {
+      return;
+    }
+
+    /*
+     * Reset the typing state.
+     */
+    charIndex = 0;
+
+    /*
+     * Clear any existing text.
+     */
     typingElement.innerHTML = "";
 
-    // Show cursor again
+    /*
+     * Show the cursor while typing.
+     */
     if (typingCursor) {
       typingCursor.classList.remove("hidden");
     }
 
-    // Restart typing
+    /*
+     * Wait before starting the first character.
+     */
     typingTimeout = setTimeout(() => {
-      typeOnce();
-    }, 500);
-  });
+      if (!cancelled) {
+        typeNextCharacter();
+      }
+    }, delay);
+  }
+
+  /*
+   * Create the cleanup function for this typing cycle.
+   *
+   * This function:
+   * - cancels the animation
+   * - clears the active timeout
+   * - prevents old callbacks from touching the DOM
+   */
+  const cleanup = () => {
+    cancelled = true;
+
+    if (typingTimeout !== null) {
+      clearTimeout(typingTimeout);
+      typingTimeout = null;
+    }
+  };
+
+  /*
+   * Store the cleanup function globally.
+   *
+   * The next call to setupTypingEffect() will use it to
+   * cancel this animation before starting a new one.
+   */
+  typingCleanup = cleanup;
+
+  /*
+   * Start the typing animation.
+   */
+  startTyping(1000);
 }
 
-/* ── Router setup ────────────────────────────────────────────── */
+/* ── Router Setup ────────────────────────────────────────────── */
+
 const app = document.getElementById("app");
 
 const router = new Router(app)
@@ -183,12 +364,15 @@ const router = new Router(app)
 router.start();
 
 /* ── Scroll Progress Bar ─────────────────────────────────────── */
+
 const scrollProgress = document.getElementById("scrollProgress");
 
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
+
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
+
+  const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
   if (scrollProgress) {
     scrollProgress.style.width = scrollPercent + "%";
@@ -196,10 +380,15 @@ function updateScrollProgress() {
 }
 
 /* ── Back to Top Button ──────────────────────────────────────── */
+
 const backToTop = document.getElementById("backToTop");
 let hasAnimated = false;
 
 function updateBackToTop() {
+  if (!backToTop) {
+    return;
+  }
+
   const scrollTop = window.scrollY;
   const showAfter = 300;
 
@@ -210,31 +399,40 @@ function updateBackToTop() {
       setTimeout(() => {
         backToTop.classList.add("has-animated");
       }, 600);
+
       hasAnimated = true;
     }
   } else {
     backToTop.classList.remove("visible");
     backToTop.classList.remove("has-animated");
+
     hasAnimated = false;
   }
 }
 
-backToTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
-});
+}
 
 /* ── Reader Mode ─────────────────────────────────────────────── */
+
 const readerToggle = document.getElementById("readerToggle");
+
 let readerModeEnabled = localStorage.getItem("readerMode") === "true";
 
 function createToast() {
   const toast = document.createElement("div");
+
   toast.className = "reader-toast";
   toast.id = "readerToast";
+
   document.body.appendChild(toast);
+
   return toast;
 }
 
@@ -251,43 +449,75 @@ function showToast(message) {
 
 function toggleReaderMode() {
   readerModeEnabled = !readerModeEnabled;
+
   document.body.classList.toggle("reader-mode", readerModeEnabled);
-  readerToggle.classList.toggle("active", readerModeEnabled);
+
+  if (readerToggle) {
+    readerToggle.classList.toggle("active", readerModeEnabled);
+  }
+
   localStorage.setItem("readerMode", readerModeEnabled);
 
   const message = readerModeEnabled
     ? "Reader Mode Enabled"
     : "Reader Mode Disabled";
+
   showToast(message);
 
+  if (!readerToggle) {
+    return;
+  }
+
   const icon = readerToggle.querySelector("i");
+
+  if (!icon) {
+    return;
+  }
+
   if (readerModeEnabled) {
     icon.className = "bi bi-book-half";
+
     readerToggle.setAttribute("aria-label", "Disable reader mode");
   } else {
     icon.className = "bi bi-book";
+
     readerToggle.setAttribute("aria-label", "Enable reader mode");
   }
 }
 
-// Restore reader mode preference
-if (readerModeEnabled) {
+/*
+ * Restore reader mode preference.
+ */
+if (readerModeEnabled && readerToggle) {
   document.body.classList.add("reader-mode");
+
   readerToggle.classList.add("active");
+
   const icon = readerToggle.querySelector("i");
-  icon.className = "bi bi-book-half";
+
+  if (icon) {
+    icon.className = "bi bi-book-half";
+  }
+
   readerToggle.setAttribute("aria-label", "Disable reader mode");
 }
 
-readerToggle.addEventListener("click", toggleReaderMode);
+if (readerToggle) {
+  readerToggle.addEventListener("click", toggleReaderMode);
+}
 
 /* ── Project Filters ─────────────────────────────────────────── */
+
 function setupProjectFilters() {
   const filterButtons = document.querySelectorAll(".filter-btn");
+
   const projectCards = document.querySelectorAll(".project-card");
+
   const noResults = document.getElementById("noResults");
 
-  if (!filterButtons.length || !projectCards.length) return;
+  if (!filterButtons.length || !projectCards.length) {
+    return;
+  }
 
   filterButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -297,6 +527,7 @@ function setupProjectFilters() {
         b.classList.remove("active");
         b.setAttribute("aria-selected", "false");
       });
+
       btn.classList.add("active");
       btn.setAttribute("aria-selected", "true");
 
@@ -308,6 +539,7 @@ function setupProjectFilters() {
         if (filter === "all" || categories.includes(filter)) {
           card.classList.remove("hidden");
           card.classList.remove("filtering");
+
           visibleCount++;
         } else {
           card.classList.add("filtering");
@@ -338,13 +570,18 @@ function setupProjectFilters() {
 }
 
 /* ── Form Validation ─────────────────────────────────────────── */
+
 function setupFormValidation() {
   const form = document.getElementById("contactForm");
-  if (!form) return;
+
+  if (!form) {
+    return;
+  }
 
   const fields = {
     name: {
       element: document.getElementById("name"),
+
       validators: [
         {
           validate: (value) => value.length >= 2,
@@ -360,8 +597,10 @@ function setupFormValidation() {
         },
       ],
     },
+
     email: {
       element: document.getElementById("email"),
+
       validators: [
         {
           validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
@@ -369,8 +608,10 @@ function setupFormValidation() {
         },
       ],
     },
+
     message: {
       element: document.getElementById("message"),
+
       validators: [
         {
           validate: (value) => value.length >= 10,
@@ -386,9 +627,13 @@ function setupFormValidation() {
 
   function validateField(fieldName) {
     const field = fields[fieldName];
-    if (!field) return true;
+
+    if (!field || !field.element) {
+      return true;
+    }
 
     const value = field.element.value.trim();
+
     let isValid = true;
     let errorMessage = "";
 
@@ -407,6 +652,7 @@ function setupFormValidation() {
     if (isValid) {
       field.element.classList.add("valid");
       field.element.classList.remove("invalid");
+
       if (errorElement) {
         errorElement.textContent = "";
         errorElement.classList.remove("show");
@@ -414,6 +660,7 @@ function setupFormValidation() {
     } else {
       field.element.classList.remove("valid");
       field.element.classList.add("invalid");
+
       if (errorElement) {
         errorElement.textContent = errorMessage;
         errorElement.classList.add("show");
@@ -425,8 +672,12 @@ function setupFormValidation() {
 
   function updateCharCounter() {
     const messageField = fields.message.element;
+
     const charCounter = document.querySelector('[data-char-for="message"]');
-    if (!charCounter || !messageField) return;
+
+    if (!charCounter || !messageField) {
+      return;
+    }
 
     const length = messageField.value.length;
     const maxLength = 1000;
@@ -450,6 +701,10 @@ function setupFormValidation() {
   Object.keys(fields).forEach((fieldName) => {
     const field = fields[fieldName];
 
+    if (!field.element) {
+      return;
+    }
+
     field.element.addEventListener("blur", () => {
       validateField(fieldName);
     });
@@ -471,6 +726,7 @@ function setupFormValidation() {
     e.preventDefault();
 
     let allValid = true;
+
     Object.keys(fields).forEach((fieldName) => {
       if (!validateField(fieldName)) {
         allValid = false;
@@ -479,35 +735,57 @@ function setupFormValidation() {
 
     if (!allValid) {
       const firstInvalid = form.querySelector(".invalid");
+
       if (firstInvalid) {
         firstInvalid.focus();
       }
+
       return;
     }
 
     const submitBtn = form.querySelector('[type="submit"]');
+
     const feedback = document.getElementById("formFeedback");
 
+    if (!submitBtn) {
+      return;
+    }
+
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> ${i18n.t("common.sending")}`;
+
+    submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> ${i18n.t(
+      "common.sending",
+    )}`;
 
     try {
       const res = await fetch(form.action, {
         method: "POST",
         body: new FormData(form),
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+        },
       });
 
       if (res.ok) {
-        feedback.className = "form-feedback success";
-        feedback.textContent = i18n.t("common.success");
+        if (feedback) {
+          feedback.className = "form-feedback success";
+
+          feedback.textContent = i18n.t("common.success");
+        }
+
         form.reset();
 
         Object.keys(fields).forEach((fieldName) => {
+          if (!fields[fieldName].element) {
+            return;
+          }
+
           fields[fieldName].element.classList.remove("valid", "invalid");
+
           const errorElement = document.querySelector(
             `[data-error-for="${fieldName}"]`,
           );
+
           if (errorElement) {
             errorElement.textContent = "";
             errorElement.classList.remove("show");
@@ -519,28 +797,38 @@ function setupFormValidation() {
         throw new Error("Server error");
       }
     } catch {
-      feedback.className = "form-feedback error";
-      feedback.textContent = i18n.t("common.error");
+      if (feedback) {
+        feedback.className = "form-feedback error";
+
+        feedback.textContent = i18n.t("common.error");
+      }
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<i class="bi bi-send"></i> ${i18n.t("common.sendMessage")}`;
+
+      submitBtn.innerHTML = `<i class="bi bi-send"></i> ${i18n.t(
+        "common.sendMessage",
+      )}`;
     }
   });
 }
 
 /* ── Scroll Reveal Animations ────────────────────────────────── */
+
 function setupScrollReveal() {
   const revealElements = document.querySelectorAll(
     ".reveal, .reveal-left, .reveal-right, .reveal-scale",
   );
 
-  if (!revealElements.length) return;
+  if (!revealElements.length) {
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
+
           observer.unobserve(entry.target);
         }
       });
@@ -551,41 +839,49 @@ function setupScrollReveal() {
     },
   );
 
-  revealElements.forEach((el) => observer.observe(el));
+  revealElements.forEach((el) => {
+    observer.observe(el);
+  });
 }
 
-/* ── Combined scroll handler ─────────────────────────────────── */
+/* ── Combined Scroll Handler ─────────────────────────────────── */
+
 let ticking = false;
+
 window.addEventListener("scroll", () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
       updateScrollProgress();
       updateBackToTop();
+
       ticking = false;
     });
+
     ticking = true;
   }
 });
 
-// Initial calls
-updateScrollProgress();
-updateBackToTop();
+/* ── Theme Toggle with Auto Dark Mode ────────────────────────── */
 
-/* ── Theme toggle with auto dark mode ────────────────────────── */
 const themeBtn = document.getElementById("themeToggle");
-const icon = themeBtn.querySelector("i");
+const themeIcon = themeBtn ? themeBtn.querySelector("i") : null;
+
 const themeColor = document.getElementById("themeColor");
 
 const applyTheme = (dark, animate = true) => {
   if (animate) {
     document.body.classList.add("theme-transitioning");
+
     setTimeout(() => {
       document.body.classList.remove("theme-transitioning");
     }, 500);
   }
 
   document.documentElement.dataset.theme = dark ? "dark" : "";
-  icon.className = dark ? "bi bi-sun" : "bi bi-moon-stars";
+
+  if (themeIcon) {
+    themeIcon.className = dark ? "bi bi-sun" : "bi bi-moon-stars";
+  }
 
   // Update theme color meta tag
   if (themeColor) {
@@ -593,19 +889,34 @@ const applyTheme = (dark, animate = true) => {
   }
 };
 
-// Check if user has a saved preference
+/*
+ * Check if the user has a saved theme preference.
+ */
 const savedTheme = localStorage.getItem("theme");
 
-// Function to detect if it's night time (6 PM - 6 AM)
+/*
+ * Detect whether it is night time.
+ *
+ * Night time is considered to be between 6 PM and 6 AM.
+ */
 const isNightTime = () => {
   const hour = new Date().getHours();
+
   return hour < 6 || hour >= 18;
 };
 
-// Function to detect system preference
+/*
+ * Detect the system theme preference.
+ */
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-// Apply theme based on priority: saved > system > time
+/*
+ * Apply theme based on priority:
+ *
+ * 1. Saved user preference
+ * 2. System preference
+ * 3. Time of day
+ */
 if (savedTheme) {
   applyTheme(savedTheme === "dark", false);
 } else if (prefersDark) {
@@ -616,7 +927,9 @@ if (savedTheme) {
   applyTheme(false, false);
 }
 
-// Listen for system theme changes
+/*
+ * Listen for system theme changes.
+ */
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", (e) => {
@@ -625,98 +938,225 @@ window
     }
   });
 
-// Check every hour for time-based changes
+/*
+ * Check every hour for time-based theme changes.
+ */
 setInterval(() => {
   if (!localStorage.getItem("theme")) {
     applyTheme(isNightTime());
   }
 }, 3600000);
 
-// Manual toggle
-themeBtn.addEventListener("click", () => {
-  const newTheme = document.documentElement.dataset.theme !== "dark";
-  applyTheme(newTheme);
-  localStorage.setItem("theme", newTheme ? "dark" : "light");
+/*
+ * Manual theme toggle.
+ */
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    const newTheme = document.documentElement.dataset.theme !== "dark";
 
-  showToast(
-    newTheme
-      ? i18n.t("common.darkModeEnabled")
-      : i18n.t("common.lightModeEnabled"),
-  );
-});
+    applyTheme(newTheme);
 
-/* ── Mobile nav hamburger ────────────────────────────────────── */
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
+
+    showToast(
+      newTheme
+        ? i18n.t("common.darkModeEnabled")
+        : i18n.t("common.lightModeEnabled"),
+    );
+  });
+}
+
+/* ── Mobile Navigation Hamburger ─────────────────────────────── */
+
 const burger = document.getElementById("navBurger");
+
 const navLinks = document.getElementById("navLinks");
 
-burger.addEventListener("click", () => {
-  const open = burger.classList.toggle("open");
-  navLinks.classList.toggle("open", open);
-  burger.setAttribute("aria-expanded", open);
-});
+if (burger && navLinks) {
+  burger.addEventListener("click", () => {
+    const open = burger.classList.toggle("open");
 
-// Close menu when a link is tapped
-navLinks.addEventListener("click", (e) => {
-  if (e.target.tagName === "A") {
-    burger.classList.remove("open");
-    navLinks.classList.remove("open");
-    burger.setAttribute("aria-expanded", false);
-  }
-});
+    navLinks.classList.toggle("open", open);
 
-/* ── Footer year ─────────────────────────────────────────────── */
+    burger.setAttribute("aria-expanded", open);
+  });
+
+  /*
+   * Close the mobile navigation when a link is clicked.
+   */
+  navLinks.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      burger.classList.remove("open");
+      navLinks.classList.remove("open");
+
+      burger.setAttribute("aria-expanded", false);
+    }
+  });
+}
+
+/* ── Footer Year ─────────────────────────────────────────────── */
+
 const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ── Post-render hooks (run after each route render) ─────────── */
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+
+/* ── Post-Render Hooks ───────────────────────────────────────── */
+
+/*
+ * This is the single route:changed listener.
+ *
+ * It is intentionally kept in one place so that page-specific
+ * initialization does not get duplicated.
+ */
 window.addEventListener("route:changed", ({ detail }) => {
+  const currentPath = detail?.path || "/";
+
+  /*
+   * If we are leaving the home page, cancel any active
+   * typing animation.
+   */
+  if (currentPath !== "/") {
+    if (typingCleanup) {
+      typingCleanup();
+      typingCleanup = null;
+    }
+  }
+
+  /*
+   * Apply translations to the current DOM.
+   *
+   * This must happen before starting the typing effect so
+   * the typing animation uses the current language.
+   */
+  i18n.applyTranslations();
+
+  /*
+   * Re-initialize page-specific functionality.
+   */
   animateSkillBars();
   wireContactForm();
-  i18n.applyTranslations();
+
   updateScrollProgress();
   updateBackToTop();
+
   setupScrollReveal();
   setupProjectFilters();
   setupFormValidation();
 
-  if (detail.path === "/vault") initVault();
+  /*
+   * Home page:
+   *
+   * Every time the home route is entered, create a fresh
+   * typing animation.
+   *
+   * This handles:
+   * - initial home page load
+   * - returning to home from another page
+   * - changing language while on the home page
+   */
+  if (currentPath === "/") {
+    setupTypingEffect();
+  }
+
+  /*
+   * Vault page initialization.
+   */
+  if (currentPath === "/vault") {
+    initVault();
+  }
 });
 
-// Initial setup - only once
-setupScrollReveal();
-setupProjectFilters();
-setupFormValidation();
-setupTypingEffect(); // Only once at startup
+/* ── Language Changed ────────────────────────────────────────── */
 
-window.addEventListener("languageChanged", () => {
+/*
+ * i18n.js dispatches "languageChanged" on DOCUMENT.
+ *
+ * We therefore listen on DOCUMENT rather than WINDOW.
+ *
+ * When the language changes, we trigger route:changed for
+ * the current route.
+ *
+ * If the current route is "/", the route handler will start
+ * a completely new typing animation using the new language.
+ */
+document.addEventListener("languageChanged", ({ detail }) => {
   const currentPath = window.location.hash.replace("#", "") || "/";
 
   window.dispatchEvent(
-    new CustomEvent("route:changed", { detail: { path: currentPath } }),
+    new CustomEvent("route:changed", {
+      detail: {
+        path: currentPath,
+        reason: "languageChanged",
+        lang: detail?.lang,
+      },
+    }),
   );
 });
 
-/** Animate skill progress bars when they enter the viewport. */
+/* ── Initial Setup ───────────────────────────────────────────── */
+
+/*
+ * These functions initialize the current DOM.
+ */
+setupScrollReveal();
+setupProjectFilters();
+setupFormValidation();
+
+/*
+ * router.start() normally renders the initial route before
+ * the code above reaches this point.
+ *
+ * We explicitly initialize the typing effect if the initial
+ * route is the home page.
+ *
+ * This guarantees that the typing effect works even if the
+ * router does not emit route:changed during its initial start.
+ */
+const initialPath = window.location.hash.replace("#", "") || "/";
+
+if (initialPath === "/") {
+  setupTypingEffect();
+}
+
+/* ── Skill Bar Animation ─────────────────────────────────────── */
+
+/**
+ * Animate skill progress bars when they enter the viewport.
+ */
 function animateSkillBars() {
   const fills = document.querySelectorAll(".skill-fill");
-  if (!fills.length) return;
+
+  if (!fills.length) {
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) =>
       entries.forEach(
         (e) => e.isIntersecting && e.target.classList.add("animate"),
       ),
-    { threshold: 0.3 },
+    {
+      threshold: 0.3,
+    },
   );
+
   fills.forEach((el) => observer.observe(el));
 }
 
-/** Intercept the contact form to show inline feedback (no page reload). */
+/* ── Contact Form Hook ───────────────────────────────────────── */
+
+/**
+ * Intercept the contact form to show inline feedback
+ * without a page reload.
+ */
 function wireContactForm() {
   return;
 }
 
 /* ── Service Worker Registration ─────────────────────────────── */
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
@@ -724,17 +1164,27 @@ if ("serviceWorker" in navigator) {
       .then((registration) => {
         console.log("Service Worker registered:", registration.scope);
 
-        // Check for updates
+        /*
+         * Check for service worker updates.
+         */
         registration.addEventListener("updatefound", () => {
           const newWorker = registration.installing;
+
+          if (!newWorker) {
+            return;
+          }
 
           newWorker.addEventListener("statechange", () => {
             if (
               newWorker.state === "installed" &&
               navigator.serviceWorker.controller
             ) {
-              // New SW available - force reload
+              /*
+               * A new service worker is available.
+               * Force it to activate immediately.
+               */
               newWorker.postMessage("skipWaiting");
+
               window.location.reload();
             }
           });

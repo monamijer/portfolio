@@ -642,8 +642,8 @@ const languages = {
   fr: { flag: "🇫🇷", name: "Français" },
   sw: { flag: "🇹🇿", name: "Kiswahili" },
   es: { flag: "🇪🇸", name: "Español" },
-  de: { flag: "🇩🇪", name: "Deutsch" },
   ln: { flag: "🇨🇩", name: "Lingala" },
+  de: { flag: "🇩🇪", name: "Deutsch" },
 };
 
 class I18n {
