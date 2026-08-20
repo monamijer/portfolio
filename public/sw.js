@@ -7,18 +7,10 @@ const CACHE_NAME = "mj-portfolio-v2.0.0";
 const RUNTIME_CACHE = "mj-portfolio-runtime";
 const IMAGE_CACHE = "mj-portfolio-images";
 
-// Assets to cache on install (ne pas mettre les images ici)
+// Assets to cache on install
 const PRECACHE_ASSETS = [
   "/portfolio/",
   "/portfolio/index.html",
-  "/portfolio/css/style.css",
-  "/portfolio/css/nexus.css",
-  "/portfolio/js/main.js",
-  "/portfolio/js/router.js",
-  "/portfolio/js/views.js",
-  "/portfolio/js/data.js",
-  "/portfolio/js/i18n.js",
-  "/portfolio/js/nexus.js",
   "/portfolio/manifest.json",
 ];
 
@@ -65,13 +57,36 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(event.request.url);
 
-  // Skip cross-origin requests (Google Fonts, Bootstrap Icons, form submissions)
+  // Skip cross-origin requests
   if (url.origin !== self.location.origin) return;
 
   // Skip form submissions
   if (url.pathname.includes("formsubmit.co")) return;
 
-  // For images - use cache-first strategy
+  // For CSS and JS files - network first, fallback to cache
+  if (
+    event.request.destination === "style" ||
+    event.request.destination === "script"
+  ) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Cache the fresh version
+          const responseClone = response.clone();
+          caches.open(RUNTIME_CACHE).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache only if network fails
+          return caches.match(event.request);
+        }),
+    );
+    return;
+  }
+
+  // For images - cache-first strategy
   if (event.request.destination === "image") {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
@@ -79,27 +94,15 @@ self.addEventListener("fetch", (event) => {
           return cachedResponse;
         }
 
-        return fetch(event.request)
-          .then((response) => {
-            // Cache successful image responses
-            if (response.status === 200) {
-              const responseClone = response.clone();
-              caches.open(IMAGE_CACHE).then((cache) => {
-                cache.put(event.request, responseClone);
-              });
-            }
-            return response;
-          })
-          .catch(() => {
-            // Return empty SVG if image not available
-            return new Response(
-              '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="#eceae4"/></svg>',
-              {
-                status: 200,
-                headers: { "Content-Type": "image/svg+xml" },
-              },
-            );
-          });
+        return fetch(event.request).then((response) => {
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(IMAGE_CACHE).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        });
       }),
     );
     return;
@@ -110,7 +113,6 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          // Cache the page
           const responseClone = response.clone();
           caches.open(RUNTIME_CACHE).then((cache) => {
             cache.put(event.request, responseClone);
@@ -118,7 +120,6 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => {
-          // Fallback to cached page or index.html
           return caches.match(event.request).then((cachedResponse) => {
             return cachedResponse || caches.match("/portfolio/index.html");
           });
@@ -147,4 +148,11 @@ self.addEventListener("fetch", (event) => {
       return cachedResponse || fetchPromise;
     }),
   );
+});
+
+// Handle message to skip waiting
+self.addEventListener("message", (event) => {
+  if (event.data === "skipWaiting") {
+    self.skipWaiting();
+  }
 });
