@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "2.0.0",
-  "description": "Monami Jerome — personal portfolio",
+  "description": "Monami Jerome — portfolio",
   "private": true,
   "type": "module",
   "scripts": {
