@@ -92,6 +92,10 @@ const translations = {
         title: "Django Local Library",
         desc: "Scalable learning Library built in django.",
       },
+      selfDriving: {
+        title: "Self-Driving Academy",
+        desc: "A WordPress-powered platform for a self-driving school — course listings, online booking, instructor profiles and a custom admin dashboard.",
+      },
     },
     notFound: {
       title: "Page Not Found",
@@ -198,6 +202,10 @@ const translations = {
       django: {
         title: "Bibliothèque Locale Django",
         desc: "Bibliothèque d'apprentissage évolutive construite avec Django.",
+      },
+      selfDriving: {
+        title: "Auto-École de Conduite",
+        desc: "Une plateforme WordPress pour une auto-école — catalogue de cours, réservation en ligne, profils des instructeurs et tableau de bord d'administration personnalisé.",
       },
     },
     notFound: {
@@ -306,6 +314,10 @@ const translations = {
         title: "Maktaba ya Ndani ya Django",
         desc: "Maktaba ya kujifunza inayoweza kupanuka iliyojengwa kwa Django.",
       },
+      selfDriving: {
+        title: "Akademia ya Udereva",
+        desc: "Jukwaa linalotumia WordPress kwa shule ya udereva — orodha ya kozi, kuweka nafasi mtandaoni, wasifu wa wakufunzi na dashibodi maalum ya usimamizi.",
+      },
     },
     notFound: {
       title: "Ukurasa Haupatikani",
@@ -410,6 +422,10 @@ const translations = {
       django: {
         title: "Biblioteca Local Django",
         desc: "Biblioteca de aprendizaje escalable construida con Django.",
+      },
+      selfDriving: {
+        title: "Autoescuela de Conducción",
+        desc: "Una plataforma basada en WordPress para una autoescuela — listado de cursos, reserva en línea, perfiles de instructores y panel de administración personalizado.",
       },
     },
     notFound: {
@@ -516,6 +532,10 @@ const translations = {
         title: "Django Lokale Bibliothek",
         desc: "Skalierbare Lernbibliothek, gebaut mit Django.",
       },
+      selfDriving: {
+        title: "Fahrschule Akademie",
+        desc: "Eine WordPress-basierte Plattform für eine Fahrschule — Kurslisten, Online-Buchung, Fahrlehrerprofile und ein individuelles Admin-Dashboard.",
+      },
     },
     filters: {
       all: "Alle",
@@ -620,6 +640,10 @@ const translations = {
         title: "Bibliothèque Django",
         desc: "Bibliothèque ya koyekola oyo ekoki kokola, esalemi na Django.",
       },
+      selfDriving: {
+        title: "Ecole ya Kotambwisa Moto",
+        desc: "Plateforme oyo esalemi na WordPress mpo na école ya kotambwisa moto — ba cours, réservation na internet, ba profils ya ba instructeurs mpe tableau de bord ya administration.",
+      },
     },
     filters: {
       all: "Nyonso",
@@ -711,16 +735,16 @@ class I18n {
       </button>
       <div class="lang-dropdown" id="langDropdown">
         ${Object.entries(languages)
-          .map(
-            ([code, lang]) => `
+        .map(
+          ([code, lang]) => `
           <button class="lang-option ${code === this.currentLang ? "active" : ""}" data-lang="${code}">
             <span>${lang.flag}</span>
             <span>${lang.name}</span>
             ${code === this.currentLang ? '<i class="bi bi-check"></i>' : ""}
           </button>
         `,
-          )
-          .join("")}
+        )
+        .join("")}
       </div>
     `;
 
