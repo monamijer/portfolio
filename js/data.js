@@ -62,4 +62,12 @@ export const PROJECTS = [
     repo:  'https://github.com/monamijer/django-local-library',
     emoji: '🏛️📰💻📖',
   },
+    {
+    title: 'Drive school Academy',
+    desc:  'A WordPress-powered platform for a self-driving school — course listings, online booking, instructor profiles and a custom admin dashboard.',
+    tags:  ['WordPress', 'PHP', 'MySQL', 'JavaScript'],
+    demo:  'https://jerome.site.je',
+    image: 'images/driveschool.png',
+    emoji: '🚗',
+  },
 ];
