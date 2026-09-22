@@ -324,7 +324,7 @@ function getServiceKey(index) {
 }
 
 function getProjectKey(index) {
-  const keys = ["portfolio", "psag", "django"];
+  const keys = ["portfolio", "psag", "django", "selfDriving"];
   return keys[index] || `project${index}`;
 }
 
