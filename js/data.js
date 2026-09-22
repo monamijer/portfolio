@@ -1,7 +1,7 @@
 
 export const PROFILE = {
   name:       'Monami Jerome',
-  title:      'Web Developer & Designer',
+  title:      'Full-Stack Web Developer building modern web applications with Angular, Node.js and PHP.',
   tagline:    'I craft clean, fast\nand purposeful\ndigital experiences.',
   bio:        "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
   location:   'Bujumbura, Burundi',
