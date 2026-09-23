@@ -19,8 +19,8 @@ const marquee = () => {
     "Open to Work",
     "·",
     "PHP",
-    ".",
-  ];
+	"·",
+      ];
   // Duplicate for seamless loop
   const inner = [...items, ...items]
     .map((t, i) => `<span${t === "·" ? ' class="accent"' : ""}>${t}</span>`)
