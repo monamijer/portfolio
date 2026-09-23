@@ -1,4 +1,4 @@
-
+```js
 export const PROFILE = {
   name:       'Monami Jerome',
   title:      'Full-Stack Web Developer building modern web applications with Angular, Node.js and PHP.',
@@ -20,54 +20,56 @@ export const PROFILE = {
 };
 
 export const SKILLS = [
-  { name: 'HTML & CSS',   level: 90 },
-  { name: 'JavaScript',   level: 75 },
-  { name: 'Angular',      level: 65 },
-  { name: 'Node / Express', level: 60 },
-  { name: 'Git & CI/CD',  level: 70 },
+  { name: 'HTML & CSS',       level: 90 },
+  { name: 'JavaScript',       level: 75 },
+  { name: 'Angular',          level: 65 },
+  { name: 'Node / Express',   level: 60 },
+  { name: 'Git & CI/CD',      level: 70 },
 ];
 
 export const SERVICES = [
-  { icon: 'bi-code-slash',      title: 'Web Development',  desc: 'Responsive, performant sites from scratch.' },
-  { icon: 'bi-cart3',           title: 'E-Commerce',       desc: 'Storefronts with payment integration.' },
-  { icon: 'bi-tools',           title: 'Maintenance',      desc: 'Ongoing support and improvements.' },
-  { icon: 'bi-plug',            title: 'API Integration',  desc: 'REST APIs with Node.js & Express.' },
+  { icon: 'bi-code-slash', title: 'Web Development', desc: 'Responsive, performant sites from scratch.' },
+  { icon: 'bi-cart3',      title: 'E-Commerce',      desc: 'Storefronts with payment integration.' },
+  { icon: 'bi-tools',      title: 'Maintenance',     desc: 'Ongoing support and improvements.' },
+  { icon: 'bi-plug',       title: 'API Integration', desc: 'REST APIs with Node.js & Express.' },
 ];
 
 export const PROJECTS = [
   {
     title: 'Portfolio Website',
-    desc:  'This very site — a zero-dependency SPA built with vanilla JS, custom router, and CSS custom properties.',
+    desc:  'This very site — a lightweight SPA built with vanilla JavaScript, a custom router, and CSS custom properties.',
     tags:  ['HTML', 'CSS', 'Vanilla JS'],
     demo:  'https://monamijer.github.io/portfolio',
     repo:  'https://github.com/monamijer/portfolio',
     image: 'images/portfolio.png',
-    emoji: '⛩️',   // shown as placeholder if no image
+    emoji: '⛩️',
     // image: 'images/projects/portfolio.jpg',
   },
   {
     title: 'PSAG Parish Management',
-    desc:  'Web application for managing parish activities, users, cathechumens and administration with authentication and rol-based access control.',
+    desc:  'Web application for managing parish activities, users, catechumens, and administration with authentication and role-based access control.',
     tags:  ['PHP', 'MySQL', 'JavaScript', 'AJAX'],
     demo:  'https://mjerome.alwaysdata.net/psag_parish',
     repo:  null,
-   	image: 'images/psag.png',
+    image: 'images/psag.png',
     emoji: '⛪',
   },
   {
     title: 'Django Local Library',
-    desc:  'Scalable learning Library built in django.',
-    tags:  ['Python', 'Django framework', 'JavaScript'],
+    desc:  'Scalable learning library built with Django.',
+    tags:  ['Python', 'Django', 'JavaScript'],
     demo:  'https://monamijer.pythonanywhere.com',
     repo:  'https://github.com/monamijer/django-local-library',
     emoji: '🏛️📰💻📖',
   },
-    {
-    title: 'Drive school Academy',
-    desc:  'A WordPress-powered platform for a self-driving school — course listings, online booking, instructor profiles and a custom admin dashboard.',
+  {
+    title: 'Driving School Academy',
+    desc:  'A WordPress-powered platform for a driving school — course listings, online booking, instructor profiles, and a custom admin dashboard.',
     tags:  ['WordPress', 'PHP', 'MySQL', 'JavaScript'],
     demo:  'https://jerome.site.je',
     image: 'images/driveschool.png',
     emoji: '🚗',
   },
 ];
+```
+
