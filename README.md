@@ -1,4 +1,4 @@
-#  Jerome Portfolio
+#  Monami Jerome Portfolio
 
 <p align="center">
 
@@ -33,7 +33,7 @@ https://monamijer.github.io/portfolio
 * HTML5
 * CSS3
 * Vanilla JavaScript
-* Bootstrap
+* BootstrapM
 * Bootstrap Icons
 
 ### Build & Tooling
