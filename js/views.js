@@ -333,6 +333,7 @@ function getProjectCategory(index) {
     0: ["web"],
     1: ["fullstack", "web"],
     2: ["backend", "fullstack"],
+	3: ["fullstack","web"]
   };
   return categories[index] || ["web"];
 }
