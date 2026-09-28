@@ -1,4 +1,4 @@
-#  Monami Jerome Portfolio
+# Monami Jerome Portfolio
 
 <p align="center">
 
@@ -7,7 +7,7 @@
 ![last commit](https://img.shields.io/github/last-commit/monamijer/portfolio?style=for-the-badge)
 ![repo size](https://img.shields.io/github/repo-size/monamijer/portfolio?style=for-the-badge)
 ![license](https://img.shields.io/github/license/monamijer/portfolio?style=for-the-badge)
-![visitors](https://komarev.com/ghpvc/?username=monamijer\&repo=portfolio\&style=for-the-badge)
+![visitors](https://komarev.com/ghpvc/?username=monamijer&repo=portfolio&style=for-the-badge)
 ![Top Language](https://img.shields.io/github/languages/top/monamijer/portfolio?style=for-the-badge)
 ![Code Size](https://img.shields.io/github/languages/code-size/monamijer/portfolio?style=for-the-badge)
 
@@ -21,8 +21,7 @@ A personal portfolio built with a **minimal, performant, and maintainable approa
 
 ## 🌐 Demo
 
-🚀 **Live site:**
-https://monamijer.github.io/portfolio
+🚀 **Live site:** [https://monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)
 
 ---
 
@@ -30,23 +29,23 @@ https://monamijer.github.io/portfolio
 
 ### Frontend
 
-* HTML5
-* CSS3
-* Vanilla JavaScript
-* BootstrapM
-* Bootstrap Icons
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Bootstrap
+- Bootstrap Icons
 
 ### Build & Tooling
 
-* Vite
-* npm
-* ESLint
-* Prettier
+- Vite
+- npm
+- ESLint
+- Prettier
 
 ### Deployment
 
-* GitHub Pages
-* GitHub Actions
+- GitHub Pages
+- GitHub Actions
 
 ---
 
@@ -71,11 +70,11 @@ portfolio/
 
 **Principles:**
 
-* Simple architecture
-* Modular structure
-* Minimal dependencies
-* Responsive design
-* Maintainable code
+- Simple architecture
+- Modular structure
+- Minimal dependencies
+- Responsive design
+- Maintainable code
 
 ---
 
@@ -113,9 +112,9 @@ npm run build
 
 <p align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=monamijer&show_icons=true&theme=tokyonight">
+<img src="https://github-readme-stats.vercel.app/api?username=monamijer&show_icons=true&theme=tokyonight" alt="GitHub Stats">
 
-<img src="https://github-readme-streak-stats.herokuapp.com?user=monamijer&theme=tokyonight">
+<img src="https://github-readme-streak-stats.herokuapp.com?user=monamijer&theme=tokyonight" alt="GitHub Streak">
 
 </p>
 
@@ -123,4 +122,4 @@ npm run build
 
 ## 📄 License
 
-MIT
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
