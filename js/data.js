@@ -1,4 +1,3 @@
-```js
 export const PROFILE = {
   name:       'Monami Jerome',
   title:      'Full-Stack Web Developer building modern web applications with Angular, Node.js and PHP.',
