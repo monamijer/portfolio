@@ -13,19 +13,19 @@
 
 </p>
 
-> *"Code is not just instructions — it's a way of structuring thought."*
+> *"Code isn't merely a set of instructions — it's a medium for organizing thought."*
 
-A personal portfolio built with a **minimal, performant, and maintainable approach**.
-
----
-
-## 🌐 Demo
-
-🚀 **Live site:** [https://monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)
+A personal portfolio crafted with a focus on **simplicity, speed, and long-term maintainability**.
 
 ---
 
-## 🧰 Current Stack
+## 🌐 Live Demo
+
+🚀 **Visit the site:** [https://monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)
+
+---
+
+## 🧰 Tech Stack
 
 ### Frontend
 
@@ -49,7 +49,7 @@ A personal portfolio built with a **minimal, performant, and maintainable approa
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Project Structure
 
 ```text
 portfolio/
@@ -68,17 +68,17 @@ portfolio/
 └── README.md
 ```
 
-**Principles:**
+**Design Principles:**
 
-- Simple architecture
-- Modular structure
-- Minimal dependencies
-- Responsive design
-- Maintainable code
+- Straightforward architecture
+- Modular organization
+- Minimal external dependencies
+- Responsive layout
+- Clean, maintainable code
 
 ---
 
-## 🚀 Installation
+## 🚀 Getting Started
 
 ```bash
 git clone https://github.com/monamijer/portfolio.git
@@ -87,7 +87,7 @@ npm install
 npm run dev
 ```
 
-### Production
+### Build for Production
 
 ```bash
 npm run build
@@ -97,18 +97,18 @@ npm run build
 
 ## ⚙️ Available Scripts
 
-| Script              | Description              |
-| ------------------- | ------------------------ |
-| `npm run dev`       | Start development server |
-| `npm run build`     | Build for production     |
-| `npm run preview`   | Preview production build |
-| `npm run lint`      | Run code linting         |
-| `npm run format`    | Format code              |
-| `npm run reinstall` | Reinstall dependencies   |
+| Script              | Description                |
+| ------------------- | -------------------------- |
+| `npm run dev`       | Launch development server  |
+| `npm run build`     | Create production build    |
+| `npm run preview`   | Preview production build   |
+| `npm run lint`      | Run code linting           |
+| `npm run format`    | Format code                |
+| `npm run reinstall` | Reinstall all dependencies |
 
 ---
 
-## 📊 Project Stats
+## 📊 Project Statistics
 
 <p align="center">
 
@@ -122,4 +122,4 @@ npm run build
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+Released under the [MIT License](https://opensource.org/licenses/MIT).
