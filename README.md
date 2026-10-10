@@ -1,51 +1,47 @@
 # Monami Jerome Portfolio
 
 <p align="center">
-
-![stars](https://img.shields.io/github/stars/monamijer/portfolio?style=for-the-badge)
-![forks](https://img.shields.io/github/forks/monamijer/portfolio?style=for-the-badge)
-![last commit](https://img.shields.io/github/last-commit/monamijer/portfolio?style=for-the-badge)
-![repo size](https://img.shields.io/github/repo-size/monamijer/portfolio?style=for-the-badge)
-![license](https://img.shields.io/github/license/monamijer/portfolio?style=for-the-badge)
-![visitors](https://komarev.com/ghpvc/?username=monamijer&repo=portfolio&style=for-the-badge)
-![Top Language](https://img.shields.io/github/languages/top/monamijer/portfolio?style=for-the-badge)
-![Code Size](https://img.shields.io/github/languages/code-size/monamijer/portfolio?style=for-the-badge)
-
+  <img src="https://img.shields.io/github/stars/monamijer/portfolio?style=for-the-badge" alt="Stars">
+  <img src="https://img.shields.io/github/forks/monamijer/portfolio?style=for-the-badge" alt="Forks">
+  <img src="https://img.shields.io/github/last-commit/monamijer/portfolio?style=for-the-badge" alt="Last Commit">
+  <img src="https://img.shields.io/github/license/monamijer/portfolio?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/github/languages/top/monamijer/portfolio?style=for-the-badge" alt="Top Language">
+  <img src="https://komarev.com/ghpvc/?username=monamijer&repo=portfolio&style=for-the-badge" alt="Visitors">
 </p>
 
-> *"Code isn't merely a set of instructions — it's a medium for organizing thought."*
+<p align="center">
+  <em>"Code isn't merely a set of instructions — it's a medium for organizing thought."</em>
+</p>
 
-A personal portfolio crafted with a focus on **simplicity, speed, and long-term maintainability**.
+A personal portfolio built around three principles: **simplicity, speed, and long-term maintainability**. No frameworks, no bloat — just clean HTML, CSS, and vanilla JavaScript doing their job well.
 
 ---
 
 ## 🌐 Live Demo
 
-🚀 **Visit the site:** [https://monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)
+🚀 **[https://monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)**
+
+
+---
+
+## ✨ Features
+
+- 🎨 **Minimal, responsive design** — looks sharp on any screen
+- ⚡ **Fast by default** — vanilla JS, no runtime framework overhead
+- 🌍 **Internationalization (i18n)** — multi-language support out of the box
+- 🧭 **Client-side routing** — smooth navigation without page reloads
+- 📦 **Modular data layer** — content separated from presentation
+- 🛠 **Developer-friendly tooling** — Vite, ESLint, and Prettier preconfigured
 
 ---
 
 ## 🧰 Tech Stack
 
-### Frontend
-
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Bootstrap
-- Bootstrap Icons
-
-### Build & Tooling
-
-- Vite
-- npm
-- ESLint
-- Prettier
-
-### Deployment
-
-- GitHub Pages
-- GitHub Actions
+| Layer          | Tools                                              |
+| -------------- | -------------------------------------------------- |
+| **Frontend**   | HTML5, CSS3, Vanilla JavaScript, Bootstrap, Bootstrap Icons |
+| **Build**      | Vite, npm, ESLint, Prettier                        |
+| **Deployment** | GitHub Pages via GitHub Actions                    |
 
 ---
 
@@ -53,32 +49,31 @@ A personal portfolio crafted with a focus on **simplicity, speed, and long-term 
 
 ```text
 portfolio/
-├── css/
-├── images/
-├── public/
+├── css/                # Stylesheets
+├── images/             # Static image assets
+├── public/             # Public assets served as-is
 ├── js/
-│   ├── data.js
-│   ├── i18n.js
-│   ├── main.js
-│   ├── router.js
-│   └── views.js
+│   ├── data.js         # Content and configuration data
+│   ├── i18n.js         # Internationalization logic
+│   ├── main.js         # App entry point
+│   ├── router.js       # Client-side routing
+│   └── views.js        # View rendering
 ├── index.html
 ├── package.json
 ├── vite.config.js
 └── README.md
 ```
 
-**Design Principles:**
-
-- Straightforward architecture
-- Modular organization
-- Minimal external dependencies
-- Responsive layout
-- Clean, maintainable code
-
 ---
 
 ## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** ≥ 18
+- **npm** ≥ 9
+
+### Installation
 
 ```bash
 git clone https://github.com/monamijer/portfolio.git
@@ -87,39 +82,59 @@ npm install
 npm run dev
 ```
 
+The dev server will start on the default Vite port (usually `http://localhost:5173`).
+
 ### Build for Production
 
 ```bash
 npm run build
 ```
 
+Output is written to `dist/` and ready for static hosting.
+
 ---
 
 ## ⚙️ Available Scripts
 
-| Script              | Description                |
-| ------------------- | -------------------------- |
-| `npm run dev`       | Launch development server  |
-| `npm run build`     | Create production build    |
-| `npm run preview`   | Preview production build   |
-| `npm run lint`      | Run code linting           |
-| `npm run format`    | Format code                |
-| `npm run reinstall` | Reinstall all dependencies |
+| Script              | Description                          |
+| ------------------- | ------------------------------------ |
+| `npm run dev`       | Start the development server         |
+| `npm run build`     | Create an optimized production build |
+| `npm run preview`   | Preview the production build locally |
+| `npm run lint`      | Lint source files                    |
+| `npm run format`    | Auto-format code with Prettier       |
+| `npm run reinstall` | Clean reinstall of all dependencies  |
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome. Feel free to open an issue or submit a pull request.
+
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
 
 ---
 
 ## 📊 Project Statistics
 
 <p align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=monamijer&show_icons=true&theme=tokyonight" alt="GitHub Stats">
-
-<img src="https://github-readme-streak-stats.herokuapp.com?user=monamijer&theme=tokyonight" alt="GitHub Streak">
-
+  <img src="https://github-readme-stats.vercel.app/api?username=monamijer&show_icons=true&theme=tokyonight" alt="GitHub Stats">
+  <img src="https://streak-stats.demolab.com?user=monamijer&theme=tokyonight" alt="GitHub Streak">
 </p>
+
+---
+
+## 📬 Contact
+
+- **GitHub:** [@monamijer](https://github.com/monamijer)
+- **Live Site:** [monamijer.github.io/portfolio](https://monamijer.github.io/portfolio)
 
 ---
 
 ## 📄 License
 
-Released under the [MIT License](https://opensource.org/licenses/MIT).
+Released under the [MIT License](https://opensource.org/licenses/MIT) — free to use, modify, and distribute.
