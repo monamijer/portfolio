@@ -59,7 +59,7 @@ async function api(method, path, body = null) {
 export const vaultView = () => session.ok() ? dashHTML() : loginHTML();
 
 export function initVault() {
-  document.getElementById('vaultLoginForm') ? bootLogin() : bootDash();
+  sessionStorage.getItem("nx_token") && sessionStorage.getItem("nx_k1") ? bootDash() : bootLogin();
 }
 
 /* ══════════════════════════════════════════════════════════════
