@@ -59,7 +59,7 @@ async function api(method, path, body = null) {
 export const vaultView = () => session.ok() ? dashHTML() : loginHTML();
 
 export function initVault() {
-  sessionStorage.getItem("nx_token") && sessionStorage.getItem("nx_k1") ? bootDash() : bootLogin();
+  session.ok() ? bootDash() : bootLogin();
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -97,6 +97,7 @@ function loginHTML() {
 function bootLogin() {
   document.getElementById('vaultLoginForm').addEventListener('submit', async e => {
     e.preventDefault();
+    console.log('FORM SUBMITTED', document.getElementById('vPass').value);
     const btn = document.getElementById('vSubmit');
     btn.disabled = true;
     btn.textContent = 'Unlocking…';
