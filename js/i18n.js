@@ -67,7 +67,7 @@ const translations = {
         desc: "Responsive, performant sites from scratch.",
       },
       ecommerce: {
-        title: "E-Commerce",
+        title: "E-Commerce", 
         desc: "Storefronts with payment integration.",
       },
       maintenance: {
