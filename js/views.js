@@ -324,7 +324,7 @@ function getServiceKey(index) {
 }
 
 function getProjectKey(index) {
-  const keys = ["portfolio", "psag", "django", "selfDriving"];
+  const keys = ["portfolio", "psag", "django", "selfDriving", "serieTracker"];
   return keys[index] || `project${index}`;
 }
 
@@ -333,7 +333,8 @@ function getProjectCategory(index) {
     0: ["web"],
     1: ["fullstack", "web"],
     2: ["backend", "fullstack"],
-	3: ["fullstack","web"]
+	  3: ["fullstack","web"],
+    4: ["backend", "web"]
   };
   return categories[index] || ["web"];
 }
