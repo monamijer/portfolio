@@ -96,6 +96,10 @@ const translations = {
         title: "Self-Driving Academy",
         desc: "A WordPress-powered platform for a self-driving school — course listings, online booking, instructor profiles and a custom admin dashboard.",
       },
+      serieTracker: {
+        title: "Serie Tracker",
+        desc: "A SpringBoot web app challenges, incremental projects, helping users to find films and series, series by name, actors and manages his views using TMDB API",
+      },
     },
     notFound: {
       title: "Page Not Found",
@@ -206,6 +210,10 @@ const translations = {
       selfDriving: {
         title: "Auto-École de Conduite",
         desc: "Une plateforme WordPress pour une auto-école — catalogue de cours, réservation en ligne, profils des instructeurs et tableau de bord d'administration personnalisé.",
+      },
+      serieTracker: {
+        title: "Suivies des films & Series",
+        desc: "Une application web faite avec SpringBoot, permettant aux utilisateurs des gerer la liste des series et films suivies, des trouvers des films ou series par acteurs, gerer ses visualisations,...ce projet utilise l'API TMDB",
       },
     },
     notFound: {
