@@ -1,6 +1,6 @@
 /**
  * i18n.js
- * Internationalization system with English, French, Swahili, and Spanish support.
+ * Internationalization system with English, French, Swahili, Spanish, German and Lingala support.
  */
 
 const translations = {
@@ -67,7 +67,7 @@ const translations = {
         desc: "Responsive, performant sites from scratch.",
       },
       ecommerce: {
-        title: "E-Commerce", 
+        title: "E-Commerce",
         desc: "Storefronts with payment integration.",
       },
       maintenance: {
@@ -212,8 +212,8 @@ const translations = {
         desc: "Une plateforme WordPress pour une auto-école — catalogue de cours, réservation en ligne, profils des instructeurs et tableau de bord d'administration personnalisé.",
       },
       serieTracker: {
-        title: "Suivies des films & Series",
-        desc: "Une application web faite avec SpringBoot, permettant aux utilisateurs des gerer la liste des series et films suivies, des trouvers des films ou series par acteurs, gerer ses visualisations,...ce projet utilise l'API TMDB",
+        title: "Suivi de Films & Séries",
+        desc: "Une application web développée avec SpringBoot qui permet aux utilisateurs de trouver des films et séries, de rechercher des séries par nom ou par acteurs, et de gérer leurs visionnages grâce à l'API TMDB.",
       },
     },
     notFound: {
@@ -326,6 +326,10 @@ const translations = {
         title: "Akademia ya Udereva",
         desc: "Jukwaa linalotumia WordPress kwa shule ya udereva — orodha ya kozi, kuweka nafasi mtandaoni, wasifu wa wakufunzi na dashibodi maalum ya usimamizi.",
       },
+      serieTracker: {
+        title: "Kifuatiliaji cha Series",
+        desc: "Programu ya web ya SpringBoot inayosaidia watumiaji kupata filamu na series, series kwa jina, waigizaji na kusimamia maoni yao kwa kutumia API ya TMDB.",
+      },
     },
     notFound: {
       title: "Ukurasa Haupatikani",
@@ -434,6 +438,10 @@ const translations = {
       selfDriving: {
         title: "Autoescuela de Conducción",
         desc: "Una plataforma basada en WordPress para una autoescuela — listado de cursos, reserva en línea, perfiles de instructores y panel de administración personalizado.",
+      },
+      serieTracker: {
+        title: "Rastreador de Series",
+        desc: "Una aplicación web SpringBoot que ayuda a los usuarios a encontrar películas y series, series por nombre, actores y gestionar sus visualizaciones usando la API de TMDB.",
       },
     },
     notFound: {
@@ -544,6 +552,10 @@ const translations = {
         title: "Fahrschule Akademie",
         desc: "Eine WordPress-basierte Plattform für eine Fahrschule — Kurslisten, Online-Buchung, Fahrlehrerprofile und ein individuelles Admin-Dashboard.",
       },
+      serieTracker: {
+        title: "Serien-Tracker",
+        desc: "Eine SpringBoot-Webanwendung, die Benutzern hilft, Filme und Serien zu finden, Serien nach Namen und Schauspielern zu suchen und ihre Ansichten über die TMDB-API zu verwalten.",
+      },
     },
     filters: {
       all: "Alle",
@@ -651,6 +663,10 @@ const translations = {
       selfDriving: {
         title: "Ecole ya Kotambwisa Moto",
         desc: "Plateforme oyo esalemi na WordPress mpo na école ya kotambwisa moto — ba cours, réservation na internet, ba profils ya ba instructeurs mpe tableau de bord ya administration.",
+      },
+      serieTracker: {
+        title: "Molandi ya Ba Series",
+        desc: "Application web esalemi na SpringBoot oyo esalisaka bato ezwaka ba films mpe ba series, koluka series na kombo, ba acteurs mpe kobatela ba vues na bango na API ya TMDB.",
       },
     },
     filters: {
