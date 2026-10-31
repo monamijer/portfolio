@@ -1195,3 +1195,9 @@ if ("serviceWorker" in navigator) {
       });
   });
 }
+
+// Fallback: router may dispatch route:changed before this listener
+// registers — re-run initVault if the hash is already /vault.
+if (initialPath === "/vault") {
+  initVault();
+}

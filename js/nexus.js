@@ -59,7 +59,10 @@ async function api(method, path, body = null) {
 export const vaultView = () => session.ok() ? dashHTML() : loginHTML();
 
 export function initVault() {
-  session.ok() ? bootDash() : bootLogin();
+  // Defer until the DOM painted by the router is accessible
+  requestAnimationFrame(() => {
+    session.ok() ? bootDash() : bootLogin();
+  });
 }
 
 /* ══════════════════════════════════════════════════════════════
