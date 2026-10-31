@@ -107,8 +107,9 @@ function bootLogin() {
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ password: document.getElementById('vPass').value }),
       });
-      const { token } = await res.json();
-      if (!token) throw new Error('Wrong password');
+      const data = await res.json();
+      if (!res.ok || !data.token) throw new Error(data.error ?? 'Wrong password');
+      const token = data.token;
       session.set(token, document.getElementById('vK1').value, document.getElementById('vK2').value);
       document.getElementById('app').innerHTML = dashHTML();
       bootDash();
