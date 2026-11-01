@@ -71,11 +71,11 @@ export const PROJECTS = [
   },
   {
     title: 'Serie Tracker',
-    desc:  'A SpringBoot web app challenges, incremental projects, helping users to find films and series, series by name, actors and manages his views using TMDB API',
+    desc:  'A SpringBoot web API challenges, incremental projects, helping users to find films and series, series by name, actors and manages his views using TMDB API',
     tags:  ['SpringBoot', 'Java', 'MySQL', 'TMDB API'],
 //  demo:  'https://www.serietracker.org',
 	repo: 'https://github.com/monamijer/mythra',
-//	image: 'images/serietracker.png',
+	image: 'images/serietracker.webp',
 //   emoji: '',
   },
 ,
