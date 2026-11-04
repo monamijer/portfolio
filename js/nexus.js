@@ -398,8 +398,13 @@ const traitFields = [
 async function peopleSection() {
   loading('people');
   try {
-    const [{ data }, { counts, byRole }] = await Promise.all([
-      api('GET', '/people?limit=100'),
+    const PAGE = 25;
+    let currentOffset = 0;
+    let currentRole   = '';
+    let currentSearch = '';
+
+    const [firstPage, { counts, byRole }] = await Promise.all([
+      api('GET', `/people?limit=${PAGE}&offset=0`),
       api('GET', '/people/stats/overview'),
     ]);
 
@@ -412,6 +417,7 @@ async function peopleSection() {
             </span>
           </h2>
           <button class="vault-btn-primary" style="width:auto;padding:.5rem 1rem" id="pAddBtn">+ Add Person</button>
+          <button class="vault-btn-ghost" style="width:auto;padding:.5rem 1rem" id="pGoogleBtn">⬇ Import Google Contacts</button>
         </div>
 
         <input type="text" id="pSearch" class="vault-search" placeholder="Search by name, occupation…" />
@@ -431,23 +437,29 @@ async function peopleSection() {
         </div>
 
         <div class="people-grid" id="pList">
-          ${data.map(personCard).join('') || '<p class="vault-empty">No people yet.</p>'}
+          ${firstPage.data.map(personCard).join('') || '<p class="vault-empty">No people yet.</p>'}
+        </div>
+
+        <div class="people-pagination" id="pPager" style="display:flex;gap:.5rem;align-items:center;justify-content:center;margin-top:1rem">
+          <button class="vault-btn-ghost" id="pPrev" style="width:auto;padding:.4rem .9rem" disabled>← Prev</button>
+          <span id="pPageInfo" style="font-size:.8rem;color:#666">1 – ${Math.min(PAGE, firstPage.total)} of ${firstPage.total}</span>
+          <button class="vault-btn-ghost" id="pNext" style="width:auto;padding:.4rem .9rem" ${firstPage.total <= PAGE ? 'disabled' : ''}>Next →</button>
         </div>
 
         <div id="pProfile" class="hidden"></div>
       </div>`);
 
-    wirePeople(data);
+    wirePeople(firstPage, PAGE, currentOffset, currentRole, currentSearch, counts.total);
   } catch (err) { vError(err.message); }
 }
 
 function personCard(p) {
   return /* html */`
     <div class="person-card">
-      <div class="person-avatar">${(p.codename||'?')[0].toUpperCase()}</div>
+      <div class="person-avatar">${((p.codename||p.real_name||'?')[0]).toUpperCase()}</div>
       <div class="person-info">
-        <strong>${p.codename||'—'}</strong>
-        <span>${p.occupation||''}</span>
+        <strong>${p.codename||p.real_name||'—'}</strong>
+        <span>${p.occupation||p.role||''}</span>
       </div>
       <div class="person-actions">
         <button class="vault-icon-btn p-view" data-id="${p.id}" title="View">👁</button>
@@ -457,12 +469,71 @@ function personCard(p) {
     </div>`;
 }
 
-function wirePeople(init) {
-  let editId = null;
-  let all    = [...init];
-  const form   = document.getElementById('pForm');
-  const list   = document.getElementById('pList');
-  const profile= document.getElementById('pProfile');
+function wirePeople(firstPage, PAGE, initOffset, initRole, initSearch, totalCount) {
+  let editId  = null;
+  let offset  = initOffset;
+  let role    = initRole;
+  let search  = initSearch;
+  let total   = firstPage.total ?? totalCount;
+  let all     = [...firstPage.data];
+  const form    = document.getElementById('pForm');
+  const list    = document.getElementById('pList');
+  const profile = document.getElementById('pProfile');
+  const prev    = document.getElementById('pPrev');
+  const next    = document.getElementById('pNext');
+  const info    = document.getElementById('pPageInfo');
+
+  function updatePager() {
+    prev.disabled = offset <= 0;
+    next.disabled = offset + PAGE >= total;
+    const from = offset + 1;
+    const to   = Math.min(offset + PAGE, total);
+    info.textContent = `${from} – ${to} of ${total}`;
+  }
+
+  async function loadPage() {
+    list.innerHTML = '<p class="vault-loading" style="text-align:center;padding:2rem">Loading…</p>';
+    try {
+      const url = search
+        ? `/people/search?q=${encodeURIComponent(search)}&limit=${PAGE}&offset=${offset}`
+        : role
+          ? `/people/role/${encodeURIComponent(role)}?limit=${PAGE}&offset=${offset}`
+          : `/people?limit=${PAGE}&offset=${offset}`;
+      const res = await api('GET', url);
+      all    = res.data || [];
+      total  = res.total ?? total;
+      list.innerHTML = all.map(personCard).join('') || '<p class="vault-empty">No results.</p>';
+      updatePager();
+    } catch (err) { list.innerHTML = `<p class="vault-error">${err.message}</p>`; }
+  }
+
+  prev.onclick = () => { offset = Math.max(0, offset - PAGE); loadPage(); };
+  next.onclick = () => { offset += PAGE; loadPage(); };
+  updatePager();
+
+  // Handle OAuth callback result (import=done or import=error in URL)
+  const urlParams = new URLSearchParams(window.location.search);
+  const importStatus = urlParams.get('import');
+  if (importStatus === 'done') {
+    const added   = urlParams.get('added') ?? '?';
+    const skipped = urlParams.get('skipped') ?? '?';
+    const msg = document.createElement('p');
+    msg.style.cssText = 'color:#4caf50;padding:.5rem 0;font-size:.85rem';
+    msg.textContent = `✓ Google import complete — ${added} contacts added, ${skipped} skipped.`;
+    document.getElementById('pList')?.before(msg);
+    history.replaceState(null, '', window.location.pathname + window.location.hash.split('?')[0]);
+  } else if (importStatus === 'error') {
+    const reason = urlParams.get('reason') ?? 'Unknown error';
+    alert(`Google import failed: ${reason}`);
+    history.replaceState(null, '', window.location.pathname + window.location.hash.split('?')[0]);
+  }
+
+  // Google Contacts import — triggers OAuth flow with current session keys
+  document.getElementById('pGoogleBtn').onclick = () => {
+    const { key1, key2 } = session.get();
+    if (!key1 || !key2) return alert('Session expired — please log in again');
+    window.location.href = `http://localhost:4000/api/google/auth?key1=${encodeURIComponent(key1)}&key2=${encodeURIComponent(key2)}`;
+  };
 
   document.getElementById('pAddBtn').onclick = () => {
     editId = null;
@@ -472,24 +543,23 @@ function wirePeople(init) {
   };
 
   document.getElementById('pSearch').addEventListener('input', async e => {
-    const q = e.target.value.trim();
-    if (!q) { list.innerHTML = all.map(personCard).join(''); return; }
-    try {
-      const { data } = await api('GET', `/people/search?q=${encodeURIComponent(q)}`);
-      list.innerHTML = data.map(personCard).join('') || '<p class="vault-empty">No results.</p>';
-    } catch {}
+    search = e.target.value.trim();
+    role   = '';
+    offset = 0;
+    document.querySelectorAll('.role-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('.role-pill[data-role=""]')?.classList.add('active');
+    loadPage();
   });
 
-  document.getElementById('rolePills').addEventListener('click', async e => {
+  document.getElementById('rolePills').addEventListener('click', e => {
     if (!e.target.classList.contains('role-pill')) return;
     document.querySelectorAll('.role-pill').forEach(p => p.classList.remove('active'));
     e.target.classList.add('active');
-    const role = e.target.dataset.role;
-    if (!role) { list.innerHTML = all.map(personCard).join(''); return; }
-    try {
-      const { data } = await api('GET', `/people/role/${role}`);
-      list.innerHTML = data.map(personCard).join('') || '<p class="vault-empty">None in this role.</p>';
-    } catch {}
+    role   = e.target.dataset.role;
+    search = '';
+    offset = 0;
+    document.getElementById('pSearch').value = '';
+    loadPage();
   });
 
   list.addEventListener('click', async e => {
@@ -522,8 +592,8 @@ function wirePeople(init) {
         if (editId) await api('PUT', `/people/${editId}`, body);
         else        await api('POST', '/people', body);
         form.classList.add('hidden');
-        const { data } = await api('GET', '/people?limit=100');
-        all = data; list.innerHTML = data.map(personCard).join('');
+        offset = 0; search = ''; role = '';
+        await loadPage();
       } catch (err) { document.getElementById('pErr').textContent = err.message; }
     };
   }
@@ -539,7 +609,7 @@ function wirePeople(init) {
           <button class="vault-btn-ghost" id="pClose">← Back to list</button>
 
           <div class="profile-header">
-            <div class="profile-avatar">${(p.codename||'?')[0].toUpperCase()}</div>
+            <div class="profile-avatar">${((p.codename||p.real_name||'?')[0]).toUpperCase()}</div>
             <div>
               <h2>${p.codename}</h2>
               ${p.real_name ? `<p style="color:#666">${p.real_name}</p>` : ''}
