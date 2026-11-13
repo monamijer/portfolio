@@ -67,6 +67,7 @@ portfolio/
 ├── package.json        # Dependencies and npm scripts
 ├── vite.config.js      # Vite bundler configuration
 └── README.md           # Project documentation
+```
 
 🚀 Getting Started
 Prerequisites
