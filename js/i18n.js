@@ -101,6 +101,33 @@ const translations = {
         desc: "A SpringBoot web app challenges, incremental projects, helping users to find films and series, series by name, actors and manages his views using TMDB API",
       },
     },
+    newsletter: {
+      title: "Newsletter",
+      text: "Occasional notes on web development, new projects and lessons learned. No spam.",
+      label: "Email address",
+      placeholder: "you@example.com",
+      consent: "I agree to receive the newsletter by email.",
+      submit: "Subscribe",
+      sending: "Subscribing…",
+      success: "✓ Thank you for subscribing!",
+      error: "✗ Subscription failed. Please try again later.",
+      invalidEmail: "Please enter a valid email address.",
+      consentRequired: "Please tick the consent box to subscribe.",
+    },
+    privacy: {
+      link: "Privacy notice",
+      title: "Privacy notice",
+      intro: "This site is a personal portfolio. It collects only the data described below.",
+      newsletterTitle: "Newsletter",
+      newsletterText: "If you subscribe, your email address is stored by Brevo, my email service provider based in France, only to send you the newsletter. Your consent is the legal basis. I never sell or share your address.",
+      contactTitle: "Contact form",
+      contactText: "Messages sent through the contact form are delivered to me by FormSubmit and used only to reply to you.",
+      storageTitle: "Local data",
+      storageText: "Your theme, language and reading-mode choices are saved in your browser only. No analytics or advertising cookies are used. Fonts and icons are loaded from Google Fonts and jsDelivr.",
+      rightsTitle: "Your rights",
+      rightsText: "You can unsubscribe with the link in every email, and ask me to access or delete your data at any time by writing to the address on the Contact page.",
+      back: "Back to home",
+    },
     notFound: {
       title: "Page Not Found",
       message:
@@ -215,6 +242,33 @@ const translations = {
         title: "Suivi de Films & Séries",
         desc: "Une application web développée avec SpringBoot qui permet aux utilisateurs de trouver des films et séries, de rechercher des séries par nom ou par acteurs, et de gérer leurs visionnages grâce à l'API TMDB.",
       },
+    },
+    newsletter: {
+      title: "Newsletter",
+      text: "Des notes occasionnelles sur le développement web, mes nouveaux projets et ce que j'apprends. Pas de spam.",
+      label: "Adresse email",
+      placeholder: "vous@exemple.com",
+      consent: "J'accepte de recevoir la newsletter par email.",
+      submit: "S'abonner",
+      sending: "Inscription…",
+      success: "✓ Merci pour votre inscription !",
+      error: "✗ L'inscription a échoué. Veuillez réessayer plus tard.",
+      invalidEmail: "Veuillez saisir une adresse email valide.",
+      consentRequired: "Veuillez cocher la case de consentement pour vous abonner.",
+    },
+    privacy: {
+      link: "Confidentialité",
+      title: "Confidentialité",
+      intro: "Ce site est un portfolio personnel. Il ne collecte que les données décrites ci-dessous.",
+      newsletterTitle: "Newsletter",
+      newsletterText: "Si vous vous abonnez, votre adresse email est conservée par Brevo, mon prestataire d'envoi d'emails basé en France, uniquement pour vous envoyer la newsletter. Votre consentement est la base légale. Je ne vends ni ne partage jamais votre adresse.",
+      contactTitle: "Formulaire de contact",
+      contactText: "Les messages envoyés via le formulaire de contact me sont transmis par FormSubmit et servent uniquement à vous répondre.",
+      storageTitle: "Données locales",
+      storageText: "Vos choix de thème, de langue et de mode lecture sont enregistrés uniquement dans votre navigateur. Aucun cookie d'analyse ou de publicité n'est utilisé. Les polices et icônes sont chargées depuis Google Fonts et jsDelivr.",
+      rightsTitle: "Vos droits",
+      rightsText: "Vous pouvez vous désabonner via le lien présent dans chaque email, et me demander d'accéder à vos données ou de les supprimer à tout moment en écrivant à l'adresse indiquée sur la page Contact.",
+      back: "Retour à l'accueil",
     },
     notFound: {
       title: "Page Introuvable",
@@ -331,6 +385,22 @@ const translations = {
         desc: "Programu ya web ya SpringBoot inayosaidia watumiaji kupata filamu na series, series kwa jina, waigizaji na kusimamia maoni yao kwa kutumia API ya TMDB.",
       },
     },
+    newsletter: {
+      title: "Jarida",
+      text: "Maelezo ya hapa na pale kuhusu uundaji wa tovuti, miradi mipya na mambo ninayojifunza. Hakuna barua taka.",
+      label: "Anwani ya barua pepe",
+      placeholder: "wewe@mfano.com",
+      consent: "Nakubali kupokea jarida kwa barua pepe.",
+      submit: "Jiandikishe",
+      sending: "Inajisajili…",
+      success: "✓ Asante kwa kujiandikisha!",
+      error: "✗ Usajili umeshindwa. Tafadhali jaribu tena baadaye.",
+      invalidEmail: "Tafadhali weka anwani halali ya barua pepe.",
+      consentRequired: "Tafadhali weka alama kwenye kisanduku cha idhini ili ujiandikishe.",
+    },
+    privacy: {
+      link: "Taarifa ya faragha",
+    },
     notFound: {
       title: "Ukurasa Haupatikani",
       message: "Lo! Ukurasa unaoutafuta haupo au umehamishwa.",
@@ -443,6 +513,22 @@ const translations = {
         title: "Rastreador de Series",
         desc: "Una aplicación web SpringBoot que ayuda a los usuarios a encontrar películas y series, series por nombre, actores y gestionar sus visualizaciones usando la API de TMDB.",
       },
+    },
+    newsletter: {
+      title: "Boletín",
+      text: "Notas ocasionales sobre desarrollo web, nuevos proyectos y lo que voy aprendiendo. Sin spam.",
+      label: "Correo electrónico",
+      placeholder: "tu@ejemplo.com",
+      consent: "Acepto recibir el boletín por correo electrónico.",
+      submit: "Suscribirme",
+      sending: "Suscribiendo…",
+      success: "✓ ¡Gracias por suscribirte!",
+      error: "✗ No se pudo completar la suscripción. Inténtalo de nuevo más tarde.",
+      invalidEmail: "Introduce una dirección de correo válida.",
+      consentRequired: "Marca la casilla de consentimiento para suscribirte.",
+    },
+    privacy: {
+      link: "Aviso de privacidad",
     },
     notFound: {
       title: "Página No Encontrada",
@@ -564,6 +650,22 @@ const translations = {
       backend: "Backend",
       noResults: "Keine Projekte in dieser Kategorie gefunden.",
     },
+    newsletter: {
+      title: "Newsletter",
+      text: "Gelegentliche Notizen zu Webentwicklung, neuen Projekten und Gelerntem. Kein Spam.",
+      label: "E-Mail-Adresse",
+      placeholder: "du@beispiel.de",
+      consent: "Ich möchte den Newsletter per E-Mail erhalten.",
+      submit: "Abonnieren",
+      sending: "Wird angemeldet…",
+      success: "✓ Danke für deine Anmeldung!",
+      error: "✗ Anmeldung fehlgeschlagen. Bitte versuche es später erneut.",
+      invalidEmail: "Bitte gib eine gültige E-Mail-Adresse ein.",
+      consentRequired: "Bitte setze das Häkchen bei der Einwilligung, um dich anzumelden.",
+    },
+    privacy: {
+      link: "Datenschutz",
+    },
     notFound: {
       title: "Seite nicht gefunden",
       message:
@@ -676,6 +778,22 @@ const translations = {
       backend: "Backend",
       noResults: "Misala moko te ezwami na catégorie oyo.",
     },
+    newsletter: {
+      title: "Newsletter",
+      text: "Bamoko ya mikanda mpo na kosala ba site web, misala ya sika mpe makambo nazali koyekola. Spam te.",
+      label: "Adresse email",
+      placeholder: "yo@exemple.com",
+      consent: "Nandimi kozwa newsletter na email.",
+      submit: "Kokota",
+      sending: "Ezali kokota…",
+      success: "✓ Matondi mpo na kokota!",
+      error: "✗ Kokota esimbi te. Meká lisusu na sima.",
+      invalidEmail: "Pesa adresse email ya malamu.",
+      consentRequired: "Tia elembo na case ya bondimi mpo na kokota.",
+    },
+    privacy: {
+      link: "Politiki ya makambo ya moko",
+    },
     notFound: {
       title: "Lokasa ezwami te",
       message: "Ee! Lokasa oyo ozali koluka ezali te to esili kotambola.",
@@ -718,11 +836,8 @@ class I18n {
 
   t(key) {
     const keys = key.split(".");
-    let value = translations[this.currentLang];
-    for (const k of keys) {
-      value = value?.[k];
-    }
-    return value || key;
+    const lookup = (lang) => keys.reduce((v, k) => v?.[k], translations[lang]);
+    return lookup(this.currentLang) || lookup("en") || key;
   }
 
   applyTranslations() {
