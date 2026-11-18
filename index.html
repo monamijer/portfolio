@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- PWA Meta Tags -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#f5f3ee" id="themeColor" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -122,10 +122,10 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- icons -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-    <link rel="shortcut icon" href="images/jer.ico" type="image/x-icon" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="shortcut icon" href="/images/jer.ico" type="image/x-icon" />
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- SPA router + app bootstrap -->
     <script src="js/main.js" type="module"></script>
@@ -151,7 +151,7 @@
 
     <!-- ── NAVBAR ───────────────────────────────── -->
     <nav id="navbar">
-      <a href="#/" class="nav-logo" aria-label="Home">MJ</a>
+      <a href="/portfolio/" class="nav-logo" aria-label="Home">MJ</a>
 
       <!-- Language Switcher -->
       <div class="lang-switcher" id="langSwitcher"></div>
@@ -175,10 +175,10 @@
       </button>
 
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="#/" data-i18n="nav.home">Home</a></li>
-        <li><a href="#/about" data-i18n="nav.about">About</a></li>
-        <li><a href="#/projects" data-i18n="nav.projects">Projects</a></li>
-        <li><a href="#/contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="/portfolio/" data-i18n="nav.home">Home</a></li>
+        <li><a href="/portfolio/about/" data-i18n="nav.about">About</a></li>
+        <li><a href="/portfolio/projects/" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="/portfolio/contact/" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
       <button
@@ -215,7 +215,7 @@
           </div>
           <label class="newsletter-consent" for="nlConsent">
             <input type="checkbox" id="nlConsent" />
-            <span><span data-i18n="newsletter.consent">I agree to receive the newsletter by email.</span> <a href="#/privacy" data-i18n="privacy.link">Privacy notice</a></span>
+            <span><span data-i18n="newsletter.consent">I agree to receive the newsletter by email.</span> <a href="/portfolio/privacy/" data-i18n="privacy.link">Privacy notice</a></span>
           </label>
           <input type="text" name="email_address_check" value="" class="nl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <input type="hidden" name="locale" value="en" />
@@ -226,7 +226,7 @@
 
     <!-- ── FOOTER ───────────────────────────────── -->
     <footer id="footer">
-      <p>© 2023 - <span id="year"></span> Monami Jerome · <a href="#/privacy" data-i18n="privacy.link">Privacy notice</a></p>
+      <p>© 2023 - <span id="year"></span> Monami Jerome · <a href="/portfolio/privacy/" data-i18n="privacy.link">Privacy notice</a></p>
       <div class="footer-social">
         <a
           href="https://github.com/monamijer"

@@ -1,7 +1,9 @@
 /**
  * privacy.js
- * Privacy notice view (route: #/privacy). Texts live in i18n.js.
+ * Privacy notice view (route: /privacy). Texts live in i18n.js.
  */
+
+import { routeHref } from "./paths.js";
 
 export const privacyView = () => /* html */ `
   <div class="container page privacy-page">
@@ -30,7 +32,7 @@ export const privacyView = () => /* html */ `
       <p data-i18n="privacy.rightsText">You can unsubscribe with the link in every email, and ask me to access or delete your data at any time by writing to the address on the Contact page.</p>
     </section>
 
-    <a class="btn btn-outline" href="#/">
+    <a class="btn btn-outline" href="${routeHref('/')}">
       <i class="bi bi-house"></i> <span data-i18n="privacy.back">Back to home</span>
     </a>
   </div>
