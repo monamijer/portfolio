@@ -7,12 +7,14 @@ import { Router } from "./router.js";
 import { currentRoute } from "./paths.js";
 import { setupNewsletter } from "./newsletter.js";
 import { privacyView } from "./privacy.js";
+import { CASE_STUDIES } from "./case-studies.js";
 import {
   homeView,
   aboutView,
   projectsView,
   contactView,
   notFoundView,
+  caseStudyView,
 } from "./views.js";
 import { i18n } from "./i18n.js";
 
@@ -362,6 +364,11 @@ const router = new Router(app)
   .on("/projects", projectsView)
   .on("/contact", contactView)
   .on("/404", notFoundView);
+
+// One detailed page per case study: /projects/<slug>/
+Object.keys(CASE_STUDIES).forEach((slug) =>
+  router.on(`/projects/${slug}`, () => caseStudyView(slug)),
+);
 
 router.start();
 
@@ -1098,7 +1105,12 @@ document.addEventListener("languageChanged", ({ detail }) => {
 
 /*
  * These functions initialize the current DOM.
+ *
+ * The router renders the first view before the route:changed listener
+ * above exists, so translate it explicitly (otherwise a reload on a
+ * non-English language shows the first page in English).
  */
+i18n.applyTranslations();
 setupScrollReveal();
 setupProjectFilters();
 setupFormValidation();

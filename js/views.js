@@ -5,6 +5,7 @@
 
 import { PROFILE, SKILLS, SERVICES, PROJECTS } from "./data.js";
 import { routeHref } from "./paths.js";
+import { CASE_STUDIES } from "./case-studies.js";
 
 /* ── Shared marquee strip ────────────────────────────────────── */
 const marquee = () => {
@@ -324,35 +325,21 @@ function getServiceKey(index) {
   return keys[index] || `service${index}`;
 }
 
-function getProjectKey(index) {
-  const keys = ["portfolio", "psag", "django", "selfDriving", "serieTracker"];
-  return keys[index] || `project${index}`;
-}
-
-function getProjectCategory(index) {
-  const categories = {
-    0: ["web"],
-    1: ["fullstack", "web"],
-    2: ["backend", "fullstack"],
-	  3: ["fullstack","web"],
-    4: ["backend", "web"]
-  };
-  return categories[index] || ["web"];
-}
-
 /* ── Shared project card component ──────────────────────────── */
 function projectCard(
-  { title, desc, tags, demo, repo, emoji, image },
+  { key, title, desc, tags, demo, repo, emoji, image, slug, status, categories = ["web"] },
   index,
   withReveal = false,
 ) {
-  const projectKey = getProjectKey(index);
-  const categories = getProjectCategory(index);
+  const projectKey = key;
   const thumb = image
     ? `<img src="${image}" alt="${title}" loading="lazy" />`
     : `<div class="project-thumb-placeholder">${emoji ?? "◆"}</div>`;
 
   const links = [
+    slug
+      ? `<a class="project-case-link" href="${routeHref(`/projects/${slug}`)}"><i class="bi bi-journal-text"></i> <span data-i18n="common.caseStudy">Case study</span></a>`
+      : "",
     demo
       ? `<a href="${demo}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> <span data-i18n="common.live">Live</span></a>`
       : "",
@@ -369,7 +356,11 @@ function projectCard(
 
   return /* html */ `
     <article class="project-card${revealClass}" data-categories="${categories.join(",")}">
-      <div class="project-thumb">${thumb}</div>
+      <div class="project-thumb">${thumb}${
+        status
+          ? `<span class="project-status" data-i18n="common.inDevelopment">In development</span>`
+          : ""
+      }</div>
       <div class="project-body">
         <h3 data-i18n="projects.${projectKey}.title">${title}</h3>
         <p data-i18n="projects.${projectKey}.desc">${desc}</p>
@@ -378,3 +369,89 @@ function projectCard(
       </div>
     </article>`;
 }
+
+/* ── CASE STUDY (detailed project page) ─────────────────────── */
+export const caseStudyView = (slug) => {
+  const c = CASE_STUDIES[slug];
+  if (!c) return notFoundView();
+
+  return /* html */ `
+  <div class="container page case-study">
+    <a class="case-back" href="${routeHref("/projects")}">
+      <i class="bi bi-arrow-left"></i> <span data-i18n="common.backToProjects">Back to projects</span>
+    </a>
+
+    <header class="case-hero reveal">
+      <span class="section-label">Case study</span>
+      <h1>${c.title}</h1>
+      <p class="case-tagline">${c.tagline}</p>
+      <div class="case-actions">
+        <a class="btn btn-primary" href="${c.repo}" target="_blank" rel="noopener">
+          <i class="bi bi-github"></i> Source code
+        </a>
+        <span class="case-demo-note">Public demo: coming soon</span>
+      </div>
+    </header>
+
+    <dl class="case-facts reveal">
+      ${c.facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}
+    </dl>
+
+    <figure class="case-shot case-shot-main reveal">
+      <img src="${c.screenshots[0].src}" alt="${c.screenshots[0].alt}" width="1200" height="750" />
+      <figcaption>${c.screenshots[0].caption}</figcaption>
+    </figure>
+
+    <section class="case-section reveal">
+      <h2>Why I am building it</h2>
+      <p>${c.why}</p>
+    </section>
+
+    <section class="case-section reveal">
+      <h2>What works today</h2>
+      <ul class="case-cards">
+        ${c.works.map(([t, d]) => `<li><h3>${t}</h3><p>${d}</p></li>`).join("")}
+      </ul>
+    </section>
+
+    <section class="case-section reveal">
+      <h2>Architecture</h2>
+      <p>${c.architecture.intro}</p>
+      <ul class="case-folders">
+        ${c.architecture.folders.map(([f, d]) => `<li><code>${f}</code><span>${d}</span></li>`).join("")}
+      </ul>
+      <p class="case-note">${c.architecture.note}</p>
+    </section>
+
+    <section class="case-section reveal">
+      <h2>More screens</h2>
+      <div class="case-gallery">
+        ${c.screenshots
+          .slice(1)
+          .map(
+            (s) => `<figure class="case-shot"><img src="${s.src}" alt="${s.alt}" loading="lazy" width="1200" height="750" /><figcaption>${s.caption}</figcaption></figure>`,
+          )
+          .join("")}
+      </div>
+      <p class="case-note">Screenshots are taken from a local development build.</p>
+    </section>
+
+    <section class="case-section case-two reveal">
+      <div>
+        <h2>What I am practising</h2>
+        <ul class="case-list">${c.learned.map((l) => `<li>${l}</li>`).join("")}</ul>
+      </div>
+      <div>
+        <h2>What is next</h2>
+        <ul class="case-list">${c.next.map((n) => `<li>${n}</li>`).join("")}</ul>
+      </div>
+    </section>
+
+    <div class="reveal">
+      <a class="btn btn-outline" href="${routeHref("/projects")}">
+        <i class="bi bi-grid-3x3-gap"></i> <span data-i18n="common.backToProjects">Back to projects</span>
+      </a>
+    </div>
+  </div>
+`;
+};
