@@ -3,7 +3,7 @@
  * URL helpers for clean routes served under Vite's base (e.g. "/portfolio/").
  */
 
-export const BASE = import.meta.env.BASE_URL;
+export const BASE = import.meta.env?.BASE_URL ?? "/portfolio/"; // fallback for Node scripts
 
 /** Route ("/about") for a pathname ("/portfolio/about/"). Defaults to the current URL. */
 export function currentRoute(pathname = window.location.pathname) {

@@ -4,7 +4,7 @@
  */
 
 import { PROFILE, SKILL_GROUPS, SERVICES, PROJECTS, KEY_PROJECTS, MILESTONES } from "./data.js";
-import { routeHref } from "./paths.js";
+import { routeHref, assetUrl } from "./paths.js";
 import { CASE_STUDIES } from "./case-studies.js";
 import { studyStatus } from "./studies.js";
 
@@ -117,9 +117,12 @@ export const aboutView = () => /* html */ `
           </div>
         </div>
 
-        <div class="reveal reveal-delay-2">
+        <div class="reveal reveal-delay-2" style="display:flex;flex-wrap:wrap;gap:var(--space-sm)">
           <a class="btn btn-primary" href="${routeHref('/contact')}">
             <i class="bi bi-send"></i> <span data-i18n="common.getInTouch">Get in touch</span>
+          </a>
+          <a class="btn btn-outline" data-cv href="${assetUrl('docs/monami-jerome-cv-en.pdf')}" download>
+            <i class="bi bi-download"></i> <span data-i18n="common.downloadCv">Download CV</span>
           </a>
         </div>
 

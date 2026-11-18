@@ -4,7 +4,7 @@
  */
 
 import { Router } from "./router.js";
-import { currentRoute } from "./paths.js";
+import { currentRoute, assetUrl } from "./paths.js";
 import { setupNewsletter } from "./newsletter.js";
 import { privacyView } from "./privacy.js";
 import { CASE_STUDIES } from "./case-studies.js";
@@ -1015,6 +1015,16 @@ if (yearEl) {
 
 setupNewsletter();
 
+/* ── CV download link ────────────────────────────────────────── */
+
+/** Point CV buttons to the French CV when the site is in French, else English. */
+function updateCvLinks() {
+  const lang = i18n.currentLang === "fr" ? "fr" : "en";
+  document.querySelectorAll("a[data-cv]").forEach((a) => {
+    a.setAttribute("href", assetUrl(`docs/monami-jerome-cv-${lang}.pdf`));
+  });
+}
+
 /* ── Post-Render Hooks ───────────────────────────────────────── */
 
 /*
@@ -1044,6 +1054,7 @@ window.addEventListener("route:changed", ({ detail }) => {
    * the typing animation uses the current language.
    */
   i18n.applyTranslations();
+  updateCvLinks();
 
   /*
    * Re-initialize page-specific functionality.
@@ -1110,6 +1121,7 @@ document.addEventListener("languageChanged", ({ detail }) => {
  * non-English language shows the first page in English).
  */
 i18n.applyTranslations();
+updateCvLinks();
 setupScrollReveal();
 setupProjectFilters();
 setupFormValidation();

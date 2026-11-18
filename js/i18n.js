@@ -12,6 +12,7 @@ const translations = {
       contact: "Contact",
     },
     common: {
+      downloadCv: "Download CV",
       caseStudy: "Case study",
       inDevelopment: "In development",
       backToProjects: "Back to projects",
@@ -170,6 +171,7 @@ const translations = {
       contact: "Contact",
     },
     common: {
+      downloadCv: "Télécharger le CV",
       caseStudy: "Étude de cas",
       inDevelopment: "En développement",
       backToProjects: "Retour aux projets",
@@ -331,6 +333,7 @@ const translations = {
       contact: "Mawasiliano",
     },
     common: {
+      downloadCv: "Pakua wasifu (CV)",
       caseStudy: "Uchunguzi wa mradi",
       inDevelopment: "Inaendelezwa",
       backToProjects: "Rudi kwenye miradi",
@@ -476,6 +479,7 @@ const translations = {
       contact: "Contacto",
     },
     common: {
+      downloadCv: "Descargar CV",
       caseStudy: "Caso de estudio",
       inDevelopment: "En desarrollo",
       backToProjects: "Volver a proyectos",
@@ -620,6 +624,7 @@ const translations = {
       contact: "Kontakt",
     },
     common: {
+      downloadCv: "Lebenslauf herunterladen",
       caseStudy: "Fallstudie",
       inDevelopment: "In Entwicklung",
       backToProjects: "Zurück zu den Projekten",
@@ -765,6 +770,7 @@ const translations = {
       contact: "Bosolo",
     },
     common: {
+      downloadCv: "Kozwa CV",
       caseStudy: "Etude ya projet",
       inDevelopment: "Ezali kobongisama",
       backToProjects: "Zonga na misala",
