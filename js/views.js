@@ -3,7 +3,7 @@
  * Each exported function returns an HTML string for a route.
  */
 
-import { PROFILE, SKILLS, SERVICES, PROJECTS } from "./data.js";
+import { PROFILE, SKILL_GROUPS, SERVICES, PROJECTS } from "./data.js";
 import { routeHref } from "./paths.js";
 import { CASE_STUDIES } from "./case-studies.js";
 
@@ -125,18 +125,15 @@ export const aboutView = () => /* html */ `
         <!-- Skills -->
         <div class="skills-section reveal">
           <h2 data-i18n="common.skills">Skills</h2>
-          <div class="skill-list" id="skillList">
-            ${SKILLS.map(
-              ({ name, level }, index) => `
-              <div class="skill-row">
-                <header>
-                  <span data-i18n="skills.${getSkillKey(index)}">${name}</span>
-                  <span>${level}%</span>
-                </header>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="--target:${level / 100}"></div>
-                </div>
-              </div>`,
+          <div class="skill-groups">
+            ${SKILL_GROUPS.map(
+              ({ level, items }) => `
+              <section class="skill-group">
+                <h3 data-i18n="skills.levels.${level}">${level}</h3>
+                <ul>
+                  ${items.map(skillItem).join("")}
+                </ul>
+              </section>`,
             ).join("")}
           </div>
         </div>
@@ -315,9 +312,15 @@ export const notFoundView = () => /* html */ `
 `;
 
 /* ── Helper functions ───────────────────────────────────────── */
-function getSkillKey(index) {
-  const keys = ["htmlCss", "javascript", "angular", "nodeExpress", "gitCicd"];
-  return keys[index] || `skill${index}`;
+function skillItem({ name, i18n, projects }) {
+  const label = i18n
+    ? `<strong data-i18n="skills.${i18n}">${name}</strong>`
+    : `<strong>${name}</strong>`;
+  const used = projects
+    .map((key) => PROJECTS.find((p) => p.key === key)?.title)
+    .filter(Boolean)
+    .join(" · ");
+  return `<li>${label}${used ? `<span class="skill-used">${used}</span>` : ""}</li>`;
 }
 
 function getServiceKey(index) {

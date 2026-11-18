@@ -402,31 +402,28 @@ h1, h2, h3, h4, h5 {
 .skills-section { margin-top: var(--space-lg); }
 .skills-section h2 { font-size: 1.5rem; margin-bottom: var(--space-md); }
 
-.skill-list { display: flex; flex-direction: column; gap: var(--space-sm); }
-.skill-row { display: flex; flex-direction: column; gap: 6px; }
-.skill-row header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
+.skill-groups { display: flex; flex-direction: column; gap: var(--space-md); }
+.skill-group h3 {
   font-family: var(--font-display);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-xs);
 }
-.skill-bar {
-  height: 3px;
-  background: var(--border);
-  border-radius: 99px;
-  overflow: hidden;
+.skill-group ul { list-style: none; padding: 0; margin: 0; }
+.skill-group li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px var(--space-sm);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
 }
-.skill-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 99px;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 0.8s var(--ease);
-}
-.skill-fill.animate { transform: scaleX(1); }
+.skill-group li strong { font-family: var(--font-display); font-size: 0.9rem; }
+.skill-used { font-size: 0.75rem; color: var(--muted); }
 
 /* Services */
 .services-section { margin-top: var(--space-lg); }
