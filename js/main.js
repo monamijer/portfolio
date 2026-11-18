@@ -11,7 +11,6 @@ import {
   contactView,
   notFoundView,
 } from "./views.js";
-import { vaultView, initVault } from "./nexus.js";
 import { i18n } from "./i18n.js";
 
 /* ── Preloader ───────────────────────────────────────────────── */
@@ -358,7 +357,6 @@ const router = new Router(app)
   .on("/about", aboutView)
   .on("/projects", projectsView)
   .on("/contact", contactView)
-  .on("/vault", vaultView)
   .on("/404", notFoundView);
 
 router.start();
@@ -1059,13 +1057,6 @@ window.addEventListener("route:changed", ({ detail }) => {
   if (currentPath === "/") {
     setupTypingEffect();
   }
-
-  /*
-   * Vault page initialization.
-   */
-  if (currentPath === "/vault") {
-    initVault();
-  }
 });
 
 /* ── Language Changed ────────────────────────────────────────── */
@@ -1194,10 +1185,4 @@ if ("serviceWorker" in navigator) {
         console.error("Service Worker registration failed:", error);
       });
   });
-}
-
-// Fallback: router may dispatch route:changed before this listener
-// registers — re-run initVault if the hash is already /vault.
-if (initialPath === "/vault") {
-  initVault();
 }

@@ -4,16 +4,4 @@
     <loc>https://monamijer.github.io/portfolio/</loc>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://monamijer.github.io/portfolio/#/about</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monamijer.github.io/portfolio/#/projects</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monamijer.github.io/portfolio/#/contact</loc>
-    <priority>0.6</priority>
-  </url>
 </urlset>
