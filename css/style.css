@@ -1714,3 +1714,49 @@ body.reader-mode {
   .case-two { grid-template-columns: 1fr; }
   .case-folders li { grid-template-columns: 1fr; gap: 2px; }
 }
+
+
+/* =============================================================
+   JOURNEY (About page)
+   ============================================================= */
+.journey-section { margin-top: var(--space-lg); }
+.journey-section h2 { font-size: 1.5rem; margin-bottom: var(--space-md); }
+.journey-section h3 {
+  font-family: var(--font-display);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  margin: var(--space-md) 0 var(--space-xs);
+}
+.journey { list-style: none; padding: 0 0 0 var(--space-sm); margin: 0; border-left: 2px solid var(--border); }
+.journey li {
+  position: relative;
+  display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--space-sm);
+  padding: 0 0 var(--space-md) var(--space-sm);
+}
+.journey li::before {
+  content: ""; position: absolute; left: calc(-1 * var(--space-sm) - 6px); top: 0.45rem;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--muted);
+}
+.journey li.current::before { background: var(--accent); border-color: var(--accent); }
+.journey time { font-family: var(--font-display); font-weight: 800; font-size: 0.85rem; color: var(--muted); }
+.journey li.current time { color: var(--accent); }
+.journey li div { display: flex; flex-direction: column; gap: 2px; }
+.journey small { color: var(--muted); font-size: 0.8rem; }
+
+.journey-projects {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--space-sm);
+}
+.journey-projects a {
+  display: flex; flex-direction: column; gap: 4px; height: 100%;
+  padding: var(--space-sm); border: 1px solid var(--border); border-radius: 4px; background: var(--surface);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.journey-projects a:hover { border-color: var(--accent); transform: translateY(-3px); }
+.journey-projects strong { font-family: var(--font-display); font-size: 0.95rem; }
+.journey-projects span { font-size: 0.72rem; color: var(--muted); }
+
+@media (max-width: 480px) {
+  .journey li { grid-template-columns: 1fr; gap: 2px; }
+}

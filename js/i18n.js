@@ -50,10 +50,9 @@ const translations = {
     },
     profile: {
       tagline: "I craft clean, fast<br>and purposeful<br>digital experiences.",
-      bio: "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
+      bio: "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. I'm studying Software Engineering at Bujumbura International University.",
       bioShort: "I'm a full-stack oriented web developer.",
       location: "Bujumbura, Burundi",
-      education: "MSc Software Engineering",
       expertise: "Angular · Express · Node.js",
       activity: "Student & Freelancer",
     },
@@ -141,6 +140,13 @@ const translations = {
       rightsText: "You can unsubscribe with the link in every email, and ask me to access or delete your data at any time by writing to the address on the Contact page.",
       back: "Back to home",
     },
+    journey: {
+      title: "Journey",
+      primary: "Started primary school",
+      secondary: "Secondary school diploma",
+      university: "Studying at Bujumbura International University",
+      keyProjects: "Key projects",
+    },
     notFound: {
       title: "Page Not Found",
       message:
@@ -205,10 +211,9 @@ const translations = {
     profile: {
       tagline:
         "Je crée des expériences<br>numériques propres,<br>rapides et utiles.",
-      bio: "Je suis un développeur web orienté full-stack. Je me soucie d'un code bien structuré, d'une UI réfléchie et de produits qui servent réellement les gens. Actuellement en Master en Génie Logiciel.",
+      bio: "Je suis un développeur web orienté full-stack. Je me soucie d'un code bien structuré, d'une UI réfléchie et de produits qui servent réellement les gens. J'étudie le génie logiciel à Bujumbura International University.",
       bioShort: "Je suis un développeur web orienté full-stack.",
       location: "Bujumbura, Burundi",
-      education: "MSc Génie Logiciel",
       expertise: "Angular · Express · Node.js",
       activity: "Étudiant & Freelance",
     },
@@ -296,6 +301,13 @@ const translations = {
       rightsText: "Vous pouvez vous désabonner via le lien présent dans chaque email, et me demander d'accéder à vos données ou de les supprimer à tout moment en écrivant à l'adresse indiquée sur la page Contact.",
       back: "Retour à l'accueil",
     },
+    journey: {
+      title: "Parcours",
+      primary: "Début de l'école primaire",
+      secondary: "Diplôme de fin d'études secondaires",
+      university: "Études à Bujumbura International University",
+      keyProjects: "Projets clés",
+    },
     notFound: {
       title: "Page Introuvable",
       message:
@@ -360,10 +372,9 @@ const translations = {
     profile: {
       tagline:
         "Ninaunda safi, haraka<br>na zenye kusudi<br>uzoefu wa kidijitali.",
-      bio: "Mimi ni msanidi wa web mwenye mwelekeo wa full-stack. Ninajali code iliyopangwa vizuri, UI yenye kufikiriwa, na bidhaa zinazohudumia watu kweli. Kwa sasa ninafanya MSc katika Uhandisi wa Programu.",
+      bio: "Mimi ni msanidi wa web mwenye mwelekeo wa full-stack. Ninajali code iliyopangwa vizuri, UI yenye kufikiriwa, na bidhaa zinazohudumia watu kweli. Ninasoma uhandisi wa programu katika Bujumbura International University.",
       bioShort: "Mimi ni msanidi wa web mwenye mwelekeo wa full-stack.",
       location: "Bujumbura, Burundi",
-      education: "MSc Uhandisi wa Programu",
       expertise: "Angular · Express · Node.js",
       activity: "Mwanafunzi & Mfanyakazi huru",
     },
@@ -436,6 +447,13 @@ const translations = {
     privacy: {
       link: "Taarifa ya faragha",
     },
+    journey: {
+      title: "Safari yangu",
+      primary: "Kuanza shule ya msingi",
+      secondary: "Cheti cha kuhitimu sekondari",
+      university: "Masomo katika Bujumbura International University",
+      keyProjects: "Miradi muhimu",
+    },
     notFound: {
       title: "Ukurasa Haupatikani",
       message: "Lo! Ukurasa unaoutafuta haupo au umehamishwa.",
@@ -498,10 +516,9 @@ const translations = {
     profile: {
       tagline:
         "Creo experiencias<br>digitales limpias,<br>rápidas y con propósito.",
-      bio: "Soy un desarrollador web orientado a full-stack. Me preocupo por el código bien estructurado, UI reflexiva y productos que realmente sirven a las personas. Actualmente cursando un MSc en Ingeniería de Software.",
+      bio: "Soy un desarrollador web orientado a full-stack. Me preocupo por el código bien estructurado, UI reflexiva y productos que realmente sirven a las personas. Estudio ingeniería de software en Bujumbura International University.",
       bioShort: "Soy un desarrollador web orientado a full-stack.",
       location: "Bujumbura, Burundi",
-      education: "MSc Ingeniería de Software",
       expertise: "Angular · Express · Node.js",
       activity: "Estudiante & Freelancer",
     },
@@ -574,6 +591,13 @@ const translations = {
     privacy: {
       link: "Aviso de privacidad",
     },
+    journey: {
+      title: "Trayectoria",
+      primary: "Inicio de la escuela primaria",
+      secondary: "Diploma de educación secundaria",
+      university: "Estudios en Bujumbura International University",
+      keyProjects: "Proyectos clave",
+    },
     notFound: {
       title: "Página No Encontrada",
       message: "¡Ups! La página que buscas no existe o ha sido movida.",
@@ -636,10 +660,9 @@ const translations = {
     profile: {
       tagline:
         "Ich gestalte saubere,<br>schnelle und zielgerichtete<br>digitale Erfahrungen.",
-      bio: "Ich bin ein Full-Stack-orientierter Webentwickler. Ich lege Wert auf gut strukturierten Code, durchdachte UI und Produkte, die den Menschen wirklich dienen. Derzeit absolviere ich einen MSc in Software Engineering.",
+      bio: "Ich bin ein Full-Stack-orientierter Webentwickler. Ich lege Wert auf gut strukturierten Code, durchdachte UI und Produkte, die den Menschen wirklich dienen. Ich studiere Softwaretechnik an der Bujumbura International University.",
       bioShort: "Ich bin ein Full-Stack-orientierter Webentwickler.",
       location: "Bujumbura, Burundi",
-      education: "MSc Software Engineering",
       expertise: "Angular · Express · Node.js",
       activity: "Student & Freelancer",
     },
@@ -719,6 +742,13 @@ const translations = {
     privacy: {
       link: "Datenschutz",
     },
+    journey: {
+      title: "Werdegang",
+      primary: "Beginn der Grundschule",
+      secondary: "Abschluss der Sekundarschule",
+      university: "Studium an der Bujumbura International University",
+      keyProjects: "Wichtige Projekte",
+    },
     notFound: {
       title: "Seite nicht gefunden",
       message:
@@ -773,10 +803,9 @@ const translations = {
     },
     profile: {
       tagline: "Nasalaka biloko<br>ya pete, ya noki<br>mpe ya ntina.",
-      bio: "Nazali mosali ya web full-stack. Natalelaka code oyo ebongisami malamu, UI oyo ekanisi malamu, mpe biloko oyo esalisaka bato. Sikawa nazali kosala MSc na Software Engineering.",
+      bio: "Nazali mosali ya web full-stack. Natalelaka code oyo ebongisami malamu, UI oyo ekanisi malamu, mpe biloko oyo esalisaka bato. Nazali koyekola génie logiciel na Bujumbura International University.",
       bioShort: "Nazali mosali ya web full-stack.",
       location: "Bujumbura, Burundi",
-      education: "MSc Software Engineering",
       expertise: "Angular · Express · Node.js",
       activity: "Moyekoli & Mosali ya ndenge na ye",
     },
@@ -855,6 +884,13 @@ const translations = {
     },
     privacy: {
       link: "Politiki ya makambo ya moko",
+    },
+    journey: {
+      title: "Nzela na ngai",
+      primary: "Kobanda ekolo ya liboso (primaire)",
+      secondary: "Diplome ya suka ya secondaire",
+      university: "Koyekola na Bujumbura International University",
+      keyProjects: "Misala ya ntina",
     },
     notFound: {
       title: "Lokasa ezwami te",

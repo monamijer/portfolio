@@ -15,7 +15,7 @@ export const ROUTES = {
   "/about": {
     title: "About · Monami Jerome",
     description:
-      "About Monami Jerome: full-stack web developer based in Bujumbura, studying Software Engineering and freelancing with Angular, Node.js and PHP.",
+      "About Monami Jerome: full-stack web developer based in Bujumbura, studying Software Engineering at Bujumbura International University and building with Angular, Node.js and PHP.",
   },
   "/projects": {
     title: "Projects · Monami Jerome",
