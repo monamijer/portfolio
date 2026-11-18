@@ -1,3 +1,5 @@
+import { assetUrl } from './paths.js';
+
 export const PROFILE = {
   name:       'Monami Jerome',
   title:      'Full-Stack Web Developer building modern web applications with Angular, Node.js and PHP.',
@@ -5,7 +7,7 @@ export const PROFILE = {
   bio:        "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
   location:   'Bujumbura, Burundi',
   email:      'monamijer2005@gmail.com',
-  photo:      'images/monami.webp',
+  photo:      assetUrl('images/monami.webp'),
   education:  'MSc Software Engineering',
   expertise:  'Angular · Express · Node.js',
   activity:   'Student & Freelancer',
@@ -40,9 +42,9 @@ export const PROJECTS = [
     tags:  ['HTML', 'CSS', 'Vanilla JS'],
     demo:  'https://monamijer.github.io/portfolio',
     repo:  'https://github.com/monamijer/portfolio',
-    image: 'images/portfolio.png',
+    image: assetUrl('images/portfolio.png'),
     emoji: '⛩️',
-    // image: 'images/projects/portfolio.jpg',
+    // image: assetUrl('images/projects/portfolio.jpg'),
   },
   {
     title: 'PSAG Parish Management',
@@ -50,7 +52,7 @@ export const PROJECTS = [
     tags:  ['PHP', 'MySQL', 'JavaScript', 'AJAX'],
     demo:  'https://mjerome.alwaysdata.net/psag_parish',
     repo:  null,
-    image: 'images/psag.png',
+    image: assetUrl('images/psag.png'),
     emoji: '⛪',
   },
   {
@@ -66,7 +68,7 @@ export const PROJECTS = [
     desc:  'A WordPress-powered platform for a driving school — course listings, online booking, instructor profiles, and a custom admin dashboard.',
     tags:  ['WordPress', 'PHP', 'MySQL', 'JavaScript'],
     demo:  'https://jerome.site.je',
-    image: 'images/driveschool.png',
+    image: assetUrl('images/driveschool.png'),
     emoji: '🚗',
   },
   {
@@ -74,6 +76,6 @@ export const PROJECTS = [
     desc:  'A SpringBoot web API challenges, incremental projects, helping users to find films and series, series by name, actors and manages his views using TMDB API',
     tags:  ['SpringBoot', 'Java', 'MySQL', 'TMDB API'],
     repo:  'https://github.com/monamijer/mythra',
-    image: 'images/serietracker.webp',
+    image: assetUrl('images/serietracker.webp'),
   },
 ];

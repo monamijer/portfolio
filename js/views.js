@@ -4,6 +4,7 @@
  */
 
 import { PROFILE, SKILLS, SERVICES, PROJECTS } from "./data.js";
+import { routeHref } from "./paths.js";
 
 /* ── Shared marquee strip ────────────────────────────────────── */
 const marquee = () => {
@@ -46,10 +47,10 @@ export const homeView = () => /* html */ `
         </h1>
         <p data-i18n="profile.bioShort">${PROFILE.bio.split(".")[0]}.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#/projects">
+          <a class="btn btn-primary" href="${routeHref('/projects')}">
             <i class="bi bi-grid-3x3-gap"></i> <span data-i18n="common.viewWork">View Work</span>
           </a>
-          <a class="btn btn-outline" href="#/contact"><span data-i18n="common.letsTalk">Let's Talk</span></a>
+          <a class="btn btn-outline" href="${routeHref('/contact')}"><span data-i18n="common.letsTalk">Let's Talk</span></a>
         </div>
       </div>
 
@@ -72,7 +73,7 @@ export const homeView = () => /* html */ `
   <div class="container" style="padding-bottom: var(--space-xl)">
     <div class="reveal" style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-md)">
       <h2 style="font-size:clamp(1.6rem,3vw,2.5rem)" data-i18n="common.selectedWork">Selected Work</h2>
-      <a href="#/projects" class="btn btn-outline" style="font-size:0.7rem" data-i18n="common.allProjects">All Projects →</a>
+      <a href="${routeHref('/projects')}" class="btn btn-outline" style="font-size:0.7rem" data-i18n="common.allProjects">All Projects →</a>
     </div>
     <div class="projects-grid">
       ${PROJECTS.slice(0, 2)
@@ -115,7 +116,7 @@ export const aboutView = () => /* html */ `
         </div>
 
         <div class="reveal reveal-delay-2">
-          <a class="btn btn-primary" href="#/contact">
+          <a class="btn btn-primary" href="${routeHref('/contact')}">
             <i class="bi bi-send"></i> <span data-i18n="common.getInTouch">Get in touch</span>
           </a>
         </div>
@@ -299,11 +300,11 @@ export const notFoundView = () => /* html */ `
         Oops! The page you're looking for doesn't exist or has been moved.
       </p>
       <div class="not-found-actions">
-        <a href="#/" class="btn btn-primary">
+        <a href="${routeHref('/')}" class="btn btn-primary">
           <i class="bi bi-house"></i>
           <span data-i18n="notFound.backHome">Back to Home</span>
         </a>
-        <a href="#/projects" class="btn btn-outline">
+        <a href="${routeHref('/projects')}" class="btn btn-outline">
           <i class="bi bi-grid-3x3-gap"></i>
           <span data-i18n="notFound.viewProjects">View Projects</span>
         </a>

@@ -4,6 +4,7 @@
  */
 
 import { Router } from "./router.js";
+import { currentRoute } from "./paths.js";
 import { setupNewsletter } from "./newsletter.js";
 import { privacyView } from "./privacy.js";
 import {
@@ -1080,7 +1081,7 @@ window.addEventListener("route:changed", ({ detail }) => {
  * a completely new typing animation using the new language.
  */
 document.addEventListener("languageChanged", ({ detail }) => {
-  const currentPath = window.location.hash.replace("#", "") || "/";
+  const currentPath = currentRoute();
 
   window.dispatchEvent(
     new CustomEvent("route:changed", {
@@ -1112,7 +1113,7 @@ setupFormValidation();
  * This guarantees that the typing effect works even if the
  * router does not emit route:changed during its initial start.
  */
-const initialPath = window.location.hash.replace("#", "") || "/";
+const initialPath = currentRoute();
 
 if (initialPath === "/") {
   setupTypingEffect();
