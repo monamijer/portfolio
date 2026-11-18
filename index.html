@@ -198,9 +198,35 @@
       <i class="bi bi-arrow-up"></i>
     </button>
 
+    <!-- ── NEWSLETTER (Brevo) ───────────────────── -->
+    <section id="newsletter" class="newsletter" aria-labelledby="nlTitle">
+      <div class="newsletter-inner">
+        <div class="newsletter-copy">
+          <h2 id="nlTitle" data-i18n="newsletter.title">Newsletter</h2>
+          <p data-i18n="newsletter.text">Occasional notes on web development, new projects and lessons learned. No spam.</p>
+        </div>
+        <form id="newsletterForm" class="newsletter-form" method="POST" action="https://da09d370.sibforms.com/serve/MUIFAFMSY4LJIi4djKsqnD910iFF14PTbdwiICGj4NQ462SxkxHT1i0R86rGuTmGRP86A2yccolzWn-7nebSTgTXIz9hFzvzffinPd9hY1VOm3KjTfGF8wY5KeWnbmL-FJmKoAS6IR6RWgGWlCA6Nas3NJ94XykjnUOw7AJQ6OxyisRsH8f8pv1sMTb7-XWdk1f3bhUFROzcywoqrw==" novalidate>
+          <div class="form-group">
+            <label for="nlEmail" data-i18n="newsletter.label">Email address</label>
+            <div class="newsletter-row">
+              <input type="email" id="nlEmail" name="EMAIL" autocomplete="email" maxlength="254" required data-i18n="newsletter.placeholder" placeholder="you@example.com" />
+              <button class="btn btn-primary" type="submit"><i class="bi bi-envelope-paper"></i> <span data-i18n="newsletter.submit">Subscribe</span></button>
+            </div>
+          </div>
+          <label class="newsletter-consent" for="nlConsent">
+            <input type="checkbox" id="nlConsent" />
+            <span><span data-i18n="newsletter.consent">I agree to receive the newsletter by email.</span> <a href="#/privacy" data-i18n="privacy.link">Privacy notice</a></span>
+          </label>
+          <input type="text" name="email_address_check" value="" class="nl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="locale" value="en" />
+          <div class="form-feedback" id="newsletterFeedback" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
     <!-- ── FOOTER ───────────────────────────────── -->
     <footer id="footer">
-      <p>© 2023 - <span id="year"></span> Monami Jerome</p>
+      <p>© 2023 - <span id="year"></span> Monami Jerome · <a href="#/privacy" data-i18n="privacy.link">Privacy notice</a></p>
       <div class="footer-social">
         <a
           href="https://github.com/monamijer"

@@ -4,6 +4,8 @@
  */
 
 import { Router } from "./router.js";
+import { setupNewsletter } from "./newsletter.js";
+import { privacyView } from "./privacy.js";
 import {
   homeView,
   aboutView,
@@ -354,6 +356,7 @@ const app = document.getElementById("app");
 
 const router = new Router(app)
   .on("/", homeView)
+  .on("/privacy", privacyView)
   .on("/about", aboutView)
   .on("/projects", projectsView)
   .on("/contact", contactView)
@@ -999,6 +1002,10 @@ const yearEl = document.getElementById("year");
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
+
+/* ── Newsletter (Brevo) ──────────────────────────────────────── */
+
+setupNewsletter();
 
 /* ── Post-Render Hooks ───────────────────────────────────────── */
 
