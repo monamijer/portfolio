@@ -20,7 +20,12 @@ export const ROUTES = {
   "/projects": {
     title: "Projects · Monami Jerome",
     description:
-      "Selected projects by Monami Jerome: parish management app, driving school platform, Django library, Spring Boot series tracker and this portfolio.",
+      "Selected projects by Monami Jerome: Optimal learning platform, parish management app, driving school platform, Django library, Spring Boot series tracker and this portfolio.",
+  },
+  "/projects/optimal": {
+    title: "Optimal · Case study · Monami Jerome",
+    description:
+      "Optimal, an Angular 19 documentation platform that turns Markdown course notes into navigable study pages. Architecture, features and roadmap.",
   },
   "/contact": {
     title: "Contact · Monami Jerome",

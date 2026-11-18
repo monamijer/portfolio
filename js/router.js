@@ -119,7 +119,10 @@ export class Router {
     // Highlight active nav link
     document.querySelectorAll(".nav-links a").forEach((a) => {
       const linkRoute = currentRoute(new URL(a.href, window.location.href).pathname);
-      a.classList.toggle("active", linkRoute === path);
+      a.classList.toggle(
+        "active",
+        linkRoute === path || (linkRoute !== "/" && path.startsWith(`${linkRoute}/`)),
+      );
     });
 
     this.#applyMeta(path);

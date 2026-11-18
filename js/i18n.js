@@ -12,6 +12,9 @@ const translations = {
       contact: "Contact",
     },
     common: {
+      caseStudy: "Case study",
+      inDevelopment: "In development",
+      backToProjects: "Back to projects",
       available: "Available for freelance",
       scrollToExplore: "Scroll to explore",
       selectedWork: "Selected Work",
@@ -80,6 +83,10 @@ const translations = {
       },
     },
     projects: {
+      optimal: {
+        title: "Optimal",
+        desc: "Academic documentation platform that turns course Markdown into clean study pages, with a live table of contents, scroll tracking and dark mode.",
+      },
       portfolio: {
         title: "Portfolio Website",
         desc: "This very site — a zero-dependency SPA built with vanilla JS, custom router, and CSS custom properties.",
@@ -151,6 +158,9 @@ const translations = {
       contact: "Contact",
     },
     common: {
+      caseStudy: "Étude de cas",
+      inDevelopment: "En développement",
+      backToProjects: "Retour aux projets",
       available: "Disponible pour freelance",
       scrollToExplore: "Défiler pour explorer",
       selectedWork: "Travaux sélectionnés",
@@ -222,6 +232,10 @@ const translations = {
       },
     },
     projects: {
+      optimal: {
+        title: "Optimal",
+        desc: "Plateforme de documentation académique qui transforme des cours en Markdown en pages d'étude claires, avec sommaire dynamique, suivi du défilement et mode sombre.",
+      },
       portfolio: {
         title: "Site Portfolio",
         desc: "Ce site même — une SPA sans dépendance construite avec vanilla JS, routeur personnalisé et propriétés CSS personnalisées.",
@@ -293,6 +307,9 @@ const translations = {
       contact: "Mawasiliano",
     },
     common: {
+      caseStudy: "Uchunguzi wa mradi",
+      inDevelopment: "Inaendelezwa",
+      backToProjects: "Rudi kwenye miradi",
       available: "Napatikana kwa kazi",
       scrollToExplore: "Tembeza kuchunguza",
       selectedWork: "Kazi zilizochaguliwa",
@@ -423,6 +440,9 @@ const translations = {
       contact: "Contacto",
     },
     common: {
+      caseStudy: "Caso de estudio",
+      inDevelopment: "En desarrollo",
+      backToProjects: "Volver a proyectos",
       available: "Disponible para freelance",
       scrollToExplore: "Desplázate para explorar",
       selectedWork: "Trabajos seleccionados",
@@ -552,6 +572,9 @@ const translations = {
       contact: "Kontakt",
     },
     common: {
+      caseStudy: "Fallstudie",
+      inDevelopment: "In Entwicklung",
+      backToProjects: "Zurück zu den Projekten",
       available: "Verfügbar für Freelance",
       scrollToExplore: "Scrollen zum Entdecken",
       selectedWork: "Ausgewählte Arbeiten",
@@ -682,6 +705,9 @@ const translations = {
       contact: "Bosolo",
     },
     common: {
+      caseStudy: "Etude ya projet",
+      inDevelopment: "Ezali kobongisama",
+      backToProjects: "Zonga na misala",
       available: "Nazali kosala mosala",
       scrollToExplore: "Gumba mpo na kotala",
       selectedWork: "Misala miye miponami",
