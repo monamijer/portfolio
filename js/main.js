@@ -1048,7 +1048,6 @@ window.addEventListener("route:changed", ({ detail }) => {
   /*
    * Re-initialize page-specific functionality.
    */
-  animateSkillBars();
   wireContactForm();
 
   updateScrollProgress();
@@ -1129,31 +1128,6 @@ const initialPath = currentRoute();
 
 if (initialPath === "/") {
   setupTypingEffect();
-}
-
-/* ── Skill Bar Animation ─────────────────────────────────────── */
-
-/**
- * Animate skill progress bars when they enter the viewport.
- */
-function animateSkillBars() {
-  const fills = document.querySelectorAll(".skill-fill");
-
-  if (!fills.length) {
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) =>
-      entries.forEach(
-        (e) => e.isIntersecting && e.target.classList.add("animate"),
-      ),
-    {
-      threshold: 0.3,
-    },
-  );
-
-  fills.forEach((el) => observer.observe(el));
 }
 
 /* ── Contact Form Hook ───────────────────────────────────────── */

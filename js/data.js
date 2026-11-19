@@ -20,12 +20,37 @@ export const PROFILE = {
   },
 };
 
-export const SKILLS = [
-  { name: 'HTML & CSS',       level: 90 },
-  { name: 'JavaScript',       level: 75 },
-  { name: 'Angular',          level: 65 },
-  { name: 'Node / Express',   level: 60 },
-  { name: 'Git & CI/CD',      level: 70 },
+// Levels replace the old percentages. "projects" are PROJECTS keys where the
+// skill is really used; edit levels here, the About page renders them.
+export const SKILL_GROUPS = [
+  {
+    level: 'advanced',
+    items: [
+      { name: 'HTML & CSS', i18n: 'htmlCss', projects: ['psag', 'selfDriving', 'portfolio'] },
+    ],
+  },
+  {
+    level: 'proficient',
+    items: [
+      { name: 'JavaScript',  i18n: 'javascript', projects: ['psag', 'portfolio'] },
+      { name: 'Angular',     i18n: 'angular',    projects: ['optimal'] },
+      { name: 'Git & CI/CD', i18n: 'gitCicd',    projects: ['portfolio'] },
+    ],
+  },
+  {
+    level: 'working',
+    items: [
+      { name: 'Node / Express', i18n: 'nodeExpress', projects: [] },
+    ],
+  },
+  {
+    level: 'also',
+    items: [
+      { name: 'PHP & MySQL',       projects: ['psag', 'selfDriving'] },
+      { name: 'Python & Django',   projects: ['django'] },
+      { name: 'Java & Spring Boot', projects: ['serieTracker'] },
+    ],
+  },
 ];
 
 export const SERVICES = [

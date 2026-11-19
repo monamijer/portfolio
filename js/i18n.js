@@ -58,6 +58,12 @@ const translations = {
       activity: "Student & Freelancer",
     },
     skills: {
+      levels: {
+        advanced: "Advanced",
+        proficient: "Proficient",
+        working: "Working knowledge",
+        also: "Also used in projects",
+      },
       htmlCss: "HTML & CSS",
       javascript: "JavaScript",
       angular: "Angular",
@@ -207,6 +213,12 @@ const translations = {
       activity: "Étudiant & Freelance",
     },
     skills: {
+      levels: {
+        advanced: "Avancé",
+        proficient: "Solide",
+        working: "Notions pratiques",
+        also: "Aussi utilisé dans les projets",
+      },
       htmlCss: "HTML & CSS",
       javascript: "JavaScript",
       angular: "Angular",
@@ -356,6 +368,12 @@ const translations = {
       activity: "Mwanafunzi & Mfanyakazi huru",
     },
     skills: {
+      levels: {
+        advanced: "Ya juu",
+        proficient: "Imara",
+        working: "Ufahamu wa kazi",
+        also: "Pia imetumika katika miradi",
+      },
       htmlCss: "HTML & CSS",
       javascript: "JavaScript",
       angular: "Angular",
@@ -488,6 +506,12 @@ const translations = {
       activity: "Estudiante & Freelancer",
     },
     skills: {
+      levels: {
+        advanced: "Avanzado",
+        proficient: "Sólido",
+        working: "Conocimiento práctico",
+        also: "También usado en proyectos",
+      },
       htmlCss: "HTML & CSS",
       javascript: "JavaScript",
       angular: "Angular",
@@ -620,6 +644,12 @@ const translations = {
       activity: "Student & Freelancer",
     },
     skills: {
+      levels: {
+        advanced: "Fortgeschritten",
+        proficient: "Solide",
+        working: "Grundkenntnisse",
+        also: "Außerdem in Projekten genutzt",
+      },
       htmlCss: "HTML & CSS",
       javascript: "JavaScript",
       angular: "Angular",
@@ -751,6 +781,12 @@ const translations = {
       activity: "Moyekoli & Mosali ya ndenge na ye",
     },
     skills: {
+      levels: {
+        advanced: "Makasi",
+        proficient: "Malamu",
+        working: "Boyebi ya mosala",
+        also: "Esalelami lisusu na misala",
+      },
       htmlCss: "HTML & CSS",
       javascript: "JavaScript",
       angular: "Angular",
