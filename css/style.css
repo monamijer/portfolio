@@ -1513,7 +1513,7 @@ body.reader-mode {
 .typing-container {
   display: inline-block;
   position: relative;
-  min-height: 1.2em;
+  min-height: 2em; /* reserve two lines: no layout shift while typing */
 }
 
 #typing-text {
@@ -1790,3 +1790,6 @@ body.reader-mode {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
+
+/* Keep the footer below the fold until the view renders (no layout shift) */
+#app { min-height: 100vh; min-height: 100svh; }

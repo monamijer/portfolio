@@ -380,7 +380,7 @@ function projectCard(
 ) {
   const projectKey = key;
   const thumb = image
-    ? `<img src="${image}" alt="${title}" loading="lazy" />`
+    ? `<img src="${image}" alt="${title}" loading="lazy" decoding="async" width="900" height="427" />`
     : `<div class="project-thumb-placeholder">${emoji ?? "◆"}</div>`;
 
   const links = [
