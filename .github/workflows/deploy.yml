@@ -3,6 +3,18 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+    # Only rebuild/redeploy when something that ends up in the site changes
+    # (README, LICENSE and other docs-only commits no longer create a deployment)
+    paths:
+      - "css/**"
+      - "js/**"
+      - "public/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.js"
+      - ".github/workflows/deploy.yml"
   pull_request:
     branches: ["main"]
   workflow_dispatch:
