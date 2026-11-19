@@ -161,6 +161,15 @@ function setupTypingEffect() {
   let plainText = currentPhrase.replace(/<br\s*\/?>/gi, "\n");
 
   /*
+   * Reduced motion: show the full tagline, no typing animation.
+   */
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    typingElement.innerHTML = currentPhrase;
+    if (typingCursor) typingCursor.style.display = "none";
+    return;
+  }
+
+  /*
    * Current character position.
    */
   let charIndex = 0;
@@ -534,11 +543,11 @@ function setupProjectFilters() {
 
       filterButtons.forEach((b) => {
         b.classList.remove("active");
-        b.setAttribute("aria-selected", "false");
+        b.setAttribute("aria-pressed", "false");
       });
 
       btn.classList.add("active");
-      btn.setAttribute("aria-selected", "true");
+      btn.setAttribute("aria-pressed", "true");
 
       let visibleCount = 0;
 

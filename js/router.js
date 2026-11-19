@@ -10,6 +10,7 @@ import { ROUTES, routeUrl } from "./routes-meta.js";
 export class Router {
   /** @type {{ [path: string]: () => string }} */
   #routes = {};
+  #started = false;
 
   /** @param {HTMLElement} outlet – DOM node where views are injected */
   constructor(outlet) {
@@ -98,6 +99,8 @@ export class Router {
   }
 
   #resolve() {
+    const isFirst = !this.#started;
+    this.#started = true;
     const path = currentRoute();
     const render = this.#routes[path] ?? this.#routes["/404"];
 
@@ -127,8 +130,9 @@ export class Router {
 
     this.#applyMeta(path);
 
-    // Scroll top on navigation
+    // Scroll top and move focus to the new content (screen readers + keyboard)
     window.scrollTo({ top: 0 });
+    if (!isFirst) this.outlet.focus({ preventScroll: true });
 
     // Dispatch a custom event so views can run post-render logic
     window.dispatchEvent(

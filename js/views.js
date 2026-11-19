@@ -113,7 +113,7 @@ export const aboutView = () => /* html */ `
           <div class="info-item"><strong data-i18n="common.status">Status</strong><span data-i18n="profile.activity">${PROFILE.activity}</span></div>
           <div class="info-item">
             <strong data-i18n="common.email">Email</strong>
-            <a href="mailto:${PROFILE.email}" style="color:var(--accent)">${PROFILE.email}</a>
+            <a href="mailto:${PROFILE.email}" style="color:var(--accent-text)">${PROFILE.email}</a>
           </div>
         </div>
 
@@ -174,7 +174,7 @@ export const aboutView = () => /* html */ `
               return `
               <div class="service-card reveal reveal-delay-${index + 1}">
                 <i class="bi ${icon}"></i>
-                <h5 data-i18n="services.${serviceKey}.title">${title}</h5>
+                <h3 data-i18n="services.${serviceKey}.title">${title}</h3>
                 <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem" data-i18n="services.${serviceKey}.desc">${desc}</p>
               </div>`;
             }).join("")}
@@ -193,21 +193,21 @@ export const projectsView = () => /* html */ `
       <span class="section-label" data-i18n="common.portfolio">Portfolio</span>
       <h1 data-i18n="common.selectedWork">Selected Work</h1>
     </div>
-    
+    <h2 class="sr-only" data-i18n="nav.projects">Projects</h2>
     <!-- Project Filters -->
-    <div class="project-filters reveal reveal-delay-1" role="tablist" aria-label="Filter projects">
-      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+    <div class="project-filters reveal reveal-delay-1" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">
         <span data-i18n="filters.all">All</span>
       </button>
-      <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">
+      <button class="filter-btn" data-filter="web" aria-pressed="false">
         <i class="bi bi-globe"></i>
         <span data-i18n="filters.web">Web Apps</span>
       </button>
-      <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">
+      <button class="filter-btn" data-filter="fullstack" aria-pressed="false">
         <i class="bi bi-layers"></i>
         <span data-i18n="filters.fullstack">Full Stack</span>
       </button>
-      <button class="filter-btn" data-filter="backend" role="tab" aria-selected="false">
+      <button class="filter-btn" data-filter="backend" aria-pressed="false">
         <i class="bi bi-server"></i>
         <span data-i18n="filters.backend">Backend</span>
       </button>

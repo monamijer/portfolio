@@ -971,7 +971,7 @@ class I18n {
     if (!container) return;
 
     container.innerHTML = `
-      <button class="lang-toggle" id="langToggle" aria-label="Change language">
+      <button class="lang-toggle" id="langToggle" aria-label="${this.currentLang.toUpperCase()}, Change language" aria-haspopup="true" aria-expanded="false">
         ${languages[this.currentLang].flag}
         <span>${this.currentLang.toUpperCase()}</span>
         <i class="bi bi-chevron-down"></i>
@@ -1022,6 +1022,7 @@ class I18n {
     const dropdown = document.getElementById("langDropdown");
     if (!toggle || !dropdown) return;
 
+    toggle.setAttribute("aria-label", `${this.currentLang.toUpperCase()}, Change language`);
     toggle.innerHTML = `
       ${languages[this.currentLang].flag}
       <span>${this.currentLang.toUpperCase()}</span>
