@@ -3,9 +3,10 @@
  * Each exported function returns an HTML string for a route.
  */
 
-import { PROFILE, SKILL_GROUPS, SERVICES, PROJECTS } from "./data.js";
-import { routeHref } from "./paths.js";
+import { PROFILE, SKILL_GROUPS, SERVICES, PROJECTS, KEY_PROJECTS, MILESTONES } from "./data.js";
+import { routeHref, assetUrl } from "./paths.js";
 import { CASE_STUDIES } from "./case-studies.js";
+import { studyStatus } from "./studies.js";
 
 /* ── Shared marquee strip ────────────────────────────────────── */
 const marquee = () => {
@@ -107,19 +108,45 @@ export const aboutView = () => /* html */ `
 
         <div class="info-grid reveal reveal-delay-1">
           <div class="info-item"><strong data-i18n="common.location">Location</strong><span data-i18n="profile.location">${PROFILE.location}</span></div>
-          <div class="info-item"><strong data-i18n="common.education">Education</strong><span data-i18n="profile.education">${PROFILE.education}</span></div>
+          <div class="info-item"><strong data-i18n="common.education">Education</strong><span>${studyLine()}</span></div>
           <div class="info-item"><strong data-i18n="common.expertise">Expertise</strong><span data-i18n="profile.expertise">${PROFILE.expertise}</span></div>
           <div class="info-item"><strong data-i18n="common.status">Status</strong><span data-i18n="profile.activity">${PROFILE.activity}</span></div>
           <div class="info-item">
             <strong data-i18n="common.email">Email</strong>
-            <a href="mailto:${PROFILE.email}" style="color:var(--accent)">${PROFILE.email}</a>
+            <a href="mailto:${PROFILE.email}" style="color:var(--accent-text)">${PROFILE.email}</a>
           </div>
         </div>
 
-        <div class="reveal reveal-delay-2">
+        <div class="reveal reveal-delay-2" style="display:flex;flex-wrap:wrap;gap:var(--space-sm)">
           <a class="btn btn-primary" href="${routeHref('/contact')}">
             <i class="bi bi-send"></i> <span data-i18n="common.getInTouch">Get in touch</span>
           </a>
+          <a class="btn btn-outline" data-cv href="${assetUrl('docs/monami-jerome-cv-en.pdf')}" download>
+            <i class="bi bi-download"></i> <span data-i18n="common.downloadCv">Download CV</span>
+          </a>
+        </div>
+
+        <!-- Journey -->
+        <div class="journey-section reveal">
+          <h2 data-i18n="journey.title">Journey</h2>
+          <ol class="journey">
+            ${MILESTONES.map(
+              ({ year, key }) => `
+              <li><time>${year}</time><span data-i18n="journey.${key}">${key}</span></li>`,
+            ).join("")}
+            <li class="current">
+              <time>${studyStatus().academicYear}</time>
+              <div>
+                <span data-i18n="journey.university">Studying at ${studyStatus().school}</span>
+                <small>${studyLine()}</small>
+              </div>
+            </li>
+          </ol>
+
+          <h3 data-i18n="journey.keyProjects">Key projects</h3>
+          <ul class="journey-projects">
+            ${KEY_PROJECTS.map(projectChip).join("")}
+          </ul>
         </div>
 
         <!-- Skills -->
@@ -147,7 +174,7 @@ export const aboutView = () => /* html */ `
               return `
               <div class="service-card reveal reveal-delay-${index + 1}">
                 <i class="bi ${icon}"></i>
-                <h5 data-i18n="services.${serviceKey}.title">${title}</h5>
+                <h3 data-i18n="services.${serviceKey}.title">${title}</h3>
                 <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem" data-i18n="services.${serviceKey}.desc">${desc}</p>
               </div>`;
             }).join("")}
@@ -166,21 +193,21 @@ export const projectsView = () => /* html */ `
       <span class="section-label" data-i18n="common.portfolio">Portfolio</span>
       <h1 data-i18n="common.selectedWork">Selected Work</h1>
     </div>
-    
+    <h2 class="sr-only" data-i18n="nav.projects">Projects</h2>
     <!-- Project Filters -->
-    <div class="project-filters reveal reveal-delay-1" role="tablist" aria-label="Filter projects">
-      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+    <div class="project-filters reveal reveal-delay-1" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">
         <span data-i18n="filters.all">All</span>
       </button>
-      <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">
+      <button class="filter-btn" data-filter="web" aria-pressed="false">
         <i class="bi bi-globe"></i>
         <span data-i18n="filters.web">Web Apps</span>
       </button>
-      <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">
+      <button class="filter-btn" data-filter="fullstack" aria-pressed="false">
         <i class="bi bi-layers"></i>
         <span data-i18n="filters.fullstack">Full Stack</span>
       </button>
-      <button class="filter-btn" data-filter="backend" role="tab" aria-selected="false">
+      <button class="filter-btn" data-filter="backend" aria-pressed="false">
         <i class="bi bi-server"></i>
         <span data-i18n="filters.backend">Backend</span>
       </button>
@@ -312,6 +339,23 @@ export const notFoundView = () => /* html */ `
 `;
 
 /* ── Helper functions ───────────────────────────────────────── */
+/* ── Journey helpers ────────────────────────────────────────── */
+function studyLine() {
+  const { level, field } = studyStatus();
+  return `${level} · ${field}`;
+}
+
+function projectChip(key) {
+  const project = PROJECTS.find((p) => p.key === key);
+  if (!project) return "";
+  const external = !project.slug;
+  const href = project.slug
+    ? routeHref(`/projects/${project.slug}`)
+    : (project.demo ?? project.repo);
+  const attrs = external ? ' target="_blank" rel="noopener"' : "";
+  return `<li><a href="${href}"${attrs}><strong>${project.title}</strong><span>${project.tags.slice(0, 3).join(" · ")}</span></a></li>`;
+}
+
 function skillItem({ name, i18n, projects }) {
   const label = i18n
     ? `<strong data-i18n="skills.${i18n}">${name}</strong>`

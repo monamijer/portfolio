@@ -4,11 +4,10 @@ export const PROFILE = {
   name:       'Monami Jerome',
   title:      'Full-Stack Web Developer building modern web applications with Angular, Node.js and PHP.',
   tagline:    'I craft clean, fast\nand purposeful\ndigital experiences.',
-  bio:        "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. Currently pursuing an MSc in Software Engineering.",
+  bio:        "I'm a full-stack oriented web developer. I care about well-structured code, thoughtful UI, and products that actually serve people. I'm studying Software Engineering at Bujumbura International University.",
   location:   'Bujumbura, Burundi',
   email:      'monamijer2005@gmail.com',
   photo:      assetUrl('images/monami.webp'),
-  education:  'MSc Software Engineering',
   expertise:  'Angular · Express · Node.js',
   activity:   'Student & Freelancer',
   socials: {
@@ -123,4 +122,13 @@ export const PROJECTS = [
     emoji: '⛩️',
     categories: ['web'],
   },
+];
+
+// Projects highlighted in the Journey section (PROJECTS keys, in order).
+export const KEY_PROJECTS = ['optimal', 'serieTracker', 'psag'];
+
+// Milestones of the Journey section. The current studies come from studies.js.
+export const MILESTONES = [
+  { year: '2009', key: 'primary' },
+  { year: '2021', key: 'secondary' },
 ];
