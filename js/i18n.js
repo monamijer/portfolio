@@ -413,7 +413,8 @@ const translations = {
       },
     },
     projects: {
-      portfolio: {
+            optimal: { title: "Optimal", desc: "Jukwaa la nyaraka za masomo linalobadilisha masomo ya Markdown kuwa kurasa safi za kujifunzia, lenye jedwali la yaliyomo linalosasishwa, ufuatiliaji wa kusogeza ukurasa na hali ya giza." },
+portfolio: {
         title: "Tovuti ya Portfolio",
         desc: "Tovuti hii haswa — SPA isiyo na utegemezi iliyojengwa kwa vanilla JS, router maalum, na sifa za CSS.",
       },
@@ -449,6 +450,17 @@ const translations = {
     },
     privacy: {
       link: "Taarifa ya faragha",
+      title: "Taarifa ya faragha",
+      intro: "Tovuti hii ni portfolio binafsi. Inakusanya tu data iliyoelezwa hapa chini.",
+      newsletterTitle: "Jarida",
+      newsletterText: "Ukijiandikisha, anwani yako ya barua pepe itahifadhiwa na Brevo, mtoa huduma wangu wa barua pepe aliye nchini Ufaransa, kwa ajili ya kukutumia jarida pekee. Idhini yako ndiyo msingi wa kisheria. Siiuzi wala kuishiriki anwani yako.",
+      contactTitle: "Fomu ya mawasiliano",
+      contactText: "Ujumbe unaotumwa kupitia fomu ya mawasiliano huwasilishwa kwangu na FormSubmit na hutumiwa kukujibu tu.",
+      storageTitle: "Data ya ndani",
+      storageText: "Chaguo zako za mandhari, lugha na hali ya kusoma huhifadhiwa kwenye kivinjari chako pekee. Hakuna vidakuzi vya uchanganuzi au matangazo. Fonti na aikoni hupakiwa kutoka Google Fonts na jsDelivr.",
+      rightsTitle: "Haki zako",
+      rightsText: "Unaweza kujiondoa kupitia kiungo kilicho kwenye kila barua pepe, na unaweza kuniomba kufikia au kufuta data yako wakati wowote kwa kutumia anwani iliyo kwenye ukurasa wa Mawasiliano.",
+      back: "Rudi mwanzo",
     },
     journey: {
       title: "Safari yangu",
@@ -558,7 +570,8 @@ const translations = {
       },
     },
     projects: {
-      portfolio: {
+            optimal: { title: "Optimal", desc: "Plataforma de documentación académica que convierte apuntes en Markdown en páginas de estudio claras, con índice dinámico, seguimiento del desplazamiento y modo oscuro." },
+portfolio: {
         title: "Sitio Portfolio",
         desc: "Este mismo sitio — una SPA sin dependencias construida con vanilla JS, router personalizado y propiedades CSS personalizadas.",
       },
@@ -594,6 +607,17 @@ const translations = {
     },
     privacy: {
       link: "Aviso de privacidad",
+      title: "Aviso de privacidad",
+      intro: "Este sitio es un portfolio personal. Solo recopila los datos descritos a continuación.",
+      newsletterTitle: "Boletín",
+      newsletterText: "Si te suscribes, Brevo, mi proveedor de correo electrónico con sede en Francia, almacenará tu dirección únicamente para enviarte el boletín. Tu consentimiento es la base legal. Nunca vendo ni comparto tu dirección.",
+      contactTitle: "Formulario de contacto",
+      contactText: "Los mensajes enviados mediante el formulario de contacto me llegan a través de FormSubmit y se utilizan únicamente para responderte.",
+      storageTitle: "Datos locales",
+      storageText: "Tus preferencias de tema, idioma y modo de lectura se guardan únicamente en tu navegador. No se utilizan cookies de análisis ni de publicidad. Las fuentes y los iconos se cargan desde Google Fonts y jsDelivr.",
+      rightsTitle: "Tus derechos",
+      rightsText: "Puedes darte de baja mediante el enlace incluido en cada correo y solicitar el acceso o la eliminación de tus datos en cualquier momento escribiendo a la dirección indicada en la página de Contacto.",
+      back: "Volver al inicio",
     },
     journey: {
       title: "Trayectoria",
@@ -703,7 +727,8 @@ const translations = {
       },
     },
     projects: {
-      portfolio: {
+            optimal: { title: "Optimal", desc: "Plattform für akademische Dokumentation, die Markdown-Kursnotizen in übersichtliche Lernseiten mit dynamischem Inhaltsverzeichnis, Scroll-Tracking und Dunkelmodus umwandelt." },
+portfolio: {
         title: "Portfolio-Website",
         desc: "Diese Website — eine SPA ohne Abhängigkeiten, gebaut mit Vanilla JS, eigenem Router und CSS Custom Properties.",
       },
@@ -746,6 +771,17 @@ const translations = {
     },
     privacy: {
       link: "Datenschutz",
+      title: "Datenschutzhinweis",
+      intro: "Diese Website ist ein persönliches Portfolio. Sie erhebt nur die nachfolgend beschriebenen Daten.",
+      newsletterTitle: "Newsletter",
+      newsletterText: "Wenn du dich anmeldest, speichert Brevo, mein in Frankreich ansässiger E-Mail-Dienstleister, deine E-Mail-Adresse ausschließlich zum Versand des Newsletters. Deine Einwilligung ist die Rechtsgrundlage. Ich verkaufe oder teile deine Adresse niemals.",
+      contactTitle: "Kontaktformular",
+      contactText: "Nachrichten über das Kontaktformular werden mir von FormSubmit zugestellt und ausschließlich zur Beantwortung verwendet.",
+      storageTitle: "Lokale Daten",
+      storageText: "Deine Einstellungen für Design, Sprache und Lesemodus werden nur in deinem Browser gespeichert. Es werden keine Analyse- oder Werbe-Cookies verwendet. Schriftarten und Symbole werden von Google Fonts und jsDelivr geladen.",
+      rightsTitle: "Deine Rechte",
+      rightsText: "Du kannst dich über den Link in jeder E-Mail abmelden und jederzeit Auskunft oder Löschung deiner Daten verlangen, indem du an die auf der Kontaktseite angegebene Adresse schreibst.",
+      back: "Zurück zur Startseite",
     },
     journey: {
       title: "Werdegang",
@@ -847,7 +883,8 @@ const translations = {
       },
     },
     projects: {
-      portfolio: {
+            optimal: { title: "Optimal", desc: "Plateforme ya mikanda ya kelasi oyo ebongolaka ba notes ya Markdown na nkasa ya koyekola ya peto, na liste ya makambo oyo ebongwanaka, bolandi ya scroll mpe mode ya butu." },
+portfolio: {
         title: "Site ya Portfolio",
         desc: "Site oyo — SPA oyo esalemi na vanilla JS, router na biso moko, mpe ba propriétés CSS.",
       },
@@ -890,6 +927,17 @@ const translations = {
     },
     privacy: {
       link: "Politiki ya makambo ya moko",
+      title: "Politiki ya makambo ya moto",
+      intro: "Site oyo ezali portfolio ya moto ye moko. Ezwaka kaka ba données oyo elimbolami awa na nse.",
+      newsletterTitle: "Mokanda ya sango",
+      newsletterText: "Soki omikomisi, Brevo, mopesi na ngai ya service ya email oyo azali na France, akobomba adresse email na yo kaka mpo na kotindela yo mokanda ya sango. Ndima na yo ezali moboko ya mibeko. Natɛkaka te mpe nakabolaka te adresse na yo.",
+      contactTitle: "Formulaire ya kosolola",
+      contactText: "Ba messages oyo etindami na formulaire ya kosolola ekómelaka ngai na nzela ya FormSubmit mpe nasalelaka yango kaka mpo na koyanola yo.",
+      storageTitle: "Ba données ya navigateur",
+      storageText: "Maponi na yo ya thème, lokota mpe mode ya kotánga ebombamaka kaka na navigateur na yo. Cookies ya analyse to ya publicité ezali te. Ba polices mpe ba icônes ewutaka na Google Fonts mpe jsDelivr.",
+      rightsTitle: "Makoki na yo",
+      rightsText: "Okoki kotika kozwa mokanda na nzela ya lien oyo ezali na email nyonso, mpe kosɛnga ngai na ntango nyonso ete omona to olongola ba données na yo na kokomela adresse oyo ezali na lokasa ya Contact.",
+      back: "Zonga na ebandeli",
     },
     journey: {
       title: "Nzela na ngai",
