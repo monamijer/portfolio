@@ -32,13 +32,13 @@ A personal site presenting projects, skills, a study journey and a case study of
 
 ## 🛠️ Technology Stack
 
-| Category | Technologies |
-|---|---|
-| Language | JavaScript (ES modules), HTML5, CSS3 |
-| Build | Vite 5, custom Node scripts (prerender, CV) |
-| Icons / fonts | Bootstrap Icons, Google Fonts |
-| Quality | ESLint, Prettier |
-| CI/CD | GitHub Actions → GitHub Pages |
+| Category      | Technologies                                |
+| ------------- | ------------------------------------------- |
+| Language      | JavaScript (ES modules), HTML5, CSS3        |
+| Build         | Vite 5, custom Node scripts (prerender, CV) |
+| Icons / fonts | Bootstrap Icons, Google Fonts               |
+| Quality       | ESLint, Prettier                            |
+| CI/CD         | GitHub Actions → GitHub Pages               |
 
 ## 📁 Project Structure
 
@@ -77,13 +77,13 @@ npm ci
 npm run dev        # http://localhost:5173/portfolio/
 ```
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Development server |
-| `npm run build` | Production build + prerender + CV PDFs in `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run lint` | ESLint on `js/` |
-| `npm run format` | Prettier |
+| Command           | Description                                       |
+| ----------------- | ------------------------------------------------- |
+| `npm run dev`     | Development server                                |
+| `npm run build`   | Production build + prerender + CV PDFs in `dist/` |
+| `npm run preview` | Serve the production build locally                |
+| `npm run lint`    | ESLint on `js/`                                   |
+| `npm run format`  | Prettier                                          |
 
 ## 🌍 Deployment
 
