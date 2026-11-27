@@ -87,7 +87,7 @@ npm run dev        # http://localhost:5173/portfolio/
 
 ## 🌍 Deployment
 
-Every push to `main` that changes site files (`css/`, `js/`, `public/`, `scripts/`, `index.html`, package files or the workflow) builds and deploys to GitHub Pages. Documentation-only commits do not deploy. Pull requests only run the build. The site is also rebuilt on the 1st of each month so the generated CV stays current.
+Deployments are manual: open **Actions > Build and deploy to GitHub Pages > Run workflow** on `main` when you want to publish. Pushes and merges do not deploy, so the deployment history only lists releases that were chosen. Pull requests only run the build. The generated CV uses the build date, so run the workflow again when the date should be refreshed.
 
 ## 🤝 Contributing
 

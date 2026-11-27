@@ -1,26 +1,11 @@
 name: Build and deploy to GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
-    # Only rebuild/redeploy when something that ends up in the site changes
-    # (README, LICENSE and other docs-only commits no longer create a deployment)
-    paths:
-      - "css/**"
-      - "js/**"
-      - "public/**"
-      - "scripts/**"
-      - "index.html"
-      - "package.json"
-      - "package-lock.json"
-      - "vite.config.js"
-      - ".github/workflows/deploy.yml"
+  # Deployments are manual (Actions > Run workflow), so the deployment history
+  # only lists releases someone chose to publish. Pull requests still run the build.
   pull_request:
     branches: ["main"]
   workflow_dispatch:
-  schedule:
-    # Monthly rebuild: the CV is generated at build time from the current date
-    - cron: "0 3 1 * *"
 
 permissions:
   contents: read
